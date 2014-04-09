@@ -3,6 +3,7 @@ require_once 'config.php';
 
 $dbConn = mysql_connect ($dbHost, $dbUser, $dbPass) or die ('MySQL connect failed. ' . mysql_error());
 mysql_select_db($dbName) or die('Невозможно присоединиться к базе. ' . mysql_error());
+mysql_query("set names utf8");
 
 function dbQuery($sql)
 {
