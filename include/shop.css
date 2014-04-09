@@ -1,0 +1,170 @@
+#leftnav {
+	width: 150px;
+	font-size: 12px;
+	vertical-align: top;
+	font-size: 85%;
+}
+
+ul, ol {
+	font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+#leftnav a {
+	/*/*/padding: 3px; 
+	display: block;
+	border: 1px dotted #CCC;
+	text-decoration: none;
+	line-height: 1em;
+	width: 150px /* */
+}
+
+#leftnav a:link, #leftnav a:visited {
+	color: #666;
+}
+
+#leftnav a:hover, #leftnav a:active {
+	color: #FFFFFF;
+	background-color: #6699CC;
+	border: 1px solid #000;
+}
+
+#leftnav ul {
+	/*/*/padding: 0em;
+	margin-left: 0em;
+	margin-right: 0em;
+	list-style-type: none; /* */
+}
+
+#leftnav li {
+	/*/*/margin: 0px 0px 6px 0px; /* */	
+}
+
+#current a {
+	color: #FFFFFF !important;
+	/*/*/background-color: #999999 !important;
+	border: 2px dotted #999 !important; /* */
+}
+
+#minicart {
+	font-size: 12px;	
+}
+
+.entryTable {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	background-color: #DDDDDD;
+}
+
+.entryTableHeader {
+	font-family: "Courier New", Courier, mono;
+	font-size: 14px;
+	color: #FFFFFF;
+	background-color: #7F92A4;
+	font-weight: bold;
+	background-position: center;
+}
+
+.entryTable .label {
+	background-color: #EFEFEF;
+}
+
+.entryTable .content {
+	background-color: #FFFFFF;
+}
+
+
+.infoTable {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	background-color: #DDDDDD;
+}
+
+.infoTableHeader {
+	font-family: "Courier New", Courier, mono;
+	font-size: 14px;
+	color: #FFFFFF;
+	background-color: #7F92A4;
+	font-weight: bold;
+	background-position: center;
+}
+
+.infoTable .label {
+	background-color: #EFEFEF;
+}
+
+.infoTable .content {
+	background-color: #FFFFFF;
+}
+
+.box {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	border: 1px solid #336699;
+}
+
+.notice {
+	color: #996600;
+	font-weight: bold;
+}
+addtocart
+.addToCartButton {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color:#FFF;
+	font-weight:bold;
+	border: 1px solid #18770e;
+	background-color:#20c105;
+}
+
+.addToOrderButton {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color:#FFF;
+	font-weight:bold;
+	border: 1px solid #124d77;
+	background-color:#0061a7;
+}
+
+#errorMessage {
+	color: #990000;
+	font-weight: bold;
+}
+
+.menuLink {
+	color: #fff; 
+	text-decoration: none;
+	margin-left: 8px;
+	margin-right: 8px;
+}
+
+.brd {
+	border: 1px solid #DDD;
+	border-top: 0px;
+	border-radius: 0 0 4px 4px;
+	padding: 10px;
+	min-height: 200px;
+}
+
+.rview {
+	width: 100%;
+	border: 1px solid #DDD;
+	border-radius: 4px;
+	padding: 10px;
+	margin-bottom: 5px;
+}
+
+.tb {
+	height: 34px; 
+	padding-top: 5px; 
+	padding-bottom: 5px;
+}
+
+.footer {
+  margin-top:10;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  min-height: 34;
+  background-color: #ECECEC;
+  border: 1px solid #DDD;
+  border-radius: 4px;
+  padding: 6px;
+}
