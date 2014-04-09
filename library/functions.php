@@ -1059,4 +1059,23 @@ function addReview($user,$rating,$email,$rvtext,$pdid,$usrid)
 	$res = mysql_query($sql) or die(mysql_error());
 	if($res){return 99;} else {return 1;}
 }
+
+//----------Function for adding orders "Под заказ"----------
+function addOrder($name,$phone,$email,$pdid,$usrid)
+{
+	$name = secureInput($name);
+	$email = secureInput($email);
+	$phone = secureInput($phone);
+
+	$sql = "INSERT INTO tbl_order(od_date, od_last_update, od_shipping_first_name, od_memo, 
+		                              od_shipping_phone, od_user_id, od_shipping)
+                VALUES (NOW(), NOW(), '$name', '$email', '$phone', '$usrid', 'ordr')";
+
+	$res = mysql_query($sql) or die(mysql_error());
+	$orderId = dbInsertId();
+	$sql = "INSERT INTO tbl_order_item(od_id, pd_id, od_qty)
+				VALUES ($orderId, $pdid, 1)";
+	$result = mysql_query($sql) or die(mysql_error());
+	if($res){return 99;} else {return 1;}
+}
 ?>
