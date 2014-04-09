@@ -219,4 +219,4 @@ pip-log.txt
 .idea
 
 #config
-config.php
+*config.php
