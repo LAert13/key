@@ -1,5 +1,5 @@
 <?php
-require_once('library/db.php');
+require_once('library/config.php');
 include('library/functions.php');
 $sitesettings = getSiteSettings();
 $site_url = $sitesettings[0]['site_url'];

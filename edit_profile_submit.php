@@ -1,6 +1,6 @@
 <?php
 DEFINE('INCLUDE_CHECK',1);
-require_once('library/db.php');
+require_once('library/config.php');
 include('library/functions.php');
 
 checkLogin('2');	
@@ -18,7 +18,7 @@ checkLogin('2');
 			die(msg(0,"Этот адрес электронной почты уже присутствует в базе. Пожалуйста введите другую электронную почту."));
 		}
 		
-		$res = editUser($_SESSION['user_id'],$_POST['email'],$_POST['first_name'],$_POST['last_name'],$_POST['dialing_code'],$_POST['phone'],$_POST['city'],$_POST['country']);
+		$res = editUser($_SESSION['user_id'],$_POST['email'],$_POST['first_name'],$_POST['last_name'],0,$_POST['phone'],$_POST['city'],$_POST['country']);
 			
 			if($res == 4){
 				die(msg(0,"Внутренняя ошибка. Свяжитесь со службой поддержки!"));

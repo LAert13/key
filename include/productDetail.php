@@ -69,14 +69,12 @@ extract($product);
 					// show the 'Add to cart' button
 					if ($pd_qty > 0) {
 					?>
-					<input type="submit" class="btn btn-success btn-block" name="btnAddToCart" value="Добавить в корзину">
+						<input type="submit" class="btn btn-success btn-block" name="btnAddToCart" value="Добавить в корзину">
 					<?php
 					} else {
 					?>
-						<input type="button" class="btn btn-primary" name="btnAddToOrder" value="Под заказ" onClick="window.location.href='<?php echo "cart.php?action=add&p=$pdId" ?>';" class="addToOrderButton">
-					<?php
-					}
-					?>
+						<input type="button" class="btn btn-primary btn-block" name="btnAddToOrder" value="Под заказ" onClick="window.location.href='<?php echo "cart.php?action=add&p=$pdId" ?>';" class="addToOrderButton">
+					<?php } ?>
 				</div>
 			  </form>
 			</td>

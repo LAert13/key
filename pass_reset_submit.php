@@ -1,6 +1,6 @@
 <?php
 DEFINE('INCLUDE_CHECK',1);
-require_once('library/db.php');
+require_once('library/config.php');
 include('library/functions.php');
 
 $sitesettings = getSiteSettings();	

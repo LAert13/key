@@ -48,12 +48,12 @@ if ($numProduct > 0 ) {
 		// if the product is no longer in stock, tell the customer
 		if ($pd_qty <= 0) {
 		?>
-		<br><input type="button" class="btn btn-primary" name="btnAddToOrder" value="Под заказ" onClick="window.location.href='<?php echo "cart.php?action=add&p=$pd_id" ?>';" class="addToOrderButton">
+		<br><input type="button" class="btn btn-primary" name="btnAddToOrder" value="Под заказ" onClick="window.location.href='<?php echo $_SERVER['PHP_SELF']."?c=$catId&p=$pd_id" ?>';" class="addToOrderButton">
 		<?php	
 		} 
 		else {
 		?>
-		<br><input type="button" class="btn btn-success" name="btnAddToCart" value="Добавить в корзину" onClick="window.location.href='<?php echo "cart.php?action=add&p=$pd_id" ?>';" class="addToCartButton">
+		<br><input type="button" class="btn btn-success" name="btnAddToCart" value="В наличии" onClick="window.location.href='<?php echo $_SERVER['PHP_SELF']."?c=$catId&p=$pd_id" ?>';" class="addToCartButton">
 		<?php
 		}
 		

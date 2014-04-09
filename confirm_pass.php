@@ -1,6 +1,6 @@
 <?PHP
 DEFINE('INCLUDE_CHECK',1);
-require_once('library/db.php');
+require_once('library/config.php');
 include('library/functions.php');
 
 $id = '';
@@ -19,7 +19,7 @@ if (isset($_GET['new'])){
 			$error = "Навозможно обновить ваш пароль. Пожалуйста свяжитесь с администрацией сайта.";
 			}
 		if ($res == 2){
-			$error = "Новый пароль уже подтвержен или неправмилен!";
+			$error = "Новый пароль уже подтвержен или неправилен!";
 			}
 		if ($res == 3){
 			$error = "Пользователя с таким именем не существует.";

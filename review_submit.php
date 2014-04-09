@@ -1,5 +1,5 @@
 <?php
-require_once('library/db.php');
+require_once('library/config.php');
 include('library/functions.php');
 	if(empty($_SESSION['user_id'])){
 	if(!(isset($_SESSION['captcha_keystring']) && $_SESSION['captcha_keystring'] === $_POST['keystring']))
