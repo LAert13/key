@@ -113,11 +113,11 @@ extract($product);
 			<div class="modal-body">
 				<div class="rview"><img src="<?php echo "images/product/"; echo $pd_thumbnail; ?>" border="0">&nbsp;<strong><?php echo $pd_name; ?></strong></div>
 				<p>Введите контактную информацию и мы свяжемся с вами для подготовки следующей поставки товаров</p>
-				<div class="done">
+				<div class="done2">
 					<p>Заказ успешно оформлен! Мы свяжемся с Вами сразу после его обработки.</p>
 					<input class="btn btn-primary" data-dismiss="modal" aria-hidden="true" name="btnBack" type="button" id="btnBack" value="Закрыть" />
 				</div>
-				<div class="form">
+				<div class="form2">
 					<form id="orderForm" action="order_submit.php" method="post">
 						<table align="center" cellspacing="1" cellpadding="1" border="0">
 							<tr>
@@ -138,7 +138,7 @@ extract($product);
 			                    <td><input onclick="this.value='';" class="form-control" name="email" id="email" type="text" size="25" maxlength="25" value="<?php if (isset($getuser[0]['email'])){ echo $getuser[0]['email'];} ?>"/></td>
 			                  </tr>
 			                  <tr>
-								<td colspan="2"><div id="error">&nbsp;</div></td>
+								<td colspan="2"><div id="error2">&nbsp;</div></td>
 								<input name="pdId" type="hidden" value="<?php echo $pdId ?>">
 				  			  </tr>
 			                  <tr>

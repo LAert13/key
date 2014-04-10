@@ -87,7 +87,7 @@ function contactus()
 function order()
 {
 	hideshow('loading',1);
-	error(0);
+	error2(0);
 	
 	$.ajax({
 		type: "POST",
@@ -99,14 +99,14 @@ function order()
 			if(parseInt(msg.status)==1)
 			{
 				//hide the form
-				$('.form').fadeOut('slow');					
+				$('.form2').fadeOut('slow');					
 					
 				//show the success message
-				$('.done').fadeIn('slow');
+				$('.done2').fadeIn('slow');
 			}
 			else if(parseInt(msg.status)==0)
 			{
-				error(1,msg.txt);
+				error2(1,msg.txt);
 			}
 			
 			hideshow('loading',0);
@@ -342,4 +342,10 @@ function error(act,txt)
 {
 	hideshow('error',act);
 	if(txt) $('#error').html(txt);
+}
+
+function error2(act,txt)
+{
+	hideshow('error2',act);
+	if(txt) $('#error2').html(txt);
 }
