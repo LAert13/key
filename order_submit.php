@@ -26,8 +26,10 @@ require_once('library/checkout-functions.php');
 		{
 			die(msg(0,"Неправильная электронная почта!"));
 		}
-	
-		$res = addOrder($_POST['name'],$_POST['phone'],$_POST['email'],$_POST['pdId'],$_SESSION['user_id']);
+	if (!empty($_SESSION['user_id'])) { $usID = $_SESSION['user_id']; }
+	else {$usID = 0; }
+
+		$res = addOrder($_POST['name'],$_POST['phone'],$_POST['email'],$_POST['pdId'],$usID);
 			
 			if($res == 1){
 				die(msg(0,"Внутренняя ошибка. Свяжитесь со службой поддержки!"));
@@ -35,7 +37,7 @@ require_once('library/checkout-functions.php');
 			if($res == 99){
 				die(msg(1,"Заказ оформлен успешно!"));
 			}
-
+	
 	function msg($status,$txt)
 	{
 		return '{"status":'.$status.',"txt":"'.$txt.'"}';
