@@ -104,7 +104,7 @@
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
               <li><a href="/">Домой</a></li>
-              <li><a href="#">Доставка и оплата</a></li>
+              <li><a href="delivery.php">Доставка и оплата</a></li>
               <li><a href="#">Статьи</a></li>
               <li><a href="#">Помощь</a></li>
               <li><a href="contacts.php">Контакты</a></li>

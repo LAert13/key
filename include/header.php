@@ -57,16 +57,6 @@ if (isset($_GET['p']) && (int)$_GET['p'] > 0) {
 <script type="text/javascript" src="library/script.js"></script>
 <script src="library/validation.js"></script>
 <script src="library/fotorama.js"></script>
-    
-	<script type="text/javascript">
-		$(document).ready(function(){
-	
-			$('#reviewForm').submit(function(e) {
-				review();
-				e.preventDefault();	
-			});	
-		});
-	</script>
 
 </head>
 <body>

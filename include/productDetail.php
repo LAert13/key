@@ -9,7 +9,6 @@ $product = getProductDetail($pdId, $catId);
 extract($product);
 ?> 
 
-<script type="text/javascript" src="library/script.js"></script>
 <script type="text/javascript">
 		$(document).ready(function(){
 	

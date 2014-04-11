@@ -47,10 +47,10 @@ $site_url = $sitesettings[0]['site_url'];
 		die(msg(0,"<p>Пожалуйста укажите электронную почту.</p>"));
 	}
 	
-	/*elseif(validateEmail($_POST['email']))
+	elseif(validateEmail($_POST['email']))
 	{
-		die(msg(0,"<p>Invalid email address.</p>"));
-	}*/
+		die(msg(0,"<p>Неправильный адрес электронной почты.</p>"));
+	}
 
 	elseif(uniqueEmail($_POST['email']))
 	{

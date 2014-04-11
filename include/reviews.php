@@ -37,7 +37,17 @@ else {
 <?php	
 }	
 ?>
-
+    
+	<script type="text/javascript">
+		$(document).ready(function(){
+	
+			$('#reviewForm').submit(function(e) {
+				review();
+				e.preventDefault();	
+			});	
+		});
+	</script>
+	
 <div class="done"><p>Ваш отзыв успешно отправлен! <a href="/">Нажмите сюда</a> для продолжения покупок.</p></div><!--close done-->
 <p align="center"><?php echo $pagingLink; ?></p>
 
