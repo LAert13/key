@@ -41,6 +41,8 @@ if (isset($_GET['p']) && (int)$_GET['p'] > 0) {
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:700,800' rel='stylesheet' type='text/css'>
+
 
 <script language="JavaScript" type="text/javascript" src="library/jquery.min.js"></script>
 
@@ -53,6 +55,9 @@ if (isset($_GET['p']) && (int)$_GET['p'] > 0) {
 <link href="include/fotorama.css" rel="stylesheet">
 
 <link href="include/navbar.css" rel="stylesheet" type="text/css">
+
+<link rel="stylesheet" type="text/css" href="include/restyle.css" media="screen" />
+
 <script src="library/bootstrap.js"></script>
 <script type="text/javascript" src="library/script.js"></script>
 <script src="library/validation.js"></script>
