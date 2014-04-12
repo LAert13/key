@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Апр 09 2014 г., 17:44
+-- Время создания: Апр 13 2014 г., 02:51
 -- Версия сервера: 5.5.35-log
 -- Версия PHP: 5.3.27
 
@@ -290,15 +290,7 @@ CREATE TABLE IF NOT EXISTS `tbl_cart` (
   PRIMARY KEY (`ct_id`),
   KEY `pd_id` (`pd_id`),
   KEY `ct_session_id` (`ct_session_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=52 ;
-
---
--- Дамп данных таблицы `tbl_cart`
---
-
-INSERT INTO `tbl_cart` (`ct_id`, `pd_id`, `ct_qty`, `ct_sw`, `ct_il`, `ct_session_id`, `ct_date`) VALUES
-(50, 2, 1, 0, 0, 'hi2dmiijdhspfldh1tbq578f51', '2014-04-09 15:50:51'),
-(51, 2, 2, 0, 0, 'cib1bltrp5cihair7ctvujvn66', '2014-04-09 15:51:11');
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=61 ;
 
 -- --------------------------------------------------------
 
@@ -370,7 +362,7 @@ CREATE TABLE IF NOT EXISTS `tbl_order` (
   `od_user_id` int(4) NOT NULL,
   `od_shipping` varchar(4) NOT NULL,
   PRIMARY KEY (`od_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=29 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=51 ;
 
 -- --------------------------------------------------------
 
@@ -426,7 +418,7 @@ INSERT INTO `tbl_product` (`pd_id`, `cat_id`, `pd_name`, `pd_description`, `pd_p
 (2, 21, 'Ducky Shine 3 Tuhaojin', 'Эксклюзив 2014-го года - выпущено всего 999 штук!', '250.00', 8, 2, 2, 2, 2, 1, 0, 0, 'e19bb3856738b80ac3c8873232cce6ac.jpg', 'a16d1fdb378db3dc3cc2f0564e045adc.jpg', 'tuhaojin', 8, '2014-02-26 13:54:17', '0000-00-00 00:00:00'),
 (3, 21, 'Ducky Shine 3 DK9008', 'Топовая модель линейки с регулируемым уровнем и цветом подсветки.', '159.00', 0, 0, 0, 0, 0, 1, 0, 0, '45c73a62a84fefffebb7502ef11e6671.jpg', '267ca62a2f469ee3aa11198a44f418d3.jpg', 'DK9008', 13, '2014-02-26 13:54:59', '0000-00-00 00:00:00'),
 (4, 20, 'Ducky Wrist Rest', 'Полноразмерная подставка под ладони. Сделана из натуральной кожи.', '25.00', 8, 0, 0, 0, 0, 0, 0, 0, 'ad503b30c4033b70124ec3c15c01aec7.jpg', '2bcd838cd73a3b71f9a71c617fb97341.jpg', 'access', 4, '2014-02-26 15:35:00', '0000-00-00 00:00:00'),
-(5, 21, 'Ducky Shine 3 DK9087', 'Топовая модель линейки с регулируемым уровнем и цветом подсветки. Без цифрового блока.', '139.00', 5, 2, 1, 1, 1, 1, 0, 0, '79258f83428cb4650bee754ff5903f9a.jpg', '888f7b91e7eff8052704c59191ad3253.jpg', 'DK9087', 6, '2014-02-26 16:44:53', '0000-00-00 00:00:00'),
+(5, 21, 'Ducky Shine 3 DK9087', 'Топовая модель линейки с регулируемым уровнем и цветом подсветки. Без цифрового блока.', '139.00', 2, 0, -1, -1, 1, 1, 0, 0, '79258f83428cb4650bee754ff5903f9a.jpg', '888f7b91e7eff8052704c59191ad3253.jpg', 'DK9087', 6, '2014-02-26 16:44:53', '0000-00-00 00:00:00'),
 (6, 21, 'Ducky Zero DK2108S', 'Высокое качество по доступной цене! Теперь с подсветкой.', '131.00', 7, 2, 3, 1, 1, 2, 3, 4, '02bcf6e7c545436ae98cdb0c4f927c8b.jpg', '59b5fdae81cba8084d74c9a3594b0b7a.jpg', 'DK2108S', 8, '2014-02-26 16:46:40', '0000-00-00 00:00:00'),
 (7, 21, 'Ducky Zero DK2108', 'Высокое качество по доступной цене!', '107.00', 6, 2, 2, 2, 0, 0, 0, 0, '89d111b3e26c1eff09c05f388e1e9ed8.jpg', '9bcf0554a8c6ccb3eb283d38f4fb74f4.jpg', 'DK2108', 7, '2014-02-26 16:48:05', '0000-00-00 00:00:00'),
 (8, 21, 'Ducky Zero DK2087', 'Высокое качество по доступной цене!  Без цифрового блока.', '101.00', 8, 3, 2, 3, 0, 0, 0, 0, 'f2bcb880208c13f7e795976ab00f8973.jpg', '38a55fdd152d721f385094766aabe5e4.jpg', 'DK2087', 7, '2014-02-26 16:48:48', '0000-00-00 00:00:00');
@@ -448,7 +440,7 @@ CREATE TABLE IF NOT EXISTS `tbl_review` (
   `rv_valid` int(11) NOT NULL DEFAULT '0',
   `rv_date` varchar(45) NOT NULL,
   PRIMARY KEY (`rv_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=22 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=24 ;
 
 --
 -- Дамп данных таблицы `tbl_review`
@@ -457,7 +449,29 @@ CREATE TABLE IF NOT EXISTS `tbl_review` (
 INSERT INTO `tbl_review` (`rv_id`, `rv_pd_id`, `rv_usr_id`, `rv_usr_name`, `rv_usr_email`, `rv_usr_rating`, `rv_text`, `rv_valid`, `rv_date`) VALUES
 (19, 5, 15, 'laert', 'laert13@ya.ru', 5, ',ndfnsmfnmsdnm', 1, '2014-03-13 16:52:30'),
 (20, 5, 15, 'laert', 'laert13@ya.ru', 5, 'nsmbbmnmnm', 0, '2014-03-13 16:54:01'),
-(21, 4, 15, 'laert', 'g@s.oo', 5, '', 0, '2014-03-27 16:57:32');
+(21, 4, 15, 'laert', 'g@s.oo', 5, '', 0, '2014-03-27 16:57:32'),
+(22, 5, 0, 'asdasdas', 'asdasd@jkcjvksdj.pp', 5, 'sadasdasdas', 0, '2014-04-09 19:58:10'),
+(23, 5, 0, 'billy', 'tanya-n@i.ua', 5, 'фывфыафывафыафыафыа', 0, '2014-04-10 13:51:40');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `tbl_shipping`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_shipping` (
+  `sh_id` int(6) NOT NULL AUTO_INCREMENT,
+  `sh_session` char(32) DEFAULT NULL,
+  `sh_name` varchar(25) DEFAULT NULL,
+  `sh_phone` varchar(25) DEFAULT NULL,
+  `sh_email` varchar(25) DEFAULT NULL,
+  `sh_city` varchar(25) DEFAULT NULL,
+  `sh_address` varchar(100) DEFAULT NULL,
+  `sh_ship` varchar(4) DEFAULT NULL,
+  `sh_uid` int(5) NOT NULL DEFAULT '0',
+  `sh_flag` smallint(3) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`sh_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=23 ;
 
 -- --------------------------------------------------------
 
@@ -533,7 +547,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `reg_date` varchar(45) CHARACTER SET utf8 NOT NULL,
   `last_active` varchar(50) CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
 
 --
 -- Дамп данных таблицы `users`
@@ -548,7 +562,8 @@ INSERT INTO `users` (`id`, `username`, `password`, `temp_pass`, `temp_pass_activ
 (17, 'zone', '266e8d5449777ef4651279cb8517d157', '', 0, '', '', 'zone-i@i.ua', 0, 0, '', '', '', '', 1, 2, '', '2014-03-14 16:49:11', ''),
 (18, 'blablablab', '266e8d5449777ef4651279cb8517d157', '', 0, '', '', 'tt@i.ua', 0, 0, '', '', '', '', 1, 2, '', '2014-03-30 12:14:26', ''),
 (19, 'uuuuuuuu', '4000f8f21c4fc014dd78e64fdfd2a80c', '', 0, '', '', 'uuuuu@uuu.uu', 0, 0, '', '', '', '', 1, 2, '', '2014-03-30 12:19:19', ''),
-(20, 'blood', 'fd29716ebd465313bc5d92d4b4c7e28a', '', 0, '', '', 'blood@ya.ru', 0, 0, '', '', '', '', 1, 2, '', '2014-03-31 18:33:04', '');
+(20, 'blood', 'fd29716ebd465313bc5d92d4b4c7e28a', '', 0, '', '', 'blood@ya.ru', 0, 0, '', '', '', '', 1, 2, '', '2014-03-31 18:33:04', ''),
+(21, 'void', '266e8d5449777ef4651279cb8517d157', '', 0, '', '', 'void@void.vo', 0, 0, '', '', '', '', 1, 2, '', '2014-04-09 19:58:51', '');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

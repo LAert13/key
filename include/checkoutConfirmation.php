@@ -10,14 +10,13 @@ if (!defined('WEB_ROOT')
 	exit;
 }
 
-$errorMessage = '&nbsp;';
+$sid = session_id();
+$sql = "SELECT * FROM tbl_shipping WHERE sh_session = '$sid' ORDER BY sh_id DESC LIMIT 1";
+$res = mysql_query($sql) or die(mysql_error());
+extract(mysql_fetch_assoc($res));
+$update = mysql_query("UPDATE tbl_shipping SET sh_flag = 1 WHERE sh_id = '$sh_id'");
 
-$requiredField = array('name', 'phone', 'city');
-					   
-if (!checkRequiredPost($requiredField)) {
-	$errorMessage = 'Input not complete';
-}
-					   
+$errorMessage = '&nbsp;';
 
 $cartContent = getCartContent();
 
@@ -111,38 +110,38 @@ $cartContent = getCartContent();
 				<table align="center" width="60%" cellspacing="1" cellpadding="1" border="0">
                   <tr>
                     <td width="150"><label for="name" style="margin-right: 5;">ФИО покупателя</label></td>
-                    <td align="center"><?php echo $_POST['name']; ?>
-			                <input name="hidShippingFIO" type="hidden" id="hidShippingFIO" value="<?php echo $_POST['name']; ?>"></td>
+                    <td align="center"><?php echo $sh_name; ?>
+			                <input name="hidShippingFIO" type="hidden" id="hidShippingFIO" value="<?php echo $sh_name; ?>"></td>
                   </tr>
                   <tr>
                     <td width="150"><label for="phone" style="margin-right: 5;">Номер телефона</label></td>
-                    <td align="center"><?php echo $_POST['phone'];  ?>
-			                <input name="hidShippingPhone" type="hidden" id="hidShippingPhone" value="<?php echo $_POST['phone']; ?>"></td>
+                    <td align="center"><?php echo $sh_phone;  ?>
+			                <input name="hidShippingPhone" type="hidden" id="hidShippingPhone" value="<?php echo $sh_phone; ?>"></td>
                   </tr>
                   <tr>
                     <td width="150"><label for="email" style="margin-right: 5;">Электронная почта</label></td>
-                    <td align="center"><?php echo $_POST['email']; ?>
-			                <input name="hidShippingEmail" type="hidden" id="hidShippingEmail" value="<?php echo $_POST['email']; ?>"></td>
+                    <td align="center"><?php echo $sh_email; ?>
+			                <input name="hidShippingEmail" type="hidden" id="hidShippingEmail" value="<?php echo $sh_email; ?>"></td>
                   </tr>
                   <tr>
                     <td width="150"><label for="city" style="margin-right: 5;">Город</label></td>
-                    <td align="center"><?php echo $_POST['city']; ?>
-			                <input name="hidShippingCity" type="hidden" id="hidShippingCity" value="<?php echo $_POST['city']; ?>" ></td>
+                    <td align="center"><?php echo $sh_city; ?>
+			                <input name="hidShippingCity" type="hidden" id="hidShippingCity" value="<?php echo $sh_city; ?>" ></td>
                   </tr>
                   <tr>
                     <td width="150"><label for="address" style="margin-right: 5;">Адрес доставки (необязательно)</label></td>
-                   	<td align="center"><?php echo $_POST['address']; ?>
-			                <input name="hidShippingAddress" type="hidden" id="hidShippingAddress" value="<?php echo $_POST['address']; ?>">
-			                <input name="hidUserID" type="hidden" id="hidUserID" value="<?php echo $_POST['userid']; ?>"></td>
+                   	<td align="center"><?php echo $sh_address; ?>
+			                <input name="hidShippingAddress" type="hidden" id="hidShippingAddress" value="<?php echo $sh_address; ?>">
+			                <input name="hidUserID" type="hidden" id="hidUserID" value="<?php echo $sh_uid; ?>"></td>
                   </tr>
                   <tr>
                     <td width="150"><label>Способ достаки и оплаты</label></td>
-                    <td align="center"><?php if ($_POST['optPayment'] == 'cod') { echo 'Самовывоз'; } else { echo 'Новая почта'; } ?>
-			          <input name="hidPaymentMethod" type="hidden" id="hidPaymentMethod" value="<?php echo $_POST['optPayment']; ?>" />
+                    <td align="center"><?php if ($sh_ship == 'cod') { echo 'Самовывоз'; } else { echo 'Новая почта'; } ?>
+			          <input name="hidPaymentMethod" type="hidden" id="hidPaymentMethod" value="<?php echo $sh_ship; ?>" />
 			        </td>
                   </tr>
                   <tr>
-                    <td><input class="btn btn-primary btn-block" style="margin-top: 5;" name="btnBack" type="button" id="btnBack" onClick="window.history.back();" value="Назад" /></td>
+                    <td><input class="btn btn-primary btn-block" style="margin-top: 5;" name="btnBack" type="button" id="btnBack" onClick="window.location.href='<?php echo $_SERVER['PHP_SELF'] . "?step=1"; ?>';" value="Назад" /></td>
                     <td>
                         <input class="btn btn-success btn-block" style="margin-top: 5;" type="submit" name="btnConfirm" id="btnConfirm" value="ЗАКАЗАТЬ" />
                     </td>

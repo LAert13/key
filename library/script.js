@@ -53,6 +53,31 @@ function review()
 
 }
 
+function shipping()
+{
+	hideshow('loading',1);
+	error(0);
+	
+	$.ajax({
+		type: "POST",
+		url: "include/shipping_submit.php",		
+		data: $('#frmCheckout').serialize(),
+		dataType: "json",
+		success: function(msg){
+			
+			if(!(msg.status))
+			{
+				error(1,msg.txt);
+			}
+			else location.replace(msg.txt);
+			
+			hideshow('loading',0);
+		}
+	});
+
+}
+
+
 function contactus()
 {
 	hideshow('loading',1);

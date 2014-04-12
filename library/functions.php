@@ -1078,4 +1078,30 @@ function addOrder($name,$phone,$email,$pdid,$usrid)
 	$result = mysql_query($sql) or die(mysql_error());
 	if($res){return 99;} else {return 1;}
 }
+
+//----------Function for adding shipping info----------
+function addShipping($name,$phone,$email,$city,$address,$shp)
+{
+	$sid = session_id();
+	$name = secureInput($name);
+	$email = secureInput($email);
+	$phone = secureInput($phone);
+	$city = secureInput($city);
+	$address = secureInput($address);
+	if (!empty($_SESSION['user_id'])) { $usID = $_SESSION['user_id']; } else {$usID = 0; }
+	$sql = "SELECT * FROM tbl_shipping WHERE sh_session = '$sid' ORDER BY sh_id DESC LIMIT 1";
+	$res = mysql_query($sql) or die(mysql_error());
+	$res = mysql_fetch_assoc($res);
+	$shid = $res['sh_id'];
+	if ($res['sh_flag'] == 0) {
+	  $sql = "INSERT INTO tbl_shipping(sh_session, sh_name, sh_phone, sh_email, sh_city, sh_address, sh_ship, sh_uid)
+           					VALUES ('$sid', '$name', '$phone', '$email', '$city', '$address', '$shp', '$usID')"; }
+	else { 
+			$sql = "UPDATE tbl_shipping 
+						SET sh_name = '$name', sh_phone = '$phone', sh_email = '$email', sh_city = '$city', sh_address = '$address', sh_ship = '$shp' 
+						WHERE sh_id = $shid";
+		}
+	$res = mysql_query($sql) or die(mysql_error());
+	if($res){return 99;} else {return 1;}
+}
 ?>
