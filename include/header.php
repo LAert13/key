@@ -61,7 +61,6 @@ if (isset($_GET['p']) && (int)$_GET['p'] > 0) {
     <!-- Custom styles for this template -->
     <link href="/include/style.css" rel="stylesheet">
     <link href="/include/shop.css" rel="stylesheet">
-    <link href="/include/fotorama.css" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -76,8 +75,6 @@ if (isset($_GET['p']) && (int)$_GET['p'] > 0) {
     <script language="JavaScript" type="text/javascript" src="/js/common.js"></script>
     <script language="JavaScript" type="text/javascript" src="/js/bootstrap.js"></script>
     <script language="JavaScript" type="text/javascript" src="/js/script.js"></script>
-    <script language="JavaScript" type="text/javascript" src="/js/validation.js"></script>
-    <script language="JavaScript" type="text/javascript" src="/js/fotorama.js"></script>
     <script language="JavaScript" type="text/javascript" src="/js/modernizr.js"></script>
 </head>
 
