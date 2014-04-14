@@ -348,6 +348,24 @@ a:hover {
 .ks-position__link:hover .ks-position__name {
   text-decoration: underline;
 }
+.ks-position .btn-primary {
+  float: right;
+  border-radius: 0;
+}
+.ks-position .btn-primary:hover {
+  color: #fff;
+  background-color: #428bca;
+  border-color: #357ebd;
+}
+.ks-position .btn-success {
+  float: right;
+  border-radius: 0;
+}
+.ks-position .btn-success:hover {
+  color: #fff;
+  background-color: #5cb85c;
+  border-color: #4cae4c;
+}
 .ks-filter__block {
   padding: 0 15px 20px;
 }
