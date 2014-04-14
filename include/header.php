@@ -46,6 +46,8 @@ if (isset($_GET['p']) && (int)$_GET['p'] > 0) {
 
     <title><?php echo $pageTitle; ?></title>
 
+    <link rel="shortcut icon" href="/favicon.png">
+
     <!-- Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:700,800' rel='stylesheet' type='text/css'>
 

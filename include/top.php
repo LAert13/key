@@ -91,7 +91,7 @@
                         </div>
                             <?php } else { ?>
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <span class="glyphicon glyphicon-shopping-cart"></span>0<b class="caret"></b>
+                            <span class="ks-header-cart__icon glyphicon glyphicon-shopping-cart"></span>
                         </a>
                         <div class="dropdown-menu ks-cart">
                             <div>Корзина пуста</div>
