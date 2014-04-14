@@ -94,16 +94,11 @@ a:hover {
   background: #262626;
   color: #f8f8ee;
   border-radius: 4px;
-  height: 3ex;
-  text-indent: -2px;
+  height: 2.9ex;
+  text-indent: -3px;
   padding-right: 2px;
   margin-right: -2px;
   vertical-align: top;
-}
-.ks-logo span:before {
-  content: 'I';
-  margin-right: -4px;
-  margin-left: -3px;
 }
 .ks-logo a {
   color: #0a9e98;
