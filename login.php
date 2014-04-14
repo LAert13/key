@@ -41,7 +41,7 @@ require_once('include/header_usr.php');
 			  	<td colspan="2">
 				  	<div class="row">
 				  		<div class="col-xs-6">
-							<input class="btn btn-success btn-block" type="submit" name="submit" value="Войти" /><img id="loading" src="images/loading.gif" alt="Logging in.." />
+							<input class="btn btn-success btn-block" type="submit" name="submit" value="Войти" /><img style="visibility: hidden" id="loading" src="images/loading.gif" alt="Logging in.." />
 						</div>
 						<div class="col-xs-6"><a class="btn btn-primary btn-block" id="fgtpass" href="pass_reset.php">Забыли пароль?</a></div>
 					</div>
@@ -53,7 +53,8 @@ require_once('include/header_usr.php');
 			  <tr>
 			  	<td colspan="2">
 					<label for="regusr" style="margin-top: 10;">Нет учетной записи?</label>
-					<a class="btn btn-primary btn-block" id="regusr" name="regusr" href="register.php">Зарегистрироваться.</a>
+					<a class="btn btn-primary btn-block" style="color: #fff" id="regusr" name="regusr" href="register.php">Зарегистрироваться.</a>
+                    <br />
 				</td>
 			  </tr>
 			</table>

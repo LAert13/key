@@ -1,0 +1,27 @@
+@media (max-width: 511px) {
+    .col-xs-hide {
+        display: none;
+    }
+
+    .col-s-hide {
+        display: none;
+    }
+}
+
+@media (max-width: 767px) {
+    .col-sm-hide {
+        display: none;
+    }
+}
+
+@media (max-width: 991px) {
+    .col-md-hide {
+        display: none;
+    }
+}
+
+@media (max-width: 1199px) {
+    .col-lg-hide {
+        display: none;
+    }
+}

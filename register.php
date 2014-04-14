@@ -23,7 +23,7 @@ require_once('include/header_usr.php');
 <div class="container" style="width: 960; padding:0;">
 		<div class="panel panel-default" style="margin-bottom:0; margin-top:5; min-height:400">
 		<div class="panel-heading">Регистрация</div>
-		<div class="panel-body"><div class="done"><p>Регистрация успешна! <a href="login.php">Нажмите сюда</a> для входа.</p></div></div>
+		<div class="panel-body"><div class="done" style="display: none"><p class="alert alert-success">Регистрация успешна! <a href="login.php">Нажмите сюда</a> для входа.</p></div></div>
 		<div class="form">
 			<form id="regForm" action="reg_submit.php" method="post">
 				<table align="center" width="40%" cellspacing="1" cellpadding="1" border="0">
@@ -54,11 +54,11 @@ require_once('include/header_usr.php');
 				  </tr>
 				   <tr>
 			        <td colspan="2">
-						<input class="btn btn-primary btn-block" style="margin-top: 5;" type="submit" name="register" value="Зарегистрироваться" /><img id="loading" src="images/loading.gif" alt="working.." />
+						<input class="btn btn-primary btn-block" style="margin-top: 5;" type="submit" name="register" value="Зарегистрироваться" /><img style="visibility: hidden" id="loading" src="images/loading.gif" alt="working.." />
 					</td>
 				  </tr>
 				  <tr>
-					<td colspan="2"><div id="error">&nbsp;</div></td>
+					<td colspan="2"><div id="error" class="alert alert-danger" style="visibility: hidden">&nbsp;</div></td>
 				  </tr>
 				</table>
 			</form>

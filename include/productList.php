@@ -22,13 +22,13 @@ $numProduct = dbNumRows($result);
 // each image gets equal space set the cell width here
 $columnWidth = (int)(100 / $productsPerRow);
 ?>
-<table width="100%" border="0" cellspacing="0" cellpadding="20">
-<?php 
+
+<?php
 if ($numProduct > 0 ) {
 
 	$i = 0;
 	while ($row = dbFetchAssoc($result)) {
-	
+
 		extract($row);
 		if ($pd_image) {
 			$pd_image = WEB_ROOT . 'images/product/' . $pd_image;
@@ -36,45 +36,45 @@ if ($numProduct > 0 ) {
 			$pd_image = WEB_ROOT . 'images/no-image-large.png';
 		}
 	
-		if ($i % $productsPerRow == 0) {
+		/*if ($i % $productsPerRow == 0) {
 			echo '<tr>';
-		}
+		}*/
 
 		// format how we display the price
 		$pd_price = displayAmount($pd_price);
-		
-		echo "<td width=\"$columnWidth%\" align=\"center\"><a href=\"" . $_SERVER['PHP_SELF'] . "?c=$catId&p=$pd_id" . "\"><img src=\"$pd_image\" border=\"0\" width=\"200px\"><br>$pd_name</a><br>Цена : $pd_price";
+?>
 
-		// if the product is no longer in stock, tell the customer
-		if ($pd_qty <= 0) {
-		?>
-		<br><input type="button" class="btn btn-primary" name="btnAddToOrder" value="Под заказ" onClick="window.location.href='<?php echo $_SERVER['PHP_SELF']."?c=$catId&p=$pd_id" ?>';" class="addToOrderButton">
-		<?php	
-		} 
-		else {
-		?>
-		<br><input type="button" class="btn btn-success" name="btnAddToCart" value="В наличии" onClick="window.location.href='<?php echo $_SERVER['PHP_SELF']."?c=$catId&p=$pd_id" ?>';" class="addToCartButton">
-		<?php
-		}
-		
-		echo "</td>\r\n";
-	
-		if ($i % $productsPerRow == $productsPerRow - 1) {
-			echo '</tr>';
-		}
-		
-		$i += 1;
-	}
-	
-	if ($i % $productsPerRow > 0) {
-		echo '<td colspan="' . ($productsPerRow - ($i % $productsPerRow)) . '">&nbsp;</td>';
-	}
-	
-} else {
-?>
-	<tr><td width="100%" align="center" valign="center">No products in this category</td></tr>
-<?php	
-}	
-?>
-</table>
+    <div class="col-xs-12 col-s-6 col-sm-6 col-md-6 col-lg-4">
+        <div class="ks-block-content ks-block-shadow">
+            <div class="ks-position">
+                <a class="ks-position__link" href="<?php echo $_SERVER['PHP_SELF'] . "?c=$catId&p=$pd_id"; ?>">
+                    <img class="ks-position__image" src="<?php echo $pd_image; ?>" />
+                    <span class="ks-position__details">
+                        <span class="ks-position__name"><?php echo $pd_name; ?></span>
+                        <span class="ks-position__price">Цена <?php echo $pd_price; ?></span>
+
+                    <?php
+                        // if the product is no longer in stock, tell the customer
+                        if ($pd_qty < 1) {
+                    ?>
+                        <span class="btn btn-primary">Под заказ</span>
+                    <?php } else { ?>
+                        <span class="btn btn-success">В наличии</span>
+                    <?php } ?>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </div>
+<?php }} else {?>
+    <div class="col-xs-12 col-sm-6 col-md-8 col-lg-9">
+        <div class="ks-block-content ks-block-shadow">
+            <div style="padding: 0 25px">
+                <br/>
+                <p class="alert alert-warning">No products in this category</p>
+            </div>
+        </div>
+    </div>
+<?php } ?>
+</div>
 <p align="center"><?php echo $pagingLink; ?></p>

@@ -31,37 +31,52 @@ if (isset($_GET['p']) && (int)$_GET['p'] > 0) {
 	$pageTitle = $row['cat_name'];
 
 }
-?>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
+?><!DOCTYPE html>
+<html lang="en">
 <head>
-<title><?php echo $pageTitle; ?></title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:700,800' rel='stylesheet' type='text/css'>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
 
 
-<script language="JavaScript" type="text/javascript" src="library/jquery.min.js"></script>
+    <title><?php echo $pageTitle; ?></title>
 
-<script language="JavaScript" type="text/javascript" src="library/common.js"></script>
+    <!-- Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:700,800' rel='stylesheet' type='text/css'>
 
-<link href="include/bootstrap.css" rel="stylesheet">
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="/css/bootstrap.addon.css" rel="stylesheet">
 
-<link href="include/shop.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="include/style.css" media="screen" />
-<link href="include/fotorama.css" rel="stylesheet">
+    <!-- css animation -->
+    <link href="/css/animate.css" rel="stylesheet">
 
-<link href="include/navbar.css" rel="stylesheet" type="text/css">
+    <!-- Custom styles for this template -->
+    <link href="/include/style.css" rel="stylesheet">
+    <link href="/include/shop.css" rel="stylesheet">
+    <link href="/include/fotorama.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
 
-<link rel="stylesheet" type="text/css" href="include/restyle.css" media="screen" />
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
 
-<script src="library/bootstrap.js"></script>
-<script type="text/javascript" src="library/script.js"></script>
-<script src="library/validation.js"></script>
-<script src="library/fotorama.js"></script>
 
+    <!-- Custom page js -->
+    <script language="JavaScript" type="text/javascript" src="/js/jquery.min.js"></script>
+    <script language="JavaScript" type="text/javascript" src="/js/common.js"></script>
+    <script language="JavaScript" type="text/javascript" src="/js/bootstrap.js"></script>
+    <script language="JavaScript" type="text/javascript" src="/js/script.js"></script>
+    <script language="JavaScript" type="text/javascript" src="/js/validation.js"></script>
+    <script language="JavaScript" type="text/javascript" src="/js/fotorama.js"></script>
+    <script language="JavaScript" type="text/javascript" src="/js/modernizr.js"></script>
 </head>
+
 <body>

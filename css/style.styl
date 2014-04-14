@@ -1,0 +1,570 @@
+
+headerStripeMargin = 80px
+headerStripeHeight = 50px
+footerHeight = 60px
+
+
+siteLightColor = #ffffff;
+siteMiddleColor = #F8F8ee;
+//siteDarkColor =  #254e7b;
+siteDarkColor = #3a373a;
+
+logoColorKey = #262626;
+logoColorShop = #BD2B2B;
+
+//linkColor = #069;
+linkColor = #007eb7;
+//linkColor = #2c5987;
+
+linkColorVisited = #619eda;
+
+linkColorHovered = #e41f32;
+//linkColorHovered = #ff5300;
+//linkColorHovered = #dc2f2f;
+
+
+@font-face {
+    font-family: 'Glyphicons Halflings';
+    src: url('/fonts/glyphicons-halflings-regular.eot');
+    src: url('/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('/fonts/glyphicons-halflings-regular.woff') format('woff'), url('/fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('/fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
+}
+
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: footerHeight
+    background siteMiddleColor
+}
+.ks-footer {
+    position: absolute;
+    bottom 0
+    width 100%
+    /* Set the fixed height of the footer here */
+    height footerHeight
+
+    color: #999;
+    /*color: #fff;
+    background-color: #2e5888;
+    border-top 42px solid #6d8916;*/
+}
+
+.ks-page {
+    padding-top headerStripeMargin + headerStripeHeight
+
+    & > .container {
+        padding-left 0
+        padding-right 0
+    }
+}
+
+
+.container {
+    //max-width 100%
+}
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+
+a {
+    color: linkColor;
+
+    &:visited {
+        color: linkColorVisited
+    }
+
+    &:hover {
+        color linkColorHovered
+    }
+}
+
+
+
+
+// ====================================== navbar ======================================
+
+.ks-navbar {
+    background-color siteDarkColor
+    border 0
+    border-radius 0
+    position absolute
+    top headerStripeMargin
+    left 0
+    width 100%
+    margin-bottom 0
+    z-index 1000
+    border-color transparent !important
+
+    &.navbar-fixed-top {
+        position fixed
+        top 0
+    }
+
+
+    background-size: 100% headerStripeHeight;
+    background-repeat: no-repeat;
+
+    & .navbar-collapse {
+        border 0
+        position relative
+    }
+
+    & .glyphicon {
+        font-size 24px
+        width 2em
+        text-align center
+        line-height headerStripeHeight - 5
+    }
+}
+
+.ks-logo {
+    margin 0
+    padding 0 15px
+    cursor default
+
+    position relative
+    top: - headerStripeMargin + 20
+    //color: siteDarkColor
+    color: logoColorShop;
+
+    font-family: 'Open Sans', sans-serif
+    font-weight 700
+    font-size 28px;
+    text-transform uppercase;
+    letter-spacing -2px
+
+    vertical-align middle
+    line-height 2.9ex;
+
+    & span {
+        position relative
+        display inline-block
+        overflow hidden
+        //background siteDarkColor
+        background logoColorKey
+        color siteMiddleColor
+        border-radius 4px
+        height 3ex;
+        text-indent -2px
+        padding-right 2px
+        margin-right -2px
+        vertical-align top
+
+        &:before {
+            content 'I'
+            margin-right -4px
+            margin-left -3px
+        }
+    }
+
+    & a {
+        //color siteDarkColor
+        color: #BD2B2B;
+
+        &:hover {
+            text-decoration none
+            //color: #ff5300;
+            color: #BD2B2B;
+
+        }
+    }
+
+
+
+}
+
+.navbar-default .navbar-brand {
+    display block
+    padding 0
+    height headerStripeHeight
+    line-height headerStripeHeight
+    vertical-align middle
+}
+
+
+.ks-nav {
+    text-transform uppercase
+    font-weight bold
+    &__elem {
+        & a {
+            color #fff !important
+            display inline-block !important
+            padding 0 10px 0 11px !important
+            height headerStripeHeight
+            line-height headerStripeHeight !important
+            position relative
+
+            &:before {
+                content ''
+                position absolute
+                display inline-block
+                width 1px
+                height 2em
+                left 0
+                top 50%
+                margin-top -1em
+                background-color rgba(255,255,255,0.5)
+            }
+        }
+
+        &:first-child a:before {
+            display none
+        }
+    }
+}
+
+
+.navbar-fixed-top .ks-logo {
+    top: -2px;
+    color: #fff;
+    z-index 2
+    //display inline-block
+    & span {
+        background siteLightColor
+        color siteDarkColor
+    }
+    & a {
+        color #fff
+    }
+}
+
+
+// FOR MOBILE
+@media (max-width: 767px) {
+
+    .ks-navbar {
+        position relative !important
+        top 0 !important
+    }
+
+    .ks-logo {
+        top: -2px !important;
+        color: #fff
+        display inline-block
+
+        & span {
+            background siteLightColor !important
+            color siteDarkColor !important
+        }
+        & a {
+            color #fff !important
+        }
+    }
+    .ks-page {
+        padding-top: 0;
+    }
+
+    .ks-nav {
+        &__elem {
+            & a {
+                &:before {
+                    display none;
+                }
+
+                height 3em !important
+                line-height 3em !important
+            }
+        }
+    }
+
+    .ks-header-user {
+
+
+
+        & .glyphicon {
+            display none !important
+        }
+
+        &__name {
+            display block !important
+        }
+
+        &__cab {
+            display block !important
+        }
+    }
+}
+
+
+
+
+.ks-header-user, .ks-header-cart {
+    display block
+}
+
+
+.ks-header-cart {
+    &__counter {
+        font-size: 20px;
+        margin-left: -12px;
+        padding-right: 10px;
+    }
+}
+
+// FOR NO MOBILE
+@media (min-width: 768px) {
+    .ks-header-user, .ks-header-cart {
+        float: left;
+        margin: 0;
+    }
+    .ks-header-user li, .ks-header-cart li {
+        float: left;
+    }
+    .ks-header-user li > a, .ks-header-cart li > a {
+        padding-top: 7px;
+        padding-bottom: 7px;
+    }
+
+
+    .ks-header-user {
+        position absolute
+        top -60px;
+        right 180px;
+        padding-right 20px;
+        border-right 1px solid #000;
+
+        & .dropdown-toggle:hover, & .dropdown-toggle:focus {
+            text-decoration none
+        }
+
+        & .glyphicon {
+            display none
+        }
+
+        &__name {
+            display block
+            color: #555;
+        }
+
+        &__cab {
+            display block
+            color: #000;
+            text-transform uppercase
+            font-weight bold
+        }
+    }
+
+    .ks-header-cart .dropdown-menu {
+        display block
+        background transparent
+        border 0
+        box-shadow none
+        border-radius 0
+        top -70px
+    }
+
+    .ks-header-cart .dropdown-toggle {
+        display none
+    }
+}
+
+.navbar-fixed-top {
+
+    & .ks-header-user {
+        top auto
+        right auto
+        position relative
+        border 0
+        padding-right 0
+
+        & .glyphicon {
+            display block
+            color #fff
+        }
+        & .dropdown-toggle:focus .glyphicon {
+            color: linkColorHovered
+        }
+
+        &__name, &__cab {
+            display none
+        }
+    }
+
+
+    & .ks-header-cart {
+
+        & .dropdown-toggle {
+            color: #fff;
+            display block
+
+            &:hover {
+                text-decoration none
+            }
+
+            &:focus {
+                color: linkColorHovered
+                text-decoration none
+            }
+        }
+
+        & .dropdown-menu {
+            display none
+        }
+
+        & .open .dropdown-menu {
+            top auto
+            display block
+            background #fff;
+
+            -webkit-box-shadow: 0 1px 4px rgba(1,2,4,0.18);
+            -moz-box-shadow: 0 1px 4px rgba(1,2,4,0.18);
+            box-shadow: 0 1px 4px rgba(1,2,4,0.18);
+        }
+    }
+}
+
+
+
+// ====================================== end navbar ======================================
+
+
+.ks-block-content {
+    overflow hidden
+    background #fff
+    margin 0 0 20px
+}
+
+.ks-block-shadow {
+    -webkit-box-shadow: 0 1px 4px rgba(1,2,4,0.18);
+    -moz-box-shadow: 0 1px 4px rgba(1,2,4,0.18);
+    box-shadow: 0 1px 4px rgba(1,2,4,0.18);
+}
+
+
+.ks-bread-crumbs {
+    background #fff
+    line-height headerStripeHeight
+    margin-bottom 20px;
+}
+
+
+
+
+
+
+
+.ks-position {
+    overflow hidden
+    //text-align center
+
+    &__link {
+        display inline-block
+        text-align center
+    }
+
+    &__details {
+        display inline-block
+        width 100%
+        text-align left
+    }
+
+    &__image {
+
+        max-width 100%
+    }
+
+    &__name {
+        font-size: 18px;
+        line-height: 25px;
+        display block
+        white-space nowrap
+        overflow hidden
+        text-overflow: ellipsis
+    }
+
+    &__name, &__price {
+        padding 0 15px
+    }
+
+    &__price {
+        display block
+        color #000;
+
+    }
+
+    &__link:hover {
+        text-decoration none
+    }
+
+    &__link:hover &__name {
+        text-decoration underline
+    }
+}
+
+
+
+
+.ks-filter {
+
+    &__block {
+        padding 0 15px 20px;
+    }
+
+    &__price-input {
+        width 90px;
+        display inline
+    }
+}
+
+
+.gallery {
+    &__preview-list {
+        list-style: none;
+        float left
+        padding 0 20px 0 0;
+    }
+
+    &__preview-elem {
+        box-shadow: 0 1px 2px rgba(0,0,0,0.5);
+        margin-bottom: 10px;
+        max-width: 60px;
+    }
+
+    &__preview-elem img {
+        width: 100%;
+    }
+
+    &__preview-elem.active {
+        box-shadow: 0 0 1px 1px rgba(0,180,255,0.5);
+    }
+
+
+    &__image-container {
+        text-align center
+        overflow hidden
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    &__image-container img {
+        max-width: 100%;
+    }
+}
+
+
+
+
+
+.blue-gradient {
+    //background: rgb(30,87,153); /* Old browsers */
+    /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+    background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzFlNTc5OSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMxMDQwNjYiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+");
+    background-image: -moz-linear-gradient(top,  rgba(30,87,153,1) 0%, rgba(16,64,102,1) 100%); /* FF3.6+ */
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(30,87,153,1)), color-stop(100%,rgba(16,64,102,1))); /* Chrome,Safari4+ */
+    background-image: -webkit-linear-gradient(top,  rgba(30,87,153,1) 0%,rgba(16,64,102,1) 100%); /* Chrome10+,Safari5.1+ */
+    background-image: -o-linear-gradient(top,  rgba(30,87,153,1) 0%,rgba(16,64,102,1) 100%); /* Opera 11.10+ */
+    background-image: -ms-linear-gradient(top,  rgba(30,87,153,1) 0%,rgba(16,64,102,1) 100%); /* IE10+ */
+    background-image: linear-gradient(to bottom,  rgba(30,87,153,1) 0%,rgba(16,64,102,1) 100%); /* W3C */
+    filter: unquote("progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#104066',GradientType=0 )"); /* IE6-8 */
+}

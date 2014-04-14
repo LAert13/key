@@ -12,24 +12,17 @@ $pdId   = (isset($_GET['p']) && $_GET['p'] != '') ? $_GET['p'] : 0;
 require_once('include/header.php');
 require_once('include/top.php');
 ?>
-<table width="960" border="0" align="center" cellpadding="0" cellspacing="0">
- <tr valign="top"> 
-  <td width="150" height="400" id="leftnav"> 
-<?php
-require_once('include/leftNav.php');
-?>
-  </td>
-  <td>
+
+
 <?php
 if ($pdId) {
 	require_once('include/productDetail.php');
 } else {
+    require_once('include/leftNav.php');
 	require_once('include/productList.php');
 }
-?>  
-  </td>
- </tr>
-</table>
+?>
+
 <?php
 require_once('include/footer.php');
 ?>

@@ -1,11 +1,16 @@
-    </div>
-    <!-- ПОДВАЛ -->
-    <div class="b-footer">
-        <div class="container" style="width: 960; padding:0;">
-
-                     <p style="margin-bottom:0;">&copy; <?php echo '2013 - ' . date('Y'); ?>&nbsp;&nbsp;<?php echo $shopConfig['name']; ?></p>
-
+            </div>
         </div>
-    </div>
-</body>
+        <!-- ПОДВАЛ -->
+        <div class="ks-footer">
+            <div class="container">
+                <p class="text-muted">&copy; <?php echo '2013 - ' . date('Y'); ?>&nbsp;&nbsp;<?php echo $shopConfig['name']; ?></p>
+            </div>
+        </div>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    </body>
 </html>
