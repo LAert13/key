@@ -37,7 +37,7 @@
 	/*/*/margin: 0px 0px 6px 0px; /* */	
 }
 
-#current a {
+#current > a {
 	color: #FFFFFF !important;
 	/*/*/background-color: #999999 !important;
 	border: 2px dotted #999 !important; /* */
