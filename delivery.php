@@ -2,7 +2,7 @@
 require_once('library/config.php');
 require_once('library/cart-functions.php');
 $pageTitle = 'Оплата и доставка';
-require_once('include/header_usr.php');
+require_once('include/header.php');
 require_once('include/top.php');?>
 
 <div class="container" style="width: 960; padding:0;">

@@ -4,7 +4,7 @@ $orderId = (int)$_GET['oid'];
 $pageTitle = 'Заказ №' . $orderId;
 
 require_once 'library/cart-functions.php';
-require_once 'include/header_usr.php';
+require_once 'include/header.php';
 
 ?>
 
