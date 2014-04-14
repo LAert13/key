@@ -45,7 +45,7 @@ a:hover {
   color: #e41f32;
 }
 .ks-navbar {
-  background-color: #3a373a;
+  background-color: #0a9e98;
   border: 0;
   border-radius: 0;
   position: absolute;
@@ -78,7 +78,7 @@ a:hover {
   cursor: default;
   position: relative;
   top: -60px;
-  color: #bd2b2b;
+  color: #0a9e98;
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 28px;
@@ -153,7 +153,7 @@ a:hover {
 }
 .navbar-fixed-top .ks-logo span {
   background: #fff;
-  color: #3a373a;
+  color: #0a9e98;
 }
 .navbar-fixed-top .ks-logo a {
   color: #fff;
@@ -171,7 +171,7 @@ a:hover {
   }
   .ks-logo span {
     background: #fff !important;
-    color: #3a373a !important;
+    color: #0a9e98 !important;
   }
   .ks-logo a {
     color: #fff !important;
