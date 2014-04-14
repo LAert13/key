@@ -87,9 +87,7 @@
                             <span class="ks-header-cart__counter"><?php echo $qty == 0 ? '' : ' '.$qty; ?></span>
                         </a>
                         <div class="dropdown-menu">
-                            <div>В <a href="cart.php?action=view">корзине</a> <?php echo $qty; ?> товар<?php echo $ending; ?></div>
-                            <div>на сумму <?php echo displayAmount($subTotal); ?></div>
-                            <div><a href="cart.php?action=view">Оформить заказ</a></div>
+                            <a href="cart.php?action=view">В корзине <?php echo $qty; ?> товар<?php echo $ending; ?><br />на сумму <?php echo displayAmount($subTotal); ?></a>
                         </div>
                             <?php } else { ?>
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
