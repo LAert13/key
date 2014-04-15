@@ -25,7 +25,7 @@ if ($res['sh_flag'] == 1) {
 <div class="container" style="width: 960; padding:0;">
     <div class="panel panel-default" style="margin-bottom:0; margin-top:5; min-height:400">
         <div class="panel-heading">Шаг 1 из 2 : Контактная информация</div>
-        <div class="panel-body"><div id="error">&nbsp;</div><div class="done"><p>Ваш отзыв успешно отправлен! <a href="/">Нажмите сюда</a> для продолжения покупок.</p></div></div>
+        <div class="panel-body"><div id="error">&nbsp;</div><div class="done"><p>Ваш отзыв успешно отправлен! <a href="shop">Нажмите сюда</a> для продолжения покупок.</p></div></div>
         <div class="form">
             <form action="include/shipping_submit.php" method="post" name="frmCheckout" id="frmCheckout">
                 <table align="center" width="60%" cellspacing="1" cellpadding="1" border="0">

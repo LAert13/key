@@ -20,7 +20,7 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav ks-nav">
                 <li class="ks-nav__elem">
-                    <a href="/">Магазин</a>
+                    <a href="/shop">Магазин</a>
                 </li><li class="ks-nav__elem">
                     <a href="#">Статьи</a>
                 </li><li class="ks-nav__elem">

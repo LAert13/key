@@ -11,7 +11,7 @@ function addToCart()
 	if (isset($_GET['p']) && (int)$_GET['p'] > 0) {
 		$productId = (int)$_GET['p'];
 	} else {
-		header('Location: index');
+		header('Location: shop');
 	}
 	
 	// does the product exist ?

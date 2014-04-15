@@ -47,7 +47,7 @@ if ($numProduct > 0 ) {
     <div class="col-xs-12 col-s-6 col-sm-6 col-md-6 col-lg-4">
         <div class="ks-block-content ks-block-shadow">
             <div class="ks-position">
-                <a class="ks-position__link" href="<?php echo "index?c=$catId&p=$pd_id"; ?>">
+                <a class="ks-position__link" href="<?php echo "shop/product-$pd_id.html"; ?>">
                     <img class="ks-position__image" src="<?php echo $pd_image; ?>" />
                     <span class="ks-position__details">
                         <span class="ks-position__name"><?php echo $pd_name; ?></span>

@@ -29,7 +29,7 @@ if (isCartEmpty()) {
 	}
 } else {
 	// missing or invalid step number, just redirect
-	header('Location: index');
+	header('Location: shop');
 }
 
 require_once('include/header.php');

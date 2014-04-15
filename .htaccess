@@ -10,3 +10,8 @@ RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.php -f
 RewriteRule ^(([^/]+/)*[^.]+)$ /$1.php [L]
+
+RewriteEngine on
+RewriteRule ^shop$ index
+RewriteRule ^shop/category-([0-9]+).html$ index?c=$1
+RewriteRule ^shop/product-([0-9]+).html$ index?p=$1

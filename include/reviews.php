@@ -48,7 +48,7 @@ else {
 		});
 	</script>
 	
-<div class="done"><p>Ваш отзыв успешно отправлен! <a href="/">Нажмите сюда</a> для продолжения покупок.</p></div><!--close done-->
+<div class="done"><p>Ваш отзыв успешно отправлен! <a href="/index">Нажмите сюда</a> для продолжения покупок.</p></div><!--close done-->
 <p align="center"><?php echo $pagingLink; ?></p>
 
 <div class="form">
@@ -83,7 +83,7 @@ else {
 						}
 					 ?>"/>
 				<input name="pdid" type="hidden" value="<?php echo $pdId;?>"/>
-				<input name="usrid" type="hidden" value="<?php echo $getuser[0]['id'];?>"/>
+				<input name="usrid" type="hidden" value="<?php if (!empty($_SESSION['user_id'])){echo $getuser[0]['id'];}?>"/>
 			</td>
 		</tr>
  		<tr>

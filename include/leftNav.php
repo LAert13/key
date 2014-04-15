@@ -14,7 +14,7 @@ $categories = formatCategories($categories, $catId);
         <div class="ks-block-content ks-block-shadow ks-filter__block">
             <h3>Категории</h3>
             <ul>
-                <li><a href="<?php echo "/"; ?>">Все товары</a></li>
+                <li><a href="<?php echo "shop"; ?>">Все товары</a></li>
 
                 <?php
                 $isFirst = true;
@@ -24,7 +24,7 @@ $categories = formatCategories($categories, $catId);
                     // now we have $cat_id, $cat_parent_id, $cat_name
 
                     $level = ($cat_parent_id == 0) ? 1 : 2;
-                    $url   = "index?c=$cat_id";
+                    $url   = "shop/category-$cat_id.html";
 
 
                     // assign id="current" for the currently selected category
