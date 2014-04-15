@@ -327,8 +327,7 @@ function addUser($user,$pass,$email,$site_url)
 		} return 99;
 			return 1;
 	}
-		else return 2;*/
-	return 99;
+		else return 2;
 }
 
 //----------Function for editing user's and admin's profile by admin----------
