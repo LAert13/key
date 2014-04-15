@@ -39,8 +39,11 @@ function saveOrder()
 						VALUES ($orderId, {$cartContent[$i]['pd_id']}, {$cartContent[$i]['ct_qty']}, {$cartContent[$i]['ct_sw']}, {$cartContent[$i]['ct_il']})";
 				$result = dbQuery($sql);					
 			}
-		
 			
+			$sid = session_id();
+			$sql = "UPDATE tbl_shipping SET sh_flag = 0 WHERE sh_session = '$sid'";
+			$res = dbQuery($sql);
+
 			// update product stock
 			for ($i = 0; $i < $numItem; $i++) {
 				$sql = "UPDATE tbl_product 
