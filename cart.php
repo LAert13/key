@@ -135,7 +135,7 @@ require_once('include/top.php'); ?>
         <?php 
         if ($numItem > 0) {
         ?>  
-          <td><input class="btn btn-success btn-block" name="btnCheckout" type="button" id="btnCheckout" value="Оформить заказ" onClick="window.location.href='checkout.php?step=1';"></td>
+          <td><input class="btn btn-success btn-block" name="btnCheckout" type="button" id="btnCheckout" value="Оформить заказ" onClick="window.location.href='checkout?step=1';"></td>
         <?php
         }
         ?>  

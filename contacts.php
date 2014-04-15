@@ -22,11 +22,8 @@ require_once('include/header.php');?>
 		<div class="panel-body">
 		  <div class="row">
 			<div class="col-md-6">
-				<p>Наш адрес: 49000, г. Днепропетровск, ул. Блаблабла, дом 13 офис 666</p>
-				<p>Телефоны:  056 666 13 13,  050 666 13 13,  067 666 13 13</p>
-				<p>email: <a href="mailto:support@ducky.url.ph">support@ducky.url.ph</a></p>
-				<p>Skype: ducky.ua</p>
-				<p>Карта проезда:</p>
+				<p>Телефоны: 050 922 15 71, 068 293 82 08</p>
+				<p>email: <a href="mailto:keyshop.ua@gmail.com">keyshop.ua@gmail.com</a></p>
 			</div>
 			<div class="col-md-6">
 				<h4 align="center">Форма обратной связи</h4>

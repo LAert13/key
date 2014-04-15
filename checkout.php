@@ -23,15 +23,9 @@ if (isCartEmpty()) {
 		
 		$_SESSION['orderId'] = $orderId;
 		
-        if ($_POST['hidPaymentMethod'] == 'cod') {
-            header('Location: success.php');
-            exit;
-        }
-        elseif ($_POST['hidPaymentMethod'] == 'cour') {
-        	            header('Location: success.php');
-            exit;
-        }
-        
+        header('Location: success');
+        exit;
+      
 	}
 } else {
 	// missing or invalid step number, just redirect
@@ -41,8 +35,6 @@ if (isCartEmpty()) {
 require_once('include/header.php');
 $pageTitle = 'Контактная информация';
 ?>
-
-<script language="JavaScript" type="text/javascript" src="library/checkout.js"></script>
 
 <?php require_once('include/top.php'); ?>
 

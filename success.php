@@ -16,7 +16,7 @@ require_once('include/top.php');
 // send notification email
 if ($shopConfig['sendOrderEmail'] == 'y') {
 	$subject = "[New Order] " . $_SESSION['orderId'];
-	$email   = $shopConfig['email'];
+	$email   = 'keyshop.ua@gmail.com';
 	$message = "Пришел новый заказ. Проверьте подробности \n http://" . $_SERVER['HTTP_HOST'] . WEB_ROOT . 'admin/order/index.php?view=detail&oid=' . $_SESSION['orderId'] ;
 	mail($email, $subject, $message, "From: $email\r\nReturn-path: $email");
 }

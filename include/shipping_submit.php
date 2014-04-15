@@ -2,7 +2,7 @@
 DEFINE('INCLUDE_CHECK',1);
 require_once('../library/config.php');
 include('../library/functions.php');
-$returnURL = "../checkout.php?step=2";
+$returnURL = "../checkout?step=2";
 	if(!$_POST['name'])
 	{
 		die(msg(0,"<p>Пожалуйста укажите имя.</p>"));

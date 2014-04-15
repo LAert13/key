@@ -620,7 +620,7 @@ function contactUs($username,$email,$message,$site_email)
  $site_email = secureInput($site_email);
 			
 		//build email to be sent
-		$to = $site_email;
+		$to = 'keyshop.ua@gmail.com';
 		$subject = "Новое сообщение.".$email;
 		
 		$message = "
