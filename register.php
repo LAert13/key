@@ -23,7 +23,7 @@ require_once('include/header.php');
 <div class="container" style="width: 960; padding:0;">
 		<div class="panel panel-default" style="margin-bottom:0; margin-top:5; min-height:400">
 		<div class="panel-heading">Регистрация</div>
-		<div class="panel-body"><div class="done" style="display: none"><p class="alert alert-success">Регистрация успешна! <a href="login.php">Нажмите сюда</a> для входа.</p></div></div>
+		<div class="panel-body"><div class="done" style="display: none"><p class="alert alert-success">Регистрация успешна! <a href="login">Нажмите сюда</a> для входа.</p></div></div>
 		<div class="form">
 			<form id="regForm" action="reg_submit.php" method="post">
 				<table align="center" width="40%" cellspacing="1" cellpadding="1" border="0">

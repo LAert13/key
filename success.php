@@ -29,7 +29,7 @@ unset($_SESSION['orderId']);
       <td align="left" valign="top" bgcolor="#333333"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr> 
                <td align="center" bgcolor="#EEEEEE"> <p>&nbsp;</p>
-                        <p>Спасибо за Ваш заказ! Менеджер свяжется с Вами в ближайшее время. Для продолжения покупок <a href="index.php">нажмите
+                        <p>Спасибо за Ваш заказ! Менеджер свяжется с Вами в ближайшее время. Для продолжения покупок <a href="index">нажмите
                             сюда</a>.</p>
                   <p>&nbsp;</p></td>
             </tr>

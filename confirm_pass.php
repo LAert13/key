@@ -25,14 +25,14 @@ if (isset($_GET['new'])){
 			$error = "Пользователя с таким именем не существует.";
 			}
 		if ($res == 99){
-			$message = "Ваш новый пароль подтвержен. Вы можете <a href='login.php'>войти на сайт</a> используя его.";
+			$message = "Ваш новый пароль подтвержен. Вы можете <a href='login'>войти на сайт</a> используя его.";
 			}
 
 
 $sitesettings = getSiteSettings();
 
 $pageTitle = 'Подтверждение пароля';
-require_once('include/head_log.php');
+require_once('include/head.php');
 ?>
 	
 </head>

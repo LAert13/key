@@ -10,7 +10,7 @@ require_once('include/header.php');
             <tr> 
                <td align="center" bgcolor="#EEEEEE"> <p>&nbsp;</p>
                         <p>Мы приносим свои извенения, но произошла ошибка при обработке вашего заказа. Пожалуйста свяжитесь с администрацией сайта. Вы можете воспользоваться формой обратной связи в разделе
-                            <a href="/contacts.php">Контакты</a></p>
+                            <a href="/contacts">Контакты</a></p>
                   <p>&nbsp;</p></td>
             </tr>
          </table></td>

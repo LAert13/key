@@ -128,7 +128,7 @@ function checkLogin ( $levels )
 		}
 		
 		if ( $access == FALSE ) {
-			header("Location: login.php");
+			header("Location: login");
 		}		
 }
 	
@@ -296,7 +296,7 @@ function addUser($user,$pass,$email,$site_url)
 
 	$sql = "INSERT INTO users (username,password,email,active,level_access,reg_date) VALUES ('".$user."','".$pass."','".$email."',1,2,NOW())";
 	$res = mysql_query($sql) or die(mysql_error());
-	/*if($res){
+	if($res){
 		//build email to be sent
 		$to = $email;
 		$subject = $site_url;
@@ -309,12 +309,12 @@ function addUser($user,$pass,$email,$site_url)
 		</head>
 		<body>
 		<h3>Информация о регистрации:</h3>
-		<p>Спасибо за регистрацию на ".$site_url.".</p>
+		<p>Спасибо за регистрацию на <a href='http://www.keyshop.in.ua/login'>keyshop.in.ua</a></p>
 		<p>Ваш логин:".$user."</p>
 		<p>Ваш пароль:".$pass2."</p>
-		<a href='http://www.ducky.url.ph/login.php'>Для входа нажмите здесь.</a>.
+		<a href='http://www.keyshop.in.ua/login'>Для входа нажмите здесь.</a>.
 		<br/><br/>
-		<p>Создатели сайта ".$site_url.".</p>
+		<p>Создатели сайта <a href='http://www.keyshop.in.ua/login'>keyshop.in.ua</a></p>
 		</body>
 		</html>
 		";
@@ -530,16 +530,16 @@ function pass_recovery($email,$site_url)
 					<title>Восстановление пароля</title>
 				  </head>
 				  <body>
-					<h3>ваш новый пароль</h3>
+					<h3>Ваш новый пароль</h3>
 					<p>Дорогой ".$row['username'].", кто-то (возможно вы), инициировал процедуру восстановления пароля.</p>
 					<p>Ваш временный пароль: ".$temp_password.".</p>
 					<p>Чтобы подтвердить смену пароля и активировать ваш новый пароль, пожалуйста проследуйте по ссылке на наш сайит:</p>
-					<a href=\"http://www.ducky.url.ph/confirm_pass.php?id=".$row['id']."&new=".$temp_password."\">".$site_url."</a>.
-					<b><i>\"http://www.ducky.url.ph/confirm_pass.php?id=".$row['id']."&new=".$temp_password."</b></i>
+					<a href=\"http://www.keyshop.in.ua/confirm_pass?id=".$row['id']."&new=".$temp_password."\">".$site_url."</a>.
+					<b><i>\"http://www.keyshop.in.ua/confirm_pass?id=".$row['id']."&new=".$temp_password."</b></i>
 					<p>Также не забудьте обновить ваш профиль и установить новый постоянный пароль на замену временного.</p><br/>
 					<p>Если же вы не запрашивали сброс пароля, просто проигнорируйте это письмо.</p>
 					<br/><br/>
-					<p>Команда сайта ducky.url.ph .</p>
+					<p>Команда сайта <a href='http://www.keyshop.in.ua/login'>keyshop.in.ua</a> .</p>
 				  </body>
 				</html>
 				";

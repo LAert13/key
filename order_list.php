@@ -61,7 +61,7 @@ $pagingLink = getPagingLink($sql, $rowsPerPage, $queryString);
          <td width="15%"><?php echo displayAmount($od_amount); ?></td>
          <td width="30%"><?php echo $od_date; ?></td>
          <td width="20%"><?php echo $od_status; ?></td>
-         <td width="20%"><a href="order_detail.php?oid=<?php echo $od_id; ?>" class="btn btn-primary btn-sm">Просмотр заказа</a></td>
+         <td width="20%"><a href="order_detail?oid=<?php echo $od_id; ?>" class="btn btn-primary btn-sm">Просмотр заказа</a></td>
         </tr>
         <?php
       	   } // end while
