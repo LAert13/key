@@ -47,7 +47,7 @@ require_once('include/top.php'); ?>
                         $subTotal = 0;
                         for ($i = 0; $i < $numItem; $i++) {
                           extract($cartContent[$i]);
-                          $productUrl = "product-$pd_id";
+                          $productUrl = "/shop/product-$pd_id";
                           $subTotal += $pd_price * $ct_qty;
                           switch ($ct_sw) {
                             case 0:

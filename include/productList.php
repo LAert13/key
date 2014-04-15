@@ -31,9 +31,9 @@ if ($numProduct > 0 ) {
 
 		extract($row);
 		if ($pd_image) {
-			$pd_image = WEB_ROOT . 'images/product/' . $pd_image;
+			$pd_image = '/images/product/' . $pd_image;
 		} else {
-			$pd_image = WEB_ROOT . 'images/no-image-large.png';
+			$pd_image = '/images/no-image-large.png';
 		}
 	
 		/*if ($i % $productsPerRow == 0) {
@@ -47,7 +47,7 @@ if ($numProduct > 0 ) {
     <div class="col-xs-12 col-s-6 col-sm-6 col-md-6 col-lg-4">
         <div class="ks-block-content ks-block-shadow">
             <div class="ks-position">
-                <a class="ks-position__link" href="<?php echo "product-$pd_id"; ?>">
+                <a class="ks-position__link" href="<?php echo "/shop/product-$pd_id"; ?>">
                     <img class="ks-position__image" src="<?php echo $pd_image; ?>" />
                     <span class="ks-position__details">
                         <span class="ks-position__name"><?php echo $pd_name; ?></span>
@@ -71,7 +71,7 @@ if ($numProduct > 0 ) {
         <div class="ks-block-content ks-block-shadow">
             <div style="padding: 0 25px">
                 <br/>
-                <p class="alert alert-warning">No products in this category</p>
+                <p class="alert alert-warning">No products in this category <?php echo $catId; ?></p>
             </div>
         </div>
     </div>

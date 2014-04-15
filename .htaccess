@@ -11,7 +11,27 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.php -f
 RewriteRule ^(([^/]+/)*[^.]+)$ /$1.php [L]
 
-RewriteEngine on
-RewriteRule ^shop$ index
-RewriteRule ^category-([0-9]+)$ index?c=$1
-RewriteRule ^product-([0-9]+)$ index?p=$1
+# перекидываение c /index.php на /
+RewriteCond %{REQUEST_URI} ^/index(?:\.php)+$
+RewriteCond %{QUERY_STRING} ^$
+RewriteRule .+ / [R=301,N,L]
+
+# перекидываение с /index.php?c=ID на /category-ID
+RewriteCond %{REQUEST_URI} ^/index(?:\.php)+$
+RewriteCond %{QUERY_STRING} c=(\d+)
+RewriteRule .+ /shop/category-%1? [R=301,N,L]
+
+# перекидываение с /index.php?c=ID на /category-ID
+RewriteCond %{REQUEST_URI} ^/index(?:\.php)+$
+RewriteCond %{QUERY_STRING} p=(\d+)
+RewriteRule .+ /shop/product-%1? [R=301,N,L]
+
+# корень магазина
+RewriteRule ^shop(?:\.php)?$ /shop/ [R=301,N,L]
+RewriteRule ^shop/$ /shop.php [L]
+# категрия в магазине
+RewriteRule ^shop/category-(\d+)/$ /shop/category-$1
+RewriteRule ^shop/category-(\d+)$ /shop.php?c=$1 [QSA,L]
+# позиция в магазине
+RewriteRule ^shop/product-(\d+)/$ /shop/product-$1
+RewriteRule ^shop/product-(\d+)$ /shop.php?p=$1 [QSA,L]

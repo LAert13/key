@@ -5,7 +5,7 @@ function login()
 	
 	$.ajax({
 		type: "POST",
-		url: "login_submit.php",		
+		url: "/login_submit.php",
 		data: $('#loginForm').serialize(),
 		dataType: "json",
 		success: function(msg){
@@ -29,7 +29,7 @@ function review()
 	
 	$.ajax({
 		type: "POST",
-		url: "review_submit.php",		
+		url: "/review_submit.php",
 		data: $('#reviewForm').serialize(),
 		dataType: "json",
 		success: function(msg){
@@ -60,7 +60,7 @@ function shipping()
 	
 	$.ajax({
 		type: "POST",
-		url: "include/shipping_submit.php",		
+		url: "/include/shipping_submit.php",
 		data: $('#frmCheckout').serialize(),
 		dataType: "json",
 		success: function(msg){
@@ -85,7 +85,7 @@ function contactus()
 	
 	$.ajax({
 		type: "POST",
-		url: "contact_submit.php",		
+		url: "/contact_submit.php",
 		data: $('#ContactUsForm').serialize(),
 		dataType: "json",
 		success: function(msg){
@@ -116,7 +116,7 @@ function order()
 	
 	$.ajax({
 		type: "POST",
-		url: "order_submit.php",		
+		url: "/order_submit.php",
 		data: $('#orderForm').serialize(),
 		dataType: "json",
 		success: function(msg){
@@ -147,7 +147,7 @@ function register()
 	
 	$.ajax({
 		type: "POST",
-		url: "reg_submit.php",		
+		url: "/reg_submit.php",
 		data: $('#regForm').serialize(),
 		dataType: "json",
 		success: function(msg){
@@ -178,7 +178,7 @@ function passreset()
 	
 	$.ajax({
 		type: "POST",
-		url: "pass_reset_submit.php",		
+		url: "/pass_reset_submit.php",
 		data: $('#passreset').serialize(),
 		dataType: "json",
 		success: function(msg){
@@ -209,7 +209,7 @@ function editprofile()
 	
 	$.ajax({
 		type: "POST",
-		url: "edit_profile_submit.php",		
+		url: "/edit_profile_submit.php",
 		data: $('#editprofileForm').serialize(),
 		dataType: "json",
 		success: function(msg){
@@ -240,7 +240,7 @@ function edituser()
 	
 	$.ajax({
 		type: "POST",
-		url: "edit_user_submit.php",		
+		url: "/edit_user_submit.php",
 		data: $('#edituserForm').serialize(),
 		dataType: "json",
 		success: function(msg){
@@ -271,7 +271,7 @@ function updatepass()
 	
 	$.ajax({
 		type: "POST",
-		url: "change_pass_submit.php",		
+		url: "/change_pass_submit.php",
 		data: $('#updatepassForm').serialize(),
 		dataType: "json",
 		success: function(msg){
@@ -302,7 +302,7 @@ function updateuserpass()
 	
 	$.ajax({
 		type: "POST",
-		url: "change_user_pass_submit.php",		
+		url: "/change_user_pass_submit.php",
 		data: $('#updatepassForm').serialize(),
 		dataType: "json",
 		success: function(msg){
@@ -333,7 +333,7 @@ function editsiteset()
 	
 	$.ajax({
 		type: "POST",
-		url: "edit_siteset_submit.php",		
+		url: "/edit_siteset_submit.php",
 		data: $('#sitesetForm').serialize(),
 		dataType: "json",
 		success: function(msg){

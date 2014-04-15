@@ -108,7 +108,7 @@ extract($product);
                     <h4 class="modal-title" id="myModalLabel">Оформление товара "под заказ"</h4>
                 </div>
                 <div class="modal-body">
-                    <div class="rview"><img src="<?php echo "images/product/"; echo $pd_thumbnail; ?>" border="0">&nbsp;<strong><?php echo $pd_name; ?></strong></div>
+                    <div class="rview"><img src="<?php echo "/images/product/"; echo $pd_thumbnail; ?>" border="0">&nbsp;<strong><?php echo $pd_name; ?></strong></div>
                     <p>Введите контактную информацию и мы свяжемся с вами для подготовки следующей поставки товаров</p>
                     <div class="done2">
                         <p>Заказ успешно оформлен! Мы свяжемся с Вами сразу после его обработки.</p>
@@ -141,7 +141,7 @@ extract($product);
                                   <tr>
                                     <td><input class="btn btn-primary btn-block" data-dismiss="modal" aria-hidden="true" name="btnBack" type="button" id="btnBack" value="Назад" /></td>
                                     <td>
-                                        <input class="btn btn-success btn-block" style="margin-top: 15;" type="submit" name="ordersubmit" value="Заказать" /><img id="loading" src="images/loading.gif" alt="working.." />
+                                        <input class="btn btn-success btn-block" style="margin-top: 15;" type="submit" name="ordersubmit" value="Заказать" /><img id="loading" src="/images/loading.gif" alt="working.." />
                                     </td>
                                   </tr>
                               </table>
