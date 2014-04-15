@@ -48,7 +48,7 @@ else {
 		});
 	</script>
 	
-<div class="done"><p>Ваш отзыв успешно отправлен! <a href="/index">Нажмите сюда</a> для продолжения покупок.</p></div><!--close done-->
+<div class="done"><p>Ваш отзыв успешно отправлен! <a href="/shop">Нажмите сюда</a> для продолжения покупок.</p></div><!--close done-->
 <p align="center"><?php echo $pagingLink; ?></p>
 
 <div class="form">

@@ -13,5 +13,5 @@ RewriteRule ^(([^/]+/)*[^.]+)$ /$1.php [L]
 
 RewriteEngine on
 RewriteRule ^shop$ index
-RewriteRule ^shop/category-([0-9]+).html$ index?c=$1
-RewriteRule ^shop/product-([0-9]+).html$ index?p=$1
+RewriteRule ^category-([0-9]+)$ index?c=$1
+RewriteRule ^product-([0-9]+)$ index?p=$1

@@ -47,7 +47,7 @@ require_once('include/top.php'); ?>
                         $subTotal = 0;
                         for ($i = 0; $i < $numItem; $i++) {
                           extract($cartContent[$i]);
-                          $productUrl = "shop/product-$pd_id.html";
+                          $productUrl = "product-$pd_id";
                           $subTotal += $pd_price * $ct_qty;
                           switch ($ct_sw) {
                             case 0:
@@ -127,7 +127,7 @@ require_once('include/top.php'); ?>
         </table>
         <?php } ?>
 
-        <?php $shoppingReturnUrl = isset($_SESSION['shop_return_url']) ? $_SESSION['shop_return_url'] : '/shop'; ?>
+        <?php $shoppingReturnUrl = isset($_SESSION['shop_return_url']) ? $_SESSION['shop_return_url'] : 'shop'; ?>
         
         <table width="50%" border="0" align="center" cellpadding="10" cellspacing="0">
          <tr align="center"> 
