@@ -25,7 +25,7 @@ require_once('include/header.php');
 		<div class="panel-heading">Регистрация</div>
 		<div class="panel-body"><div class="done" style="display: none"><p class="alert alert-success">Регистрация успешна! <a href="login">Нажмите сюда</a> для входа.</p></div></div>
 		<div class="form">
-			<form id="regForm" action="reg_submit.php" method="post">
+			<form id="regForm" action="/reg_submit.php" method="post">
 				<table align="center" width="40%" cellspacing="1" cellpadding="1" border="0">
 				  <tr>
 					<td><label for="regname" style="margin-right: 5;">Логин</label></td>

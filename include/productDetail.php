@@ -38,7 +38,7 @@ extract($product);
             <script src="/js/gallery.js"></script>
         </div>
         <div class="col-xs-12 col-s-4 col-sm-4 col-md-4 col-lg-3">
-            <form action="<?php echo "cart.php?action=add&p=$pdId" ?>" method="post" name="frmAdd" id="frmAdd">
+            <form action="<?php echo "/cart.php?action=add&p=$pdId" ?>" method="post" name="frmAdd" id="frmAdd">
                 <div class="rview">
 					Цена : <?php echo displayAmount($pd_price); ?><br><br>
 
@@ -82,7 +82,7 @@ extract($product);
 					<?php
 					} else {
 					?>
-						<!--<input type="button" class="btn btn-primary btn-block" name="btnAddToOrder" value="Заказать" onClick="window.location.href='<?php echo "cart.php?action=add&p=$pdId" ?>';" class="addToOrderButton">-->
+						<!--<input type="button" class="btn btn-primary btn-block" name="btnAddToOrder" value="Заказать" onClick="window.location.href='<?php echo "/cart.php?action=add&p=$pdId" ?>';" class="addToOrderButton">-->
 						<a data-toggle="modal" data-target="#modal" class="btn btn-primary btn-block" >Заказать</a>
 					<?php } ?>
                 </div>
@@ -115,7 +115,7 @@ extract($product);
                         <input class="btn btn-primary" data-dismiss="modal" aria-hidden="true" name="btnBack" type="button" id="btnBack" value="Закрыть" />
                     </div>
                     <div class="form2">
-                        <form id="orderForm" action="order_submit.php" method="post">
+                        <form id="orderForm" action="/order_submit.php" method="post">
                             <table align="center" cellspacing="1" cellpadding="1" border="0">
                                 <tr>
                                     <td><label for="name" style="margin-right: 5;">Имя</label></td>

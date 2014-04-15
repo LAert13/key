@@ -52,7 +52,7 @@ else {
 <p align="center"><?php echo $pagingLink; ?></p>
 
 <div class="form">
-  <form id="reviewForm" action="review_submit.php" method="post">
+  <form id="reviewForm" action="/review_submit.php" method="post">
 	<table align="center" width="60%" cellspacing="1" cellpadding="1" border="0">
 		<tr>
 			<td>&nbsp;</td>

@@ -26,7 +26,7 @@ require_once 'include/header.php';
 		<div class="panel-body"><p align="center" class="done">Пароль изменен успешно</p></div>
 		<div class="form">
 			<table class="searchForm" border="0" align="center">
-				<form id="updatepassForm" action="change_pass_submit.php" method="post">
+				<form id="updatepassForm" action="/change_pass_submit.php" method="post">
 					<tr>
 						<td><label for="oldpassword" style="margin-right: 5;">Старый пароль</label></td>
 						<td><input class="form-control" name="oldpassword" type="password"/></td>

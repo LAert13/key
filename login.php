@@ -24,7 +24,7 @@ require_once('include/header.php');
 	<div class="panel panel-default" style="margin-bottom:0; margin-top:5; min-height:400">
 		<div class="panel-heading">Вход в интернет-магазин</div>
 		<div class="panel-body">&nbsp;</div>
-		<form id="loginForm" method="post" action="login_submit.php">
+		<form id="loginForm" method="post" action="/login_submit.php">
 			<table align="center" width="35%" cellspacing="1" cellpadding="1" border="0">
 			  <tr>
 				<td><label for="username" style="margin-right: 5;">Логин</label></td>

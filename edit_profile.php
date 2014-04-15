@@ -23,7 +23,7 @@ require_once('include/header.php');
 		<div class="panel-heading">Редактирование профиля</div>
 		<div class="panel-body"><p align="center" class="done">Профиль успешно обновлен</p></div>
 		<div class="form">
-			<form id="editprofileForm" action="edit_profile_submit.php" method="post">
+			<form id="editprofileForm" action="/edit_profile_submit.php" method="post">
 				<table class="searchForm" border="0" align="center">
 					<tr>
 						<td><label for="first_name" style="margin-right: 5;">Имя</label></td>

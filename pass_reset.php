@@ -26,7 +26,7 @@ require_once('include/header.php');
 		
 		  <div class="done"><p>Новый пароль выслан. Проверьте ваш почтовый ящик или папку со спамом.</p></div><!--close done-->
 		  <div class="form">
-			<form id="passreset" action="pass_reset_submit.php" method="post">
+			<form id="passreset" action="/pass_reset_submit.php" method="post">
 			<table align="center" width="60%" cellspacing="1" cellpadding="1" border="0">
 				<tr>
 					<td colspan="2"><h3 align="center">Восстановление пароля</h3></td>

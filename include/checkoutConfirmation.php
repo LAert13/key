@@ -26,7 +26,7 @@ $cartContent = getCartContent();
         <div class="panel-heading">Шаг 2 из 2 : Подтверждение заказа</div>
         <div class="panel-body"><p id="errorMessage"><?php echo $errorMessage; ?></p></div>
         <div class="form">
-			<form action="checkout?step=3" method="post" name="frmCheckout" id="frmCheckout">
+			<form action="/checkout?step=3" method="post" name="frmCheckout" id="frmCheckout">
 				<div class="container" style="width: 940; padding:0;">
 				    <table class="table table-bordered" border="0" align="center" cellpadding="1" cellspacing="1">
 				        <thead>
