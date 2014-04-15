@@ -28,10 +28,10 @@ RewriteRule .+ /shop/product-%1? [R=301,N,L]
 
 # корень магазина
 RewriteRule ^shop(?:\.php)?$ /shop/ [R=301,N,L]
-RewriteRule ^shop/$ /shop.php [L]
-# категрия в магазине
+RewriteRule ^shop/$ /shopController.php [L]
+# категория в магазине
 RewriteRule ^shop/category-(\d+)/$ /shop/category-$1
-RewriteRule ^shop/category-(\d+)$ /shop.php?c=$1 [QSA,L]
+RewriteRule ^shop/category-(\d+)$ /shopController.php?c=$1 [QSA,L]
 # позиция в магазине
 RewriteRule ^shop/product-(\d+)/$ /shop/product-$1
-RewriteRule ^shop/product-(\d+)$ /shop.php?p=$1 [QSA,L]
+RewriteRule ^shop/product-(\d+)$ /shopController.php?p=$1 [QSA,L]
