@@ -88,7 +88,7 @@ function getCategoryList()
 			$cat_image = WEB_ROOT . 'images/no-image-small.png';
 		}
 		
-		$cat[] = array('url'   => $_SERVER['PHP_SELF'] . '?c=' . $cat_id,
+		$cat[] = array('url'   => 'index?c=' . $cat_id,
 		               'image' => $cat_image,
 					   'name'  => $cat_name);
 

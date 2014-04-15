@@ -79,7 +79,7 @@ if ($res['sh_flag'] == 1) {
                   </tr>
                   <tr>
                     <td>
-                        <input class="btn btn-primary btn-block" style="margin-top: 5;" name="btnBack" type="button" id="btnBack" onClick="window.location.href='cart.php';" value="Назад" />
+                        <input class="btn btn-primary btn-block" style="margin-top: 5;" name="btnBack" type="button" id="btnBack" onClick="window.location.href='cart';" value="Назад" />
                     </td>
                     <td>
                         <input class="btn btn-success btn-block" style="margin-top: 5;" type="submit" name="btnStep1" id="btnStep1" value="Далее" />

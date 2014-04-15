@@ -24,11 +24,11 @@
                 </li><li class="ks-nav__elem">
                     <a href="#">Статьи</a>
                 </li><li class="ks-nav__elem">
-                    <a href="/delivery.php">Доставка</a>
+                    <a href="/delivery">Доставка</a>
                 </li><li class="ks-nav__elem">
                     <a href="#">Помощь</a>
                 </li><li class="ks-nav__elem">
-                    <a href="/contacts.php">Контакты</a>
+                    <a href="/contacts">Контакты</a>
                 </li>
             </ul>
             <div class="nav navbar-nav navbar-right">
@@ -51,17 +51,17 @@
                             ?></span>
                             <span class="ks-header-user__cab">Личный кабинет</span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="edit_profile.php">Редактировать профиль</a></li>
-                            <li><a href="change_pass.php">Изменить пароль</a></li>
-                            <li><a href="order_list.php">История заказов</a></li>
-                            <li><a href="review_list.php">Мои отзывы</a></li>
+                            <li><a href="edit_profile">Редактировать профиль</a></li>
+                            <li><a href="change_pass">Изменить пароль</a></li>
+                            <li><a href="order_list">История заказов</a></li>
+                            <li><a href="review_list">Мои отзывы</a></li>
                             <li class="divider"></li>
                             <li><a href="log_off.php?action=logoff">Выход</a></li>
                         </ul>
                     </div>
                     <?php } else { ?>
-                        <a class="b-header__user-registration-link " href="register.php">Регистрация</a>
-                        <a class="b-header__user-authorization-link btn btn-warning" href="login.php">Вход</a>
+                        <a class="b-header__user-registration-link " href="register">Регистрация</a>
+                        <a class="b-header__user-authorization-link btn btn-warning" href="login">Вход</a>
                     <?php } ?>
                 </div>
                 <div class="ks-header-cart">
@@ -87,7 +87,7 @@
                             <span class="ks-header-cart__counter"><?php echo $qty == 0 ? '' : ' '.$qty; ?></span>
                         </a>
                         <div class="dropdown-menu">
-                            <a href="cart.php?action=view">В корзине <?php echo $qty; ?> товар<?php echo $ending; ?><br />на сумму <?php echo displayAmount($subTotal); ?></a>
+                            <a href="cart">В корзине <?php echo $qty; ?> товар<?php echo $ending; ?><br />на сумму <?php echo displayAmount($subTotal); ?></a>
                         </div>
                             <?php } else { ?>
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">

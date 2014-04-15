@@ -30,7 +30,7 @@ require_once('include/top.php'); ?>
         <div class="panel-heading">Корзина</div>
         <div class="panel-body"><?php displayError(); ?></div>
         <? if ($numItem > 0 ) { ?>
-        <form action="<?php echo $_SERVER['PHP_SELF'] . "?action=update"; ?>" method="post" name="frmCart" id="frmCart">
+        <form action="<?php echo "cart?action=update"; ?>" method="post" name="frmCart" id="frmCart">
             <div class="container" style="width: 940; padding:0;">
                 <table class="table table-bordered" border="0" align="center" cellpadding="1" cellspacing="1">
                     <thead>
@@ -47,7 +47,7 @@ require_once('include/top.php'); ?>
                         $subTotal = 0;
                         for ($i = 0; $i < $numItem; $i++) {
                           extract($cartContent[$i]);
-                          $productUrl = "index.php?c=$cat_id&p=$pd_id";
+                          $productUrl = "index?c=$cat_id&p=$pd_id";
                           $subTotal += $pd_price * $ct_qty;
                           switch ($ct_sw) {
                             case 0:
@@ -92,7 +92,7 @@ require_once('include/top.php'); ?>
                             </td>
                             <td width="15%" align="right"><?php echo displayAmount($pd_price); ?></td>
                             <td width="15%" align="right"><?php echo displayAmount($ct_qty * $pd_price); ?></td>
-                            <td width="15%" align="center"><input class="btn btn-primary btn-sm btn-block" name="btnDelete" type="button" id="btnDelete" value="Удалить" onClick="window.location.href='<?php echo $_SERVER['PHP_SELF'] . "?action=delete&cid=$ct_id"; ?>';"></td>
+                            <td width="15%" align="center"><input class="btn btn-primary btn-sm btn-block" name="btnDelete" type="button" id="btnDelete" value="Удалить" onClick="window.location.href='<?php echo "cart?action=delete&cid=$ct_id"; ?>';"></td>
                         </tr>
                         <?php
                         }
@@ -127,7 +127,7 @@ require_once('include/top.php'); ?>
         </table>
         <?php } ?>
 
-        <?php $shoppingReturnUrl = isset($_SESSION['shop_return_url']) ? $_SESSION['shop_return_url'] : 'index.php'; ?>
+        <?php $shoppingReturnUrl = isset($_SESSION['shop_return_url']) ? $_SESSION['shop_return_url'] : '/'; ?>
         
         <table width="50%" border="0" align="center" cellpadding="10" cellspacing="0">
          <tr align="center"> 

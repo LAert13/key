@@ -6,7 +6,7 @@ require_once('library/checkout-functions.php');
 if (isCartEmpty()) {
 	// the shopping cart is still empty
 	// so checkout is not allowed
-	header('Location: cart.php');
+	header('Location: cart');
 } else if (isset($_GET['step']) && (int)$_GET['step'] > 0 && (int)$_GET['step'] <= 3) {
 	$step = (int)$_GET['step'];
 

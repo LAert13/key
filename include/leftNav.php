@@ -14,7 +14,7 @@ $categories = formatCategories($categories, $catId);
         <div class="ks-block-content ks-block-shadow ks-filter__block">
             <h3>Категории</h3>
             <ul>
-                <li><a href="<?php echo $_SERVER['PHP_SELF']; ?>">Все товары</a></li>
+                <li><a href="<?php echo "/"; ?>">Все товары</a></li>
 
                 <?php
                 $isFirst = true;
@@ -24,7 +24,7 @@ $categories = formatCategories($categories, $catId);
                     // now we have $cat_id, $cat_parent_id, $cat_name
 
                     $level = ($cat_parent_id == 0) ? 1 : 2;
-                    $url   = $_SERVER['PHP_SELF'] . "?c=$cat_id";
+                    $url   = "index?c=$cat_id";
 
 
                     // assign id="current" for the currently selected category
@@ -56,7 +56,7 @@ $categories = formatCategories($categories, $catId);
             </ul>
         </div>
 
-        <div class="ks-block-content ks-block-shadow ks-filter__block">
+<!--        <div class="ks-block-content ks-block-shadow ks-filter__block">
             <h3>Цена</h3>
             <div>
                 <input class="form-control ks-filter__price-input" type="number" placeholder="0" min="0">
@@ -64,6 +64,6 @@ $categories = formatCategories($categories, $catId);
                 <input type="number" class="form-control ks-filter__price-input" placeholder="100500" min="1">
                 <span>$</span>
             </div>
-        </div>
+        </div> -->
     </div>
     <div style="overflow: hidden">
