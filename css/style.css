@@ -76,6 +76,8 @@ a:hover {
   margin: 0;
   padding: 0 15px;
   cursor: default;
+  width: 120px;
+  white-space: nowrap;
   position: relative;
   top: -60px;
   color: #0a9e98;
@@ -140,23 +142,16 @@ a:hover {
 .ks-nav__elem:first-child a:before {
   display: none;
 }
-.navbar-fixed-top .ks-logo {
-  top: 5px;
-  color: #fff;
-  z-index: 2;
-  font-size: 24px;
-}
-.navbar-fixed-top .ks-logo span {
-  background: #fff;
-  color: #0a9e98;
-}
-.navbar-fixed-top .ks-logo a {
-  color: #fff;
-}
 @media (max-width: 767px) {
   .ks-navbar {
     position: relative !important;
     top: 0 !important;
+  }
+  .ks-navbar a {
+    color: #fff;
+  }
+  .ks-navbar .navbar-right {
+    margin-bottom: 0;
   }
   .ks-logo {
     top: -3px !important;
@@ -171,9 +166,6 @@ a:hover {
   .ks-logo a {
     color: #fff !important;
   }
-  .ks-page {
-    padding-top: 0;
-  }
   .ks-nav__elem a {
     height: 3em !important;
     line-height: 3em !important;
@@ -181,8 +173,35 @@ a:hover {
   .ks-nav__elem a:before {
     display: none;
   }
-  .ks-header-user .glyphicon {
-    display: none !important;
+  .ks-header-user {
+    border-top: 1px solid #fff !important;
+    border-bottom: 1px solid #fff !important;
+    padding: 15px 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+  .ks-header-user__registration-link {
+    display: inline !important;
+    padding-right: 1ex;
+    margin-right: 0 !important;
+  }
+  .ks-header-user__registration-link:hover {
+    text-decoration: none;
+  }
+  .ks-header-user__authorization-link {
+    font-weight: bold;
+    background: transparent;
+    border: 0;
+    text-align: left;
+    padding: 0;
+    margin-top: 0 !important;
+  }
+  .ks-header-user__authorization-link:hover {
+    background: transparent;
+  }
+  .ks-header-user__authorization-link:before {
+    content: '/';
+    padding-right: 1ex;
   }
   .ks-header-user__name {
     display: block !important;
@@ -190,15 +209,59 @@ a:hover {
   .ks-header-user__cab {
     display: block !important;
   }
+  .ks-header-cart {
+    height: 50px;
+    overflow: hidden;
+  }
+  .ks-header-cart .dropdown-menu {
+    display: block !important;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    bottom: auto;
+    top: 0;
+    left: 0;
+    line-height: 17px;
+  }
+  .ks-header-cart .dropdown-menu > a {
+    display: block;
+    padding-top: 2px;
+    padding-left: 45px;
+  }
+  .ks-header-cart .dropdown-menu > a:hover {
+    text-decoration: none;
+  }
+  .ks-header-cart__counter {
+    display: none;
+  }
+  .ks-header-cart__empty {
+    color: #fff;
+    margin-left: 45px;
+  }
+  .ks-page {
+    padding-top: 0;
+  }
 }
 .ks-header-user,
 .ks-header-cart {
   display: block;
 }
+.ks-header-user__registration-link {
+  margin-right: 1em;
+}
+.ks-header-user__authorization-link {
+  color: #fff;
+}
+.ks-header-user__authorization-link:visited {
+  color: #fff;
+}
 .ks-header-cart__counter {
   font-size: 20px;
   margin-left: -12px;
   padding-right: 10px;
+}
+.ks-header-cart__empty {
+  line-height: 35px;
 }
 @media (min-width: 768px) {
   .ks-header-user,
@@ -245,7 +308,7 @@ a:hover {
     border: 0;
     box-shadow: none;
     border-radius: 0;
-    top: -67px;
+    top: -69px;
   }
   .ks-header-cart .dropdown-toggle {
     display: none;
@@ -272,6 +335,7 @@ a:hover {
 .navbar-fixed-top .ks-header-cart .dropdown-toggle {
   color: #fff;
   display: block;
+  height: 50px;
 }
 .navbar-fixed-top .ks-header-cart .dropdown-toggle:hover {
   text-decoration: none;
@@ -290,6 +354,32 @@ a:hover {
   -webkit-box-shadow: 0 1px 4px rgba(1,2,4,0.18);
   -moz-box-shadow: 0 1px 4px rgba(1,2,4,0.18);
   box-shadow: 0 1px 4px rgba(1,2,4,0.18);
+}
+.navbar-fixed-top .ks-logo {
+  top: 5px;
+  color: #fff;
+  z-index: 2;
+  font-size: 24px;
+}
+.navbar-fixed-top .ks-logo span {
+  background: #fff;
+  color: #0a9e98;
+}
+.navbar-fixed-top .ks-logo a {
+  color: #fff;
+}
+.navbar-fixed-top .dropdown-toggle {
+  color: #fff;
+}
+.navbar-fixed-top .ks-header-user__registration-link {
+  display: none;
+}
+.navbar-fixed-top .ks-header-user__authorization-link {
+  margin-top: 7px;
+  color: #fff;
+}
+.navbar-fixed-top .ks-header-user .dropdown-toggle {
+  height: 50px;
 }
 .ks-block-content {
   overflow: hidden;

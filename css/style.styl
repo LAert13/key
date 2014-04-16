@@ -130,6 +130,8 @@ a {
     margin 0
     padding 0 15px
     cursor default
+    width 120px;
+    white-space nowrap
 
     position relative
     top: - headerStripeMargin + 20
@@ -219,22 +221,6 @@ a {
 }
 
 
-.navbar-fixed-top .ks-logo {
-    top: 5px;
-    color: #fff;
-    z-index 2
-    font-size: 24px;
-
-    //display inline-block
-    & span {
-        background siteLightColor
-        color siteDarkColor
-    }
-    & a {
-        color #fff
-    }
-}
-
 
 // FOR MOBILE
 @media (max-width: 767px) {
@@ -242,6 +228,15 @@ a {
     .ks-navbar {
         position relative !important
         top 0 !important
+
+        & a {
+            color #fff;
+        }
+
+
+        & .navbar-right {
+            margin-bottom 0
+        }
     }
 
     .ks-logo {
@@ -257,9 +252,6 @@ a {
         & a {
             color #fff !important
         }
-    }
-    .ks-page {
-        padding-top: 0;
     }
 
     .ks-nav {
@@ -277,10 +269,42 @@ a {
 
     .ks-header-user {
 
+        border-top: 1px solid #fff !important
+        border-bottom: 1px solid #fff !important
+        padding: 15px 10px;
+        text-transform: uppercase;
+        font-weight: bold;
 
+        &__registration-link {
+            display: inline !important;
+            padding-right 1ex
+            margin-right 0 !important
+
+            &:hover {
+                text-decoration none
+            }
+        }
+
+        &__authorization-link {
+            font-weight bold
+            background transparent
+            border: 0
+            text-align left
+            padding: 0
+            margin-top 0 !important
+
+            &:hover {
+                background transparent
+            }
+
+            &:before {
+                content: '/'
+                padding-right 1ex
+            }
+        }
 
         & .glyphicon {
-            display none !important
+            //display none !important
         }
 
         &__name {
@@ -291,6 +315,46 @@ a {
             display block !important
         }
     }
+
+
+    .ks-header-cart {
+        height headerStripeHeight
+        overflow: hidden;
+
+        & .dropdown-menu {
+            display block !important
+            background transparent
+            border 0
+            box-shadow none
+            bottom auto
+            top 0
+            left 0
+            line-height 17px
+
+            & > a {
+                display block
+                padding-top 2px
+                padding-left 45px
+
+                &:hover {
+                    text-decoration none
+                }
+            }
+        }
+
+        &__counter {
+            display none
+        }
+
+        &__empty {
+            color #fff
+            margin-left 45px;
+        }
+    }
+
+    .ks-page {
+        padding-top: 0;
+    }
 }
 
 
@@ -300,6 +364,20 @@ a {
     display block
 }
 
+.ks-header-user {
+    &__registration-link {
+        margin-right 1em
+    }
+
+    &__authorization-link {
+        color #fff;
+
+        &:visited {
+            color #fff;
+        }
+    }
+}
+
 
 .ks-header-cart {
     &__counter {
@@ -307,9 +385,13 @@ a {
         margin-left: -12px;
         padding-right: 10px;
     }
+
+    &__empty {
+        line-height 35px
+    }
 }
 
-// FOR NO MOBILE
+// FOR NO MOBILE FIX
 @media (min-width: 768px) {
     .ks-header-user, .ks-header-cart {
         float: left;
@@ -358,7 +440,7 @@ a {
         border 0
         box-shadow none
         border-radius 0
-        top -67px
+        top -69px
     }
 
     .ks-header-cart .dropdown-toggle {
@@ -366,6 +448,9 @@ a {
     }
 }
 
+
+
+// WHEN HEADER FIXED
 .navbar-fixed-top {
 
     & .ks-header-user {
@@ -394,6 +479,7 @@ a {
         & .dropdown-toggle {
             color: #fff;
             display block
+            height headerStripeHeight
 
             &:hover {
                 text-decoration none
@@ -417,6 +503,42 @@ a {
             -webkit-box-shadow: 0 1px 4px rgba(1,2,4,0.18);
             -moz-box-shadow: 0 1px 4px rgba(1,2,4,0.18);
             box-shadow: 0 1px 4px rgba(1,2,4,0.18);
+        }
+    }
+
+
+    & .ks-logo {
+        top: 5px;
+        color: #fff;
+        z-index 2
+        font-size: 24px;
+
+        //display inline-block
+        & span {
+            background siteLightColor
+            color siteDarkColor
+        }
+        & a {
+            color #fff
+        }
+    }
+
+    & .dropdown-toggle {
+        color #fff;
+    }
+
+    & .ks-header-user {
+        &__registration-link {
+            display none
+        }
+
+        &__authorization-link {
+            margin-top 7px
+            color #fff
+        }
+
+        & .dropdown-toggle {
+            height headerStripeHeight
         }
     }
 }

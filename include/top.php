@@ -34,13 +34,13 @@
             <div class="nav navbar-nav navbar-right">
                 <div class="ks-header-user">
                     <?php
-                    include 'library/functions.php';
-                    if (!empty($_SESSION['user_id'])){
-                        checkLogin('2');
-                        $getuser = getUserRecords($_SESSION['user_id']);
-                        ?>
+                        include 'library/functions.php';
+                        if (!empty($_SESSION['user_id'])) {
+                            checkLogin('2');
+                            $getuser = getUserRecords($_SESSION['user_id']);
+                    ?>
                     <div class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="display: inline-block; text-align: right">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <span class="glyphicon glyphicon-user"></span>
                             <span class="ks-header-user__name"><?php
                             if (empty($getuser[0]['first_name']) || empty($getuser[0]['last_name'])) {
@@ -60,8 +60,8 @@
                         </ul>
                     </div>
                     <?php } else { ?>
-                        <a class="b-header__user-registration-link " href="/register">Регистрация</a>
-                        <a class="b-header__user-authorization-link btn btn-warning" href="/login">Вход</a>
+                        <a class="ks-header-user__registration-link" href="/register">Регистрация</a><a
+                        class="ks-header-user__authorization-link btn btn-warning" href="/login">Вход</a>
                     <?php } ?>
                 </div>
                 <div class="ks-header-cart">
@@ -93,8 +93,8 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <span class="ks-header-cart__icon glyphicon glyphicon-shopping-cart"></span>
                         </a>
-                        <div class="dropdown-menu ks-cart">
-                            <div>Корзина пуста</div>
+                        <div class="dropdown-menu">
+                            <div class="ks-header-cart__empty">Корзина пуста</div>
                         </div>
                         <?php } ?>
                     </div>
