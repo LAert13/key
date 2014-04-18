@@ -55,6 +55,9 @@ $categories = formatCategories($categories, $catId);
                 ?>
             </ul>
         </div>
+        <div class="ks-block-content ks-block-shadow ks-filter__block">
+            <span><br>Курс: <?php echo $shopConfig['exch'];?> нал.<br> Обновлен: <?php echo date("d.m.Y");?></span>
+        </div>
 
 <!--        <div class="ks-block-content ks-block-shadow ks-filter__block">
             <h3>Цена</h3>

@@ -27,7 +27,7 @@ function checkRequiredPost($requiredField) {
 function getShopConfig()
 {
 	// get current configuration
-	$sql = "SELECT sc_name, sc_address, sc_phone, sc_email, sc_shipping_cost, sc_order_email, cy_symbol 
+	$sql = "SELECT sc_name, sc_address, sc_phone, sc_email, sc_shipping_cost, sc_order_email, sc_exch, cy_symbol 
 			FROM tbl_shop_config sc, tbl_currency cy
 			WHERE sc_currency = cy_id";
 	$result = dbQuery($sql);
@@ -41,6 +41,7 @@ function getShopConfig()
                             'phone'          => $sc_phone,
                             'email'          => $sc_email,
 				    'sendOrderEmail' => $sc_order_email,
+				    		'exch'			 =>	$sc_exch,
                             'shippingCost'   => $sc_shipping_cost,
                             'currency'       => $cy_symbol);
     } else {
