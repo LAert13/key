@@ -396,20 +396,28 @@ a:hover {
   line-height: 50px;
   margin-bottom: 20px;
 }
-.ks-bread-crumbs > li {
+.ks-bread-crumbs .breadcrumb {
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  background: transparent;
+}
+.ks-bread-crumbs .breadcrumb li {
   display: inline-block;
 }
-
-.ks-bread-crumbs > li + li:before {
+.ks-bread-crumbs .breadcrumb li:before {
   padding: 0 5px;
-  color: #cccccc;
+  color: #ccc;
   content: ">\00a0";
 }
-
-.ks-bread-crumbs > .active {
-  color: #999999;
+.ks-bread-crumbs .breadcrumb li:first-child:before {
+  content: '';
+  display: none;
 }
-
+.ks-bread-crumbs .breadcrumb .active {
+  color: #999;
+}
 .ks-position {
   overflow: hidden;
 }

@@ -565,6 +565,35 @@ a {
     background #fff
     line-height headerStripeHeight
     margin-bottom 20px;
+
+    & .breadcrumb {
+        padding-top 0
+        padding-bottom 0
+        margin-top 0
+        margin-bottom 0
+        background transparent
+
+        & li {
+            display: inline-block;
+
+            &:before {
+                padding: 0 5px;
+                color: #cccccc;
+                content: ">\00a0";
+            }
+
+            &:first-child {
+                &:before {
+                    content ''
+                    display none
+                }
+            }
+        }
+
+        & .active {
+            color: #999999;
+        }
+    }
 }
 
 
