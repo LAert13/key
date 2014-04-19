@@ -396,6 +396,20 @@ a:hover {
   line-height: 50px;
   margin-bottom: 20px;
 }
+.ks-bread-crumbs > li {
+  display: inline-block;
+}
+
+.ks-bread-crumbs > li + li:before {
+  padding: 0 5px;
+  color: #cccccc;
+  content: ">\00a0";
+}
+
+.ks-bread-crumbs > .active {
+  color: #999999;
+}
+
 .ks-position {
   overflow: hidden;
 }
