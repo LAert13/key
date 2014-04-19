@@ -60,7 +60,7 @@
                         </ul>
                     </div>
                     <?php } else { ?>
-                        <a class="ks-header-user__registration-link" href="/register">Регистрация</a><a
+                    	<a class="ks-header-user__registration-link" href="/register">Регистрация</a><a
                         class="ks-header-user__authorization-link btn btn-warning" href="/login">Вход</a>
                     <?php } ?>
                 </div>
@@ -127,12 +127,62 @@
 
     }());
 </script>
-
 <!-- ТЕЛО СТРАНИЦЫ -->
 <div class="ks-page">
     <div class="ks-bread-crumbs ks-block-shadow">
-        <div class="container">
-            <br/>
-        </div>
+        <ol class="breadcrumb">
+            <li><a href="/">KeyShop</a></li>
+            <?php
+                $self = $_SERVER['PHP_SELF'];
+                $sql = "SELECT * FROM pages WHERE pg_alias = '$self'";
+                $res = mysql_query($sql) or die(mysql_error());
+                $res = mysql_fetch_assoc($res);
+                if (!empty($_GET['p'])) {
+                    $pdId = $_GET['p'];
+                    $sql = "SELECT cat_id, pd_name FROM tbl_product WHERE pd_id = '$pdId'";
+                    $pd = mysql_query($sql) or die(mysql_error());
+                    $pd = mysql_fetch_assoc($pd);
+                    $catId = $pd['cat_id'];
+                    $sql = "SELECT cat_name, cat_parent_id FROM tbl_category WHERE cat_id = '$catId'";
+                    $cat = mysql_query($sql) or die(mysql_error());
+                    $cat = mysql_fetch_assoc($cat);
+                    $parentId = $cat['cat_parent_id'];
+                    $sql = "SELECT cat_name FROM tbl_category WHERE cat_id = '$parentId'";
+                    $parent = mysql_query($sql) or die(mysql_error());
+                    $parent = mysql_fetch_assoc($parent);
+                ?>
+                    <li><a href="/shop/category-<?php echo $parentId;?>"><?php echo $parent['cat_name'];?></a></li>
+                    <li><a href="/shop/category-<?php echo $catId;?>"><?php echo $cat['cat_name'];?></a></li>
+                    <li><?php echo $pd['pd_name'];?></li>
+                <?php
+                }
+                elseif (!empty($_GET['c'])) {
+                    $catId = $_GET['c'];
+                    $sql = "SELECT cat_name, cat_parent_id FROM tbl_category WHERE cat_id = '$catId'";
+                    $cat = mysql_query($sql) or die(mysql_error());
+                    $cat = mysql_fetch_assoc($cat);
+                    if ($cat['cat_parent_id'] > 0) {
+                        $parentId = $cat['cat_parent_id'];
+                        $sql = "SELECT cat_name FROM tbl_category WHERE cat_id = '$parentId'";
+                        $parent = mysql_query($sql) or die(mysql_error());
+                        $parent = mysql_fetch_assoc($parent);
+                        ?>
+                        <li><a href="/shop/category-<?php echo $parentId;?>"><?php echo $parent['cat_name'];?></a></li>
+                        <li><?php echo $cat['cat_name'];?></li>
+                    <?php
+                    }
+                    else {
+                    ?>
+                        <li><?php echo $cat['cat_name'];?></li>
+                <?php
+                    }
+                }
+                elseif ($res['pg_parent'] == 1) {
+                ?>
+                    <li><?php echo $res['pg_title'];?></li>
+                <?php
+                }
+            ?>
+        </ol>
     </div>
     <div class="container">
