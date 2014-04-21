@@ -52,8 +52,8 @@ if ($numProduct > 0 ) {
                     <span class="ks-position__details">
                         <span class="ks-position__name"><?php echo $pd_name; ?></span>
                         <span class="ks-position__price">
-                            <div name="price-usd" style="display: block">Цена <?php echo $pd_price; ?></div>
-                            <div name="price-grn" style="display: none">Цена <?php echo sprintf("%.02f",$pd_price*$shopConfig['exch']); ?>грн</div>
+                            <div name="price-usd" style="display: <?php if ($_SESSION['cur'] == 'USD') {echo "block";} elseif ($_SESSION['cur'] == 'GRN') {echo "none";}?>">Цена <?php echo $pd_price; ?></div>
+                            <div name="price-grn" style="display: <?php if ($_SESSION['cur'] == 'USD') {echo "none";} elseif ($_SESSION['cur'] == 'GRN') {echo "block";}?>">Цена <?php echo sprintf("%.02f",$pd_price*$shopConfig['exch']); ?>грн</div>
                         </span>
 
                     <?php

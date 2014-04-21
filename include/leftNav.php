@@ -58,11 +58,12 @@ $categories = formatCategories($categories, $catId);
         <div class="ks-block-content ks-block-shadow ks-filter__block">
             <span><br>Курс: 1$ = <?php echo $shopConfig['exch'];?>грн.<br> Обновлен: <?php echo date("d.m.Y");?><br></span>
             <span><br>Отображать цены в<br></span>
+            <?php if (empty($_SESSION['cur']))$_SESSION['cur'] = 'USD';?>
             <div class="btn-group" data-toggle="buttons">
-              <label class="btn btn-primary active">
+              <label class="btn btn-primary <?php if ($_SESSION['cur'] == 'USD') echo "active";?>">
                 <input type="radio" name="options" id="USD"> USD
               </label>
-              <label class="btn btn-primary">
+              <label class="btn btn-primary <?php if ($_SESSION['cur'] == 'GRN') echo "active";?>">
                 <input type="radio" name="options" id="GRN"> ГРН
               </label>
             </div>
@@ -81,6 +82,11 @@ $categories = formatCategories($categories, $catId);
         <script>
             $(function(){
                 $('#USD').change(function(){
+                    var cur = "USD";
+                    var xmlhttp = getXmlHttp();
+                    xmlhttp.open('POST', '/include/currency.php', true);
+                    xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                    xmlhttp.send("cur=" + encodeURIComponent(cur));
                     tagList = document.getElementsByName('price-usd'); 
                     for (var i = 0; i < tagList.length; i++) tagList.item(i).style.display = 'block';
                     tagList = document.getElementsByName('price-grn'); 
@@ -89,6 +95,11 @@ $categories = formatCategories($categories, $catId);
             });
             $(function(){
                 $('#GRN').change(function(){
+                    var cur = "GRN";
+                    var xmlhttp = getXmlHttp();
+                    xmlhttp.open('POST', '/include/currency.php', true);
+                    xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                    xmlhttp.send("cur=" + encodeURIComponent(cur));
                     tagList = document.getElementsByName('price-usd'); 
                     for (var i = 0; i < tagList.length; i++) tagList.item(i).style.display = 'none';
                     tagList = document.getElementsByName('price-grn'); 

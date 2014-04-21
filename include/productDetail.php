@@ -22,7 +22,6 @@ extract($product);
 <div class="col-xs-12">
     <div class="ks-block-content ks-block-shadow" style="padding: 0 20px 20px">
     <h1><?php echo $pd_name; ?></strong></h1>
-
     <div class="row" style="padding-bottom: 30px">
         <div class="col-xs-12 col-s-8 col-sm-8 col-md-8 col-lg-9">
             <ul class="gallery__preview-list col-sm-hide">
@@ -40,7 +39,7 @@ extract($product);
         <div class="col-xs-12 col-s-4 col-sm-4 col-md-4 col-lg-3">
             <form action="<?php echo "/cart.php?action=add&p=$pdId" ?>" method="post" name="frmAdd" id="frmAdd">
                 <div class="rview">
-					Цена : <?php echo displayAmount($pd_price); ?><br><br>
+					Цена : <?php if ($_SESSION['cur'] == 'USD') {echo displayAmount($pd_price);} elseif ($_SESSION['cur'] == 'GRN') {echo sprintf("%.02f",$pd_price*$shopConfig['exch']) . "грн";} ?><br><br>
 
 					Переключатели<br>
 					<?php if ($pd_sw_black == 0 && $pd_sw_brown == 0 && $pd_sw_blue == 0 && $pd_sw_red == 0) { ?>
