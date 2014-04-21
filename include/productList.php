@@ -51,7 +51,10 @@ if ($numProduct > 0 ) {
                     <img class="ks-position__image" src="<?php echo $pd_image; ?>" />
                     <span class="ks-position__details">
                         <span class="ks-position__name"><?php echo $pd_name; ?></span>
-                        <span class="ks-position__price">Цена <?php echo $pd_price; ?></span>
+                        <span class="ks-position__price">
+                            <div name="price-usd" style="display: block">Цена <?php echo $pd_price; ?></div>
+                            <div name="price-grn" style="display: none">Цена <?php echo sprintf("%.02f",$pd_price*$shopConfig['exch']); ?>грн</div>
+                        </span>
 
                     <?php
                         // if the product is no longer in stock, tell the customer

@@ -56,17 +56,45 @@ $categories = formatCategories($categories, $catId);
             </ul>
         </div>
         <div class="ks-block-content ks-block-shadow ks-filter__block">
-            <span><br>Курс: 1$ = <?php echo $shopConfig['exch'];?>грн.<br> Обновлен: <?php echo date("d.m.Y");?></span>
+            <span><br>Курс: 1$ = <?php echo $shopConfig['exch'];?>грн.<br> Обновлен: <?php echo date("d.m.Y");?><br></span>
+            <span><br>Отображать цены в<br></span>
+            <div class="btn-group" data-toggle="buttons">
+              <label class="btn btn-primary active">
+                <input type="radio" name="options" id="USD"> USD
+              </label>
+              <label class="btn btn-primary">
+                <input type="radio" name="options" id="GRN"> ГРН
+              </label>
+            </div>
         </div>
-
 <!--        <div class="ks-block-content ks-block-shadow ks-filter__block">
             <h3>Цена</h3>
             <div>
-                <input class="form-control ks-filter__price-input" type="number" placeholder="0" min="0">
+                <input type="number" class="form-control ks-filter__price-input" id="min_price" value="0" min="0">
                 <span>&nbsp;—&nbsp;</span>
-                <input type="number" class="form-control ks-filter__price-input" placeholder="100500" min="1">
+                <input type="number" class="form-control ks-filter__price-input" id="max_price" value="1000" min="10">
                 <span>$</span>
             </div>
-        </div> -->
+        </div>-->
     </div>
+
+        <script>
+            $(function(){
+                $('#USD').change(function(){
+                    tagList = document.getElementsByName('price-usd'); 
+                    for (var i = 0; i < tagList.length; i++) tagList.item(i).style.display = 'block';
+                    tagList = document.getElementsByName('price-grn'); 
+                    for (var i = 0; i < tagList.length; i++) tagList.item(i).style.display = 'none';
+                });
+            });
+            $(function(){
+                $('#GRN').change(function(){
+                    tagList = document.getElementsByName('price-usd'); 
+                    for (var i = 0; i < tagList.length; i++) tagList.item(i).style.display = 'none';
+                    tagList = document.getElementsByName('price-grn'); 
+                    for (var i = 0; i < tagList.length; i++) tagList.item(i).style.display = 'block';
+                });
+            });
+        </script>
+
     <div style="overflow: hidden">
