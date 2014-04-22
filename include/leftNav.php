@@ -68,15 +68,16 @@ $categories = formatCategories($categories, $catId);
               </label>
             </div>
         </div>
-<!--        <div class="ks-block-content ks-block-shadow ks-filter__block">
+       <div class="ks-block-content ks-block-shadow ks-filter__block">
             <h3>Цена</h3>
             <div>
                 <input type="number" class="form-control ks-filter__price-input" id="min_price" value="0" min="0">
                 <span>&nbsp;—&nbsp;</span>
                 <input type="number" class="form-control ks-filter__price-input" id="max_price" value="1000" min="10">
                 <span>$</span>
+                <span id="poss"></span>
             </div>
-        </div>-->
+        </div>
     </div>
 
         <script>
@@ -105,6 +106,24 @@ $categories = formatCategories($categories, $catId);
                     tagList = document.getElementsByName('price-grn'); 
                     for (var i = 0; i < tagList.length; i++) tagList.item(i).style.display = 'block';
                 });
+            });
+            $(function(){
+                var inputmin = document.getElementById('min_price');
+                inputmin.oninput = function(){
+                    var tagList1 = document.getElementsByName('price');
+                    var tagList2 = document.getElementsByName('pos');
+                    for (var i = 0; i < tagList1.length; i++) 
+                        if (tagList1.item(i).value - inputmin.value < 0) {tagList2.item(i).style.display = 'none';} else {tagList2.item(i).style.display = '';};
+                };
+            });
+            $(function(){
+                var inputmax = document.getElementById('max_price');
+                inputmax.oninput = function(){
+                    var tagList1 = document.getElementsByName('price');
+                    var tagList2 = document.getElementsByName('pos'); 
+                    for (var i = 0; i < tagList1.length; i++) 
+                        if (tagList1.item(i).value - inputmax.value > 0) {tagList2.item(i).style.display = 'none';} else {tagList2.item(i).style.display = '';};
+                };
             });
         </script>
 
