@@ -4,6 +4,7 @@ if (!defined('WEB_ROOT')) {
 }
 
 $product = getProductDetail($pdId, $catId);
+if (empty($_SESSION['cur'])) {$_SESSION['cur'] = 'USD';}
 
 // we have $pd_name, $pd_price, $pd_description, $pd_image, $cart_url
 extract($product);
