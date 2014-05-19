@@ -42,36 +42,7 @@ extract($product);
                 <div class="rview">
 					Цена : <?php if ($_SESSION['cur'] == 'USD') {echo displayAmount($pd_price);} elseif ($_SESSION['cur'] == 'GRN') {echo sprintf("%.02f",$pd_price*$shopConfig['exch']) . "грн";} ?><br><br>
 
-					Переключатели<br>
-					<?php if ($pd_sw_black == 0 && $pd_sw_brown == 0 && $pd_sw_blue == 0 && $pd_sw_red == 0) { ?>
-				    	<select disabled class="form-control"><option>Не доступно</option></select>
-				    	<input name="sw" type="hidden" value="0">
-					<?php } 
-					else { ?>
-						<select name="sw" class="form-control">
-							<?php if ($pd_sw_black > 0) { ?> <option value="1">Cherry MX Black</option> <?php } ?>
-	          				<?php if ($pd_sw_brown > 0) { ?> <option value="2">Cherry MX Brown</option> <?php } ?>
-	          				<?php if ($pd_sw_blue > 0) { ?> <option value="3">Cherry MX Blue</option> <?php } ?>
-	          				<?php if ($pd_sw_red > 0) { ?> <option value="4">Cherry MX Red</option> <?php } ?>
-	        			</select>
-	        		<?php } ?><br>
-
-	        		Подсветка<br>
-					<?php if ($pd_illum == 0) { ?>
-				    	<select disabled class="form-control"><option>Отсутствует</option></select>
-				    	<input name="il" type="hidden" value="0">
-					<?php } 
-					elseif ($pd_illum == 1) { ?>					
-				    	<select disabled class="form-control"><option>Регулируемая</option></select>
-				    	<input name="il" type="hidden" value="1">
-	        		<?php } 
-	        		elseif ($pd_illum == 2) { ?>					
-						<select name="il" class="form-control">
-							<?php if ($pd_il_blue > 0) { ?> <option value="2">Синяя</option> <?php } ?>
-	          				<?php if ($pd_il_orang > 0) { ?> <option value="3">Оранжевая</option> <?php } ?>
-	        			</select>
-	        		<?php }
-	        		?><br>
+					<br>
 
 					<?php
 					// if we still have this product in stock

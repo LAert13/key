@@ -3,6 +3,12 @@
   src: url("/fonts/glyphicons-halflings-regular.eot");
   src: url("/fonts/glyphicons-halflings-regular.eot?#iefix") format('embedded-opentype'), url("/fonts/glyphicons-halflings-regular.woff") format('woff'), url("/fonts/glyphicons-halflings-regular.ttf") format('truetype'), url("/fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular") format('svg');
 }
+
+@font-face {
+  font-family: 'Stamper';
+  src: url("/fonts/a_StamperBrk.eot");
+  src: url("/fonts/a_StamperBrk.eot?#iefix") format('embedded-opentype'), url("/fonts/a_StamperBrk.woff") format('woff'), url("/fonts/a_StamperBrk.ttf") format('truetype'), url("/fonts/a_StamperBrk.svg#glyphicons-halflingsregular") format('svg');
+}
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
@@ -13,6 +19,53 @@ body {
 /* Margin bottom by footer height */
   margin-bottom: 60px;
   background: #f8f8ee;
+}
+ul.ks-menu {
+    margin: 0; /* Обнуляем значение отступов */
+    padding: 4px; /* Значение полей */
+    position: absolute;
+    top: 0px;
+    margin-left: 230px;
+}
+ul.ks-menu li {
+    display: inline; /* Отображать как строчный элемент */
+    margin-right: 5px; /* Отступ слева */
+    padding: 3px; /* Поля вокруг текста */
+}
+.ks-menu a {
+    color: #fcd03d;
+}
+.ks-menu a:visited {
+    color: #fcd03d;
+}
+.btn-plink {
+    color: #000;
+    background-color: #fcd03d;
+    border-color: #eea236;
+}
+
+.btn-warning:hover,
+.btn-warning:focus,
+.btn-warning:active,
+.btn-warning.active,
+.open .dropdown-toggle.btn-warning {
+    color: #000;
+    background-color: #fcd03d;
+    border-color: #d58512;
+}
+ul.ks-phones {
+    list-style-type: none;
+    margin: 0; /* Обнуляем значение отступов */
+    padding: 4px; /* Значение полей */
+    position: absolute;
+    top: 30px;
+    right: 280px;
+}
+ul.ks-menu li {
+    display: inline-block; /* Отображать как строчный элемент */
+    margin-right: 5px; /* Отступ слева */
+    padding: 3px; /* Поля вокруг текста */
+    color: #fcd03d;
 }
 .ks-footer {
   position: absolute;
@@ -26,7 +79,7 @@ body {
     border-top 42px solid #6d8916;*/
 }
 .ks-page {
-  padding-top: 130px;
+  padding-top: 50px;
 }
 .ks-page > .container {
   padding-left: 0;
@@ -45,7 +98,7 @@ a:hover {
   color: #e41f32;
 }
 .ks-navbar {
-  background-color: #0a9e98;
+  background-color: #444444;
   border: 0;
   border-radius: 0;
   position: absolute;
@@ -79,11 +132,11 @@ a:hover {
   width: 120px;
   white-space: nowrap;
   position: relative;
-  top: -60px;
-  color: #0a9e98;
-  font-family: 'Open Sans', sans-serif;
+  top: -113px;
+  color: #444444;
+  font-family: 'Stamper', sans-serif;
   font-weight: 700;
-  font-size: 28px;
+  font-size: 70px;
   text-transform: uppercase;
   letter-spacing: -2px;
   vertical-align: middle;
@@ -93,9 +146,7 @@ a:hover {
   position: relative;
   display: inline-block;
   overflow: hidden;
-  background: #262626;
-  color: #f8f8ee;
-  border-radius: 4px;
+  color: #fcd03d;
   height: 2.9ex;
   text-indent: -3px;
   padding-right: 2px;
@@ -103,7 +154,7 @@ a:hover {
   vertical-align: top;
 }
 .ks-logo a {
-  color: #0a9e98;
+  color: #444444;
 }
 .ks-logo a:hover {
   text-decoration: none;
@@ -119,6 +170,11 @@ a:hover {
 .ks-nav {
   text-transform: uppercase;
   font-weight: bold;
+}
+.ks-nav .shop{
+  margin-right: 20px;
+  margin-left: 20px;
+  font-size: 20px;
 }
 .ks-nav__elem a {
   color: #fff !important;
@@ -141,7 +197,7 @@ a:hover {
 }
 .ks-nav__elem:first-child a:before {
   display: none;
-}
+} 
 @media (max-width: 767px) {
   .ks-navbar {
     position: relative !important;
@@ -160,8 +216,7 @@ a:hover {
     font-size: 24px;
   }
   .ks-logo span {
-    background: #fff !important;
-    color: #0a9e98 !important;
+    color: #fcd03d !important;
   }
   .ks-logo a {
     color: #fff !important;
@@ -219,6 +274,7 @@ a:hover {
     border: 0;
     box-shadow: none;
     bottom: auto;
+    margin-top: 0px;
     top: 0;
     left: 0;
     line-height: 17px;
@@ -226,7 +282,7 @@ a:hover {
   .ks-header-cart .dropdown-menu > a {
     display: block;
     padding-top: 2px;
-    padding-left: 45px;
+    padding-left: 60px;
   }
   .ks-header-cart .dropdown-menu > a:hover {
     text-decoration: none;
@@ -236,7 +292,7 @@ a:hover {
   }
   .ks-header-cart__empty {
     color: #fff;
-    margin-left: 45px;
+    margin-left: 60px;
   }
   .ks-page {
     padding-top: 0;
@@ -268,6 +324,8 @@ a:hover {
   .ks-header-cart {
     float: left;
     margin: 0;
+    margin-right: 10px;
+    margin-left: 10px;
   }
   .ks-header-user li,
   .ks-header-cart li {
@@ -280,7 +338,7 @@ a:hover {
   }
   .ks-header-user {
     position: absolute;
-    top: -60px;
+    top: -80px;
     right: 180px;
     padding-right: 20px;
     border-right: 1px solid #000;
@@ -308,7 +366,7 @@ a:hover {
     border: 0;
     box-shadow: none;
     border-radius: 0;
-    top: -69px;
+    top: -77px;
   }
   .ks-header-cart .dropdown-toggle {
     display: none;
@@ -341,7 +399,8 @@ a:hover {
   text-decoration: none;
 }
 .navbar-fixed-top .ks-header-cart .dropdown-toggle:focus {
-  color: #e41f32;
+  color: #fcd03d;
+  background: #444;
   text-decoration: none;
 }
 .navbar-fixed-top .ks-header-cart .dropdown-menu {
@@ -356,14 +415,13 @@ a:hover {
   box-shadow: 0 1px 4px rgba(1,2,4,0.18);
 }
 .navbar-fixed-top .ks-logo {
-  top: 5px;
+  top: -7px;
   color: #fff;
   z-index: 2;
-  font-size: 24px;
+  font-size: 32px;
 }
 .navbar-fixed-top .ks-logo span {
-  background: #fff;
-  color: #0a9e98;
+  color: #fcd03d;
 }
 .navbar-fixed-top .ks-logo a {
   color: #fff;

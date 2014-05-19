@@ -99,38 +99,9 @@ foreach ($orderStatus as $status) {
             for ($i = 0; $i < $numItem; $i++) {
             	extract($orderedItem[$i]);
             	$subTotal += $pd_price * $od_qty;
-                          switch ($ct_sw) {
-                            case 0:
-                              $swt = '';
-                              break;                            
-                            case 1:
-                              $swt = ', MX Black';
-                              break;
-                            case 2:
-                              $swt = ', MX Brown';
-                              break;
-                            case 3:
-                              $swt = ', MX Blue';
-                              break;
-                            case 4:
-                              $swt = ', MX Red';
-                              break;
-                          }
-                          switch ($ct_il) {
-                            case 0:
-                            case 1:
-                              $ilu = '';
-                              break;
-                            case 2:
-                              $ilu = ', Blue Led';
-                              break;
-                            case 3:
-                              $ilu = ', Orange Led';
-                              break;
-                          }
             ?>
                 <tr> 
-                    <td width="60%"><?php echo "$pd_name"; echo $swt; echo $ilu; ?></td>
+                    <td width="60%"><?php echo "$pd_name";?></td>
                     <td width="10%" align="center"><?php echo "$od_qty"; ?></td>
                     <td width="15%" align="right"><?php echo displayAmount($pd_price); ?></td>
                     <td width="15%" align="right"><?php echo displayAmount($od_qty * $pd_price); ?></td>

@@ -44,7 +44,7 @@ if ($numProduct > 0 ) {
 		$pd_price = displayAmount($pd_price);
 ?>
 
-    <div class="col-xs-12 col-s-6 col-sm-6 col-md-6 col-lg-4" name="pos">
+    <div class="col-xs-12 col-s-6 col-sm-6 col-md-6 col-lg-4">
         <div class="ks-block-content ks-block-shadow">
             <div class="ks-position">
                 <a class="ks-position__link" href="<?php echo "/shop/product-$pd_id"; ?>">
@@ -52,7 +52,6 @@ if ($numProduct > 0 ) {
                     <span class="ks-position__details">
                         <span class="ks-position__name"><?php echo $pd_name; ?></span>
                         <span class="ks-position__price">
-                            <input hidden name="price" value="<?php echo $pd_price*1; ?>"/>
                             <div name="price-usd" style="display: <?php if ($_SESSION['cur'] == 'USD') {echo "block";} elseif ($_SESSION['cur'] == 'GRN') {echo "none";}?>">Цена <?php echo $pd_price; ?></div>
                             <div name="price-grn" style="display: <?php if ($_SESSION['cur'] == 'USD') {echo "none";} elseif ($_SESSION['cur'] == 'GRN') {echo "block";}?>">Цена <?php echo sprintf("%.02f",$pd_price*$shopConfig['exch']); ?>грн</div>
                         </span>

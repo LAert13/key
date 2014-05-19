@@ -15,7 +15,7 @@ function getProductDetail($pdId, $catId)
 	$_SESSION['shoppingReturnUrl'] = $_SERVER['REQUEST_URI'];
 	
 	// get the product information from database
-	$sql = "SELECT pd_name, pd_description, pd_price, pd_image, pd_thumbnail, pd_qty, pd_sw_black, pd_sw_brown, pd_sw_blue, pd_sw_red, pd_illum, pd_il_blue, pd_il_orang, pd_img_dir, pd_img_cnt
+	$sql = "SELECT pd_name, pd_description, pd_price, pd_image, pd_thumbnail, pd_qty, pd_img_dir, pd_img_cnt
 			FROM tbl_product
 			WHERE pd_id = $pdId";
 	

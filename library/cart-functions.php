@@ -41,20 +41,17 @@ function addToCart()
 	
 	// current session id
 	$sid = session_id();
-	$swtch = (int)$_POST['sw'];
-	$illu = (int)$_POST['il'];
-	
 	// check if the product is already
 	// in cart table for this session
-	$sql = "SELECT pd_id, ct_session_id, ct_sw, ct_il
+	$sql = "SELECT pd_id, ct_session_id
 	        FROM tbl_cart
-			WHERE pd_id = $productId AND ct_session_id = '$sid' AND ct_sw = $swtch AND ct_il = $illu";
+			WHERE pd_id = $productId AND ct_session_id = '$sid'";
 	$result = dbQuery($sql);
 	
 	if (dbNumRows($result) == 0) {
 		// put the product in cart table
-		$sql = "INSERT INTO tbl_cart (pd_id, ct_qty, ct_sw, ct_il, ct_session_id, ct_date)
-				VALUES ($productId, 1, $swtch, $illu, '$sid', NOW())";
+		$sql = "INSERT INTO tbl_cart (pd_id, ct_qty, ct_session_id, ct_date)
+				VALUES ($productId, 1, '$sid', NOW())";
 		$result = dbQuery($sql);
 	} else {
 		// update product quantity in cart table
@@ -81,7 +78,7 @@ function getCartContent()
 	$cartContent = array();
 
 	$sid = session_id();
-	$sql = "SELECT ct_id, ct.pd_id, ct_qty, ct_sw, ct_il, pd_name, pd_price, pd_thumbnail, pd.cat_id
+	$sql = "SELECT ct_id, ct.pd_id, ct_qty, pd_name, pd_price, pd_thumbnail, pd.cat_id
 			FROM tbl_cart ct, tbl_product pd, tbl_category cat
 			WHERE ct_session_id = '$sid' AND ct.pd_id = pd.pd_id AND cat.cat_id = pd.cat_id";
 	

@@ -35,8 +35,8 @@ function saveOrder()
 		if ($orderId) {
 			// save order items
 			for ($i = 0; $i < $numItem; $i++) {
-				$sql = "INSERT INTO tbl_order_item(od_id, pd_id, od_qty, od_sw, od_il)
-						VALUES ($orderId, {$cartContent[$i]['pd_id']}, {$cartContent[$i]['ct_qty']}, {$cartContent[$i]['ct_sw']}, {$cartContent[$i]['ct_il']})";
+				$sql = "INSERT INTO tbl_order_item(od_id, pd_id, od_qty)
+						VALUES ($orderId, {$cartContent[$i]['pd_id']}, {$cartContent[$i]['ct_qty']})";
 				$result = dbQuery($sql);					
 			}
 			
@@ -52,48 +52,6 @@ function saveOrder()
 				$result = dbQuery($sql);					
 			}
 
-			for ($i = 0; $i < $numItem; $i++) {
-				switch ($cartContent[$i]['ct_sw']) {
-                    case 1:
-                    	$sql = "UPDATE tbl_product 
-						        SET pd_sw_black = pd_sw_black - {$cartContent[$i]['ct_qty']}
-								WHERE pd_id = {$cartContent[$i]['pd_id']}";
-                        break;                            
-                    case 2:
-                    	$sql = "UPDATE tbl_product 
-						        SET pd_sw_brown = pd_sw_brown - {$cartContent[$i]['ct_qty']}
-								WHERE pd_id = {$cartContent[$i]['pd_id']}";
-                        break;
-                    case 3:
-                    	$sql = "UPDATE tbl_product 
-						        SET pd_sw_blue = pd_sw_blue - {$cartContent[$i]['ct_qty']}
-								WHERE pd_id = {$cartContent[$i]['pd_id']}";
-                        break;
-                    case 4:
-                    	$sql = "UPDATE tbl_product 
-						        SET pd_sw_red = pd_sw_red - {$cartContent[$i]['ct_qty']}
-								WHERE pd_id = {$cartContent[$i]['pd_id']}";
-                        break;
-                }
-				$result = dbQuery($sql);					
-			}
-			
-			for ($i = 0; $i < $numItem; $i++) {
-				switch ($cartContent[$i]['ct_il']) {
-                    case 2:
-                    	$sql = "UPDATE tbl_product 
-						        SET pd_il_blue = pd_il_blue - {$cartContent[$i]['ct_qty']}
-								WHERE pd_id = {$cartContent[$i]['pd_id']}";
-                        break;
-                    case 3:
-                    	$sql = "UPDATE tbl_product 
-						        SET pd_il_orang = pd_il_orang - {$cartContent[$i]['ct_qty']}
-								WHERE pd_id = {$cartContent[$i]['pd_id']}";
-                        break;
-                }
-				$result = dbQuery($sql);					
-			}
-			
 			// then remove the ordered items from cart
 			for ($i = 0; $i < $numItem; $i++) {
 				$sql = "DELETE FROM tbl_cart

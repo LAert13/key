@@ -390,3 +390,21 @@ function getXmlHttp() {
     }
     return xmlhttp;
   }
+
+function search() {
+	var output = document.getElementById("search_drop");
+	var search = document.getElementById("search").value; // Считываем значение a
+    var xmlhttp = getXmlHttp(); // Создаём объект XMLHTTP
+    xmlhttp.open('POST', 'search_submit.php', true); // Открываем асинхронное соединение
+    xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); // Отправляем кодировку
+    xmlhttp.send("search=" + encodeURIComponent(search)); // Отправляем POST-запрос
+    xmlhttp.onreadystatechange = function() { // Ждём ответа от сервера
+      if (xmlhttp.readyState == 4) { // Ответ пришёл
+        if(xmlhttp.status == 200) { // Сервер вернул код 200 (что хорошо)
+          document.getElementById("result").innerHTML = xmlhttp.responseText; // Выводим ответ сервера
+          if (!(xmlhttp.responseText == '')) { output.style.display = 'block'; } else { output.style.display = 'none'; }
+        }
+      }
+    };
+
+}

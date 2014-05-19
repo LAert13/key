@@ -1,5 +1,34 @@
+
 <!-- ШАПКА -->
-<div class="navbar navbar-default ks-navbar" role="navigation">
+<div class="navbar-collapse collapse" style="background:#000; min-height: 80px;">
+	<div class="container">
+        <ul class="ks-menu">
+            <li><a href="/shop/">О магазине</a></li>
+            <li><a href="/delivery">Доставка и оплата</a></li>
+            <li><a href="#">Помощь</a></li>
+            <li><a href="/contacts">Контакты</a></li>
+        </ul>
+	    <div class="navbar-form navbar-left">
+	        <div class="input-group" style="margin-left:220px; margin-right:400px; margin-top:24px;">
+	            <input type="text" class="form-control" placeholder="Поиск товара" name="search" id="search" oninput="search()" />
+	            <span class="input-group-btn">
+	                <button class="btn btn-plink" type="button" onclick="search()">Поиск</button>
+	            </span>
+	        </div>
+	        <div class="btn-group open" id="search_drop" style="display:none; margin-left:220px;">
+			    <ul class="dropdown-menu" role="menu" id="result" style="position:absolute; z-index:99; padding 10px;"></ul>
+			</div>
+	    </div>
+
+        <div class="navbar-right">
+            <ul class="ks-phones">
+                <li>тел. +38 050 ***-**-**</li>
+                <li>тел. +38 067 ***-**-**</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="navbar navbar-default ks-navbar" role="navigation" style="z-index:80;">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -11,24 +40,25 @@
             <div class="navbar-brand">
                 <!-- ЛОГОТИП -->
                 <?php if ($_SERVER['REQUEST_URI'] == "/") { ?>
-                    <h1 class="ks-logo"><span>Key</span>Shop</h1>
+                    <h1 class="ks-logo"><span>PLINK</span></h1>
                 <?php } else { ?>
-                    <div class="ks-logo"><a href="/"><span>Key</span>Shop</a></div>
+                    <div class="ks-logo">
+                        <a href="/"><span>PLINK</span></a>
+                    </div>
                 <?php } ?>
             </div>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav ks-nav">
-                <li class="ks-nav__elem">
-                    <a href="/shop/">Магазин</a>
+                <li class="ks-nav__elem shop">
+                	<img src="/images/weapoon.png" alt="Оружие" class="img-rounded" width="50px" style="background:#fcd03d; margin-left:10px; border-radius: 10px"/>
+                    <a href="/shop/">Оружие</a>
                 </li><li class="ks-nav__elem">
-                    <a href="#">Статьи</a>
+                    <a href="/delivery">Аксессуары</a>
                 </li><li class="ks-nav__elem">
-                    <a href="/delivery">Доставка</a>
+                    <a href="#">Одежда</a>
                 </li><li class="ks-nav__elem">
-                    <a href="#">Помощь</a>
-                </li><li class="ks-nav__elem">
-                    <a href="/contacts">Контакты</a>
+                    <a href="/contacts">Туризм</a>
                 </li>
             </ul>
             <div class="nav navbar-nav navbar-right">
@@ -60,8 +90,10 @@
                         </ul>
                     </div>
                     <?php } else { ?>
-                    	<a class="ks-header-user__registration-link" href="/register">Регистрация</a><a
-                        class="ks-header-user__authorization-link btn btn-warning" href="/login">Вход</a>
+	                    <div class="btn-group" style="margin:0px;">
+	                    	<a class="ks-header-user__authorization-link btn btn-plink" width="50px" href="/login" style="border-radius: 0 0 0 4px; padding-top: 3px; padding-bottom: 3px;">Вход</a>
+	                    	<a class="ks-header-user__authorization-link btn btn-plink" href="/register" style="border-radius: 0 0 4px 0; padding-top: 3px; padding-bottom: 3px;" href="/register">Регистрация</a>
+	                    </div>
                     <?php } ?>
                 </div>
                 <div class="ks-header-cart">
@@ -87,14 +119,20 @@
                             <span class="ks-header-cart__counter"><?php echo $qty == 0 ? '' : ' '.$qty; ?></span>
                         </a>
                         <div class="dropdown-menu">
-                            <a href="/cart">В корзине <?php echo $qty; ?> товар<?php echo $ending; ?><br />на сумму <?php echo displayAmount($subTotal); ?></a>
+                        	<div class="btn btn-plink">
+	                        	<span class="ks-header-cart__icon glyphicon glyphicon-shopping-cart" style="width: 1em;"></span>
+	                            <a href="/cart">В корзине <?php echo $qty; ?> товар<?php echo $ending; ?><br />на сумму <?php echo displayAmount($subTotal); ?></a>
+                           	</div>
                         </div>
                             <?php } else { ?>
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <span class="ks-header-cart__icon glyphicon glyphicon-shopping-cart"></span>
                         </a>
                         <div class="dropdown-menu">
-                            <div class="ks-header-cart__empty">Корзина пуста</div>
+                            <div class="ks-header-cart__empty btn btn-plink">
+                            	<span class="ks-header-cart__icon glyphicon glyphicon-shopping-cart" style="width: 1em;"></span>
+                            	<span>Корзина пуста</span>
+                            </div>
                         </div>
                         <?php } ?>
                     </div>

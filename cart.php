@@ -49,41 +49,12 @@ require_once('include/top.php'); ?>
                           extract($cartContent[$i]);
                           $productUrl = "/shop/product-$pd_id";
                           $subTotal += $pd_price * $ct_qty;
-                          switch ($ct_sw) {
-                            case 0:
-                              $swt = '';
-                              break;                            
-                            case 1:
-                              $swt = ', MX Black';
-                              break;
-                            case 2:
-                              $swt = ', MX Brown';
-                              break;
-                            case 3:
-                              $swt = ', MX Blue';
-                              break;
-                            case 4:
-                              $swt = ', MX Red';
-                              break;
-                          }
-                          switch ($ct_il) {
-                            case 0:
-                            case 1:
-                              $ilu = '';
-                              break;
-                            case 2:
-                              $ilu = ', Blue Led';
-                              break;
-                            case 3:
-                              $ilu = ', Orange Led';
-                              break;
-                          }
-                        ?>
+                         ?>
                         <tr> 
                             <td width="45%">
                                 <a href="<?php echo $productUrl; ?>"><img src="<?php echo $pd_thumbnail; ?>" border="0"></a>
                                 &nbsp;
-                                <a href="<?php echo $productUrl; ?>"><?php echo $pd_name; echo $swt; echo $ilu;?></a>
+                                <a href="<?php echo $productUrl; ?>"><?php echo $pd_name;?></a>
                             </td>
                             <td width="10%" align="center">
                                 <input name="txtQty[]" type="text" id="txtQty[]" size="5" value="<?php echo $ct_qty; ?>"  class="form-control" onKeyUp="checkNumber(this);">
