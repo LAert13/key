@@ -585,3 +585,12 @@ a:hover {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#104066',GradientType=0 );
 /* IE6-8 */
 }
+.ks-block-header {
+  background: #000;
+  color: #fcd03d;
+  font-family: 'Stamper';
+  font-size: 28px;
+  margin-right: -15px;
+  margin-left: -15px;
+  padding-left: 25px; 
+}

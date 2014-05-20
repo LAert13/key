@@ -12,7 +12,7 @@ $categories = formatCategories($categories, $catId);
 
     <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3">
         <div class="ks-block-content ks-block-shadow ks-filter__block">
-            <h3>Категории</h3>
+            <div class="ks-block-header">Категории</div>
             <ul>
                 <li><a href="/shop/">Все товары</a></li>
 
@@ -69,6 +69,7 @@ $categories = formatCategories($categories, $catId);
             </div>
         </div>
        <div class="ks-block-content ks-block-shadow ks-filter__block">
+            <div class="ks-block-header">Фильтры</div>
             <h3>Цена</h3>
             <div>
                 <input type="number" class="form-control ks-filter__price-input" id="min_price" value="0" min="0">
