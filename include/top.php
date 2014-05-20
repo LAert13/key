@@ -12,7 +12,7 @@
 	        <div class="input-group" style="margin-left:220px; margin-right:400px; margin-top:24px;">
 	            <input type="text" class="form-control" placeholder="Поиск товара" name="search" id="search" oninput="search()" />
 	            <span class="input-group-btn">
-	                <button class="btn btn-plink" type="button" onclick="search()">Поиск</button>
+	                <button class="btn btn-plink" type="button" onclick="search_list()">Поиск</button>
 	            </span>
 	        </div>
 	        <div class="btn-group open" id="search_drop" style="display:none; margin-left:220px;">

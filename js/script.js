@@ -408,3 +408,7 @@ function search() {
     };
 
 }
+
+function search_list() {
+    document.location.href = "index.php?search=" + search;
+}
