@@ -41,7 +41,7 @@ function addCategory()
     $image       = $_FILES['fleImage'];
     $parentId    = $_POST['hidParentId'];
     
-    $catImage = uploadImage('fleImage', SRV_ROOT . 'images/category/');
+    $catImage = uploadImage('fleImage', '../../images/category/');
     
     $sql   = "INSERT INTO tbl_category (cat_parent_id, cat_name, cat_description, cat_image) 
               VALUES ($parentId, '$name', '$description', '$catImage')";
@@ -95,7 +95,7 @@ function modifyCategory()
     $description = $_POST['mtxDescription'];
     $image       = $_FILES['fleImage'];
     
-    $catImage = uploadImage('fleImage', SRV_ROOT . 'images/category/');
+    $catImage = uploadImage('fleImage', '../../images/category/');
     
     // if uploading a new image
     // remove old image

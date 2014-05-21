@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Май 19 2014 г., 01:47
+-- Время создания: Май 21 2014 г., 16:48
 -- Версия сервера: 5.5.37-log
 -- Версия PHP: 5.3.28
 
@@ -125,7 +125,7 @@ CREATE TABLE IF NOT EXISTS `tbl_category` (
   PRIMARY KEY (`cat_id`),
   KEY `cat_parent_id` (`cat_parent_id`),
   KEY `cat_name` (`cat_name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=22 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=29 ;
 
 --
 -- Дамп данных таблицы `tbl_category`
@@ -135,7 +135,12 @@ INSERT INTO `tbl_category` (`cat_id`, `cat_parent_id`, `cat_name`, `cat_descript
 (18, 0, 'Клавиатуры', 'Механические клавиатуры', '9916b9f804e55ee47265af0e646b023e.jpg'),
 (19, 0, 'Аксессуары', 'Аксессуары к клавиатурам', 'b7900b032486732b42f6927f440121d8.jpg'),
 (20, 19, 'Ducky', 'Аксессуары к клавиатурам Ducky', '38ce03ba07574a7c581b06d4989964ff.jpg'),
-(21, 18, 'Ducky', 'Механические клавиатуры Ducky', '9adfd36368ee24b8d325fe9d5944f6ea.jpg');
+(21, 18, 'Ducky', 'Механические клавиатуры Ducky', '9adfd36368ee24b8d325fe9d5944f6ea.jpg'),
+(22, 0, 'Винтовки пневматические', 'Винтовки пневматические', '608ee53b2c4e168f491f55d52e09e805.jpg'),
+(23, 22, 'Газо-пружинные', 'Газо-пружинные', '0ebb443d2f6f686548dbedf92c421e26.jpg'),
+(26, 22, 'РСР (с предварительной накачкой)', 'РСР (с предварительной накачкой)', 'e44ba90ebcc1ae7642a8d2ec7470db7f.jpg'),
+(27, 22, 'Пружинно-поршневые', 'Пружинно-поршневые', '9267c0fe2142121bef3f4e17736fbf59.jpg'),
+(28, 22, 'С сжатым газом СО2', 'С сжатым газом СО2', 'b0e0af59ae221c033d3ebac0c8f51bcb.jpg');
 
 -- --------------------------------------------------------
 
@@ -324,7 +329,7 @@ CREATE TABLE IF NOT EXISTS `tbl_user` (
 --
 
 INSERT INTO `tbl_user` (`user_id`, `user_name`, `user_password`, `user_regdate`, `user_last_login`) VALUES
-(1, 'admin', '7e212e2b0d60f7f4124a17af060f7566', '2005-02-20 17:35:44', '2014-05-14 11:31:24');
+(1, 'admin', '7e212e2b0d60f7f4124a17af060f7566', '2005-02-20 17:35:44', '2014-05-21 15:08:23');
 
 -- --------------------------------------------------------
 
