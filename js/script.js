@@ -410,5 +410,6 @@ function search() {
 }
 
 function search_list() {
-    document.location.href = "index.php?search=" + search;
+	var search = "index.php?search=" + document.getElementById("search").value;
+    document.location.href = search;
 }
