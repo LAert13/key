@@ -16,7 +16,7 @@
 	            </span>
 	        </div>
 	        <div class="btn-group open" id="search_drop" style="display:none; margin-left:220px;">
-			    <ul class="dropdown-menu" role="menu" id="result" style="position:absolute; z-index:99; padding 10px;"></ul>
+			    <ul class="dropdown-menu" role="menu" id="result" style="position:absolute; z-index:99; padding 10px; top:-2px;"></ul>
 			</div>
 	    </div>
 
@@ -162,8 +162,23 @@
                 }
             }
         });
-
     }());
+
+    $('body').click(function() {
+    	document.getElementById("search_drop").style.display = 'none';
+    });
+    $('#search').click(function(event){
+    	event.stopPropagation();
+ 	});
+    $('#search_drop').click(function(event){
+    	event.stopPropagation();
+ 	});
+
+	$("#search").on("keypress", function (event) {
+    	if (event.keyCode === 13){
+    		search_list();
+    	}
+	});
 </script>
 <!-- ТЕЛО СТРАНИЦЫ -->
 <div class="ks-page">

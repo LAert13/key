@@ -393,7 +393,12 @@ function getXmlHttp() {
 
 function search() {
 	var output = document.getElementById("search_drop");
-	var search = document.getElementById("search").value; // Считываем значение a
+	var input = document.getElementById("search");
+	var result = document.getElementById("result");
+	var width = input.offsetWidth;
+	var search = input.value;
+	if (width > 380) { result.style.width = width +"px"; }
+	//$("#search_drop").width(function(i,val){ return width +"px"; });
     var xmlhttp = getXmlHttp(); // Создаём объект XMLHTTP
     xmlhttp.open('POST', 'search_submit.php', true); // Открываем асинхронное соединение
     xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); // Отправляем кодировку
@@ -401,12 +406,11 @@ function search() {
     xmlhttp.onreadystatechange = function() { // Ждём ответа от сервера
       if (xmlhttp.readyState == 4) { // Ответ пришёл
         if(xmlhttp.status == 200) { // Сервер вернул код 200 (что хорошо)
-          document.getElementById("result").innerHTML = xmlhttp.responseText; // Выводим ответ сервера
+          result.innerHTML = xmlhttp.responseText; // Выводим ответ сервера
           if (!(xmlhttp.responseText == '')) { output.style.display = 'block'; } else { output.style.display = 'none'; }
         }
       }
     };
-
 }
 
 function search_list() {
