@@ -62,7 +62,7 @@ if (dbNumRows($result) > 0) {
 ?>
   <tr class="<?php echo $class; ?>">
    <td><?php echo $flt_id; ?></td>
-   <td><a href="index.php?flt=<?php echo $flt_id; ?>"><?php echo $flt_name; ?></a></td>
+   <td><a href="index.php?flt=<?php echo $flt_id; ?>&view=listValues"><?php echo $flt_name; ?></a></td>
    <td width="70" align="center"><a href="javascript:modifyFilter(<?php echo $flt_id; ?>);">Изменить</a></td>
    <td width="70" align="center"><a href="javascript:deleteFilter(<?php echo $flt_id; ?>);">Удалить</a></td>
   </tr>
@@ -99,12 +99,3 @@ if (dbNumRows($result) > 0) {
   </tr>
  </table>
 </form>
-
-<table width="100%" border="0" align="center" cellpadding="5" cellspacing="1" class="entryTable">
-    <tr>
-        <td width="150" class="label">Имя Фильтра</td>
-        <td class="content"><?php get_select_filters()?></td>
-        <td width="150" class="label">Значение Фильтра</td>
-        <td class="content"><span id="result"></span></td>
-    </tr>
-</table>

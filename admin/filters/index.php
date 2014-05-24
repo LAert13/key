@@ -13,6 +13,11 @@ switch ($view) {
 		$pageTitle 	= 'Список Фильтров';
 		break;
 
+    case 'listValues' :
+        $content 	= 'listValues.php';
+        $pageTitle 	= 'Список Значений Фильтра';
+        break;
+
 	case 'addFilter' :
 		$content 	= 'addFilter.php';
 		$pageTitle 	= 'Добавление Фильтра';
@@ -20,7 +25,7 @@ switch ($view) {
 
     case 'addValue' :
         $content 	= 'addValue.php';
-        $pageTitle 	= 'Добавление Фильтра';
+        $pageTitle 	= 'Добавление Значения Фильтра';
         break;
 
 	case 'modify' :
