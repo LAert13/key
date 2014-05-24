@@ -53,9 +53,9 @@ if (dbNumRows($result) > 0) {
 		}
 		
 		if ($cat_image) {
-			$cat_image = '/images/category/' . $cat_image;
+			$cat_image = '../../images/category/' . $cat_image;
 		} else {
-			$cat_image = '/images/no-image-small.png';
+			$cat_image = '../../images/no-image-small.png';
 		}		
 ?>
   <tr class="<?php echo $class; ?>"> 
@@ -89,7 +89,7 @@ if (dbNumRows($result) > 0) {
    <td colspan="5">&nbsp;</td>
   </tr>
   <tr> 
-   <td colspan="5" align="right"> <input name="btnAddCategory" type="button" id="btnAddCategory" value="Добавить Категорию" class="box" onClick="addCategory(<?php echo $catId; ?>)"> 
+   <td colspan="5" align="right"> <input name="btnAddCategory" type="button" id="btnAddCategory" value="Добавить Категорию" class="box" onClick="addFilter()">
    </td>
   </tr>
  </table>

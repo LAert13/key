@@ -177,12 +177,12 @@ function getPagingLink($sql, $itemPerPage = 10, $strGet = '')
 		if ($pageNumber > 1) {
 			$page = $pageNumber - 1;
 			if ($page > 1) {
-				$prev = " <a href=\"$self?page=$page&$strGet/\">[Prev]</a> ";
+				$prev = " <a href=\"$self?page=$page&$strGet/\">[Назад]</a> ";
 			} else {
-				$prev = " <a href=\"$self?$strGet\">[Prev]</a> ";
+				$prev = " <a href=\"$self?$strGet\">[Назад]</a> ";
 			}	
 				
-			$first = " <a href=\"$self?$strGet\">[First]</a> ";
+			$first = " <a href=\"$self?$strGet\">[Первая]</a> ";
 		} else {
 			$prev  = ''; // we're on page one, don't show 'previous' link
 			$first = ''; // nor 'first page' link
@@ -192,8 +192,8 @@ function getPagingLink($sql, $itemPerPage = 10, $strGet = '')
 		// on the last page
 		if ($pageNumber < $totalPages) {
 			$page = $pageNumber + 1;
-			$next = " <a href=\"$self?page=$page&$strGet\">[Next]</a> ";
-			$last = " <a href=\"$self?page=$totalPages&$strGet\">[Last]</a> ";
+			$next = " <a href=\"$self?page=$page&$strGet\">[Вперед]</a> ";
+			$last = " <a href=\"$self?page=$totalPages&$strGet\">[Последняя]</a> ";
 		} else {
 			$next = ''; // we're on the last page, don't show 'next' link
 			$last = ''; // nor 'last page' link

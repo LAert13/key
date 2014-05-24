@@ -16,9 +16,12 @@ require_once('include/top.php');
 
 
 <?php
-if ($pdId) {
-	require_once('include/productDetail.php');
-} 
+if ($catId) {
+require_once('include/categoryList.php');
+}
+elseif ($pdId) {
+    require_once('include/productDetail.php');
+}
 elseif ($search) {
     require_once('include/leftNav.php');
 	require_once('include/search_list.php');

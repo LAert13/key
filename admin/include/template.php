@@ -14,6 +14,7 @@ $self = '/admin/index.php';
 <script language="JavaScript" type="text/javascript" src="/admin/library/category.js"></script>
 <script language="JavaScript" type="text/javascript" src="/admin/library/order.js"></script>
 <script language="JavaScript" type="text/javascript" src="/admin/library/product.js"></script>
+<script language="JavaScript" type="text/javascript" src="/admin/library/filter.js"></script>
 <script language="JavaScript" type="text/javascript" src="/admin/library/shop.js"></script>
 <script language="JavaScript" type="text/javascript" src="/admin/library/user.js"></script>
 </head>
@@ -27,6 +28,7 @@ $self = '/admin/index.php';
       <a href="/admin/" class="leftnav">Домой</a>
 	  <a href="/admin/category/" class="leftnav">Категории</a>
 	  <a href="/admin/product/" class="leftnav">Товары</a>
+      <a href="/admin/filters/" class="leftnav">Фильтры</a>
 	  <a href="/admin/order/" class="leftnav">Заказы</a>
 	  <a href="/admin/config/" class="leftnav">Конфигурация</a>
 	  <a href="/admin/user/" class="leftnav">Пользователи</a>

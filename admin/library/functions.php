@@ -311,4 +311,17 @@ function getPagingNav($sql, $pageNum, $rowsPerPage, $queryString = '')
 	// return the page navigation link
 	return $first . $prev . " Showing page <strong>$pageNum</strong> of <strong>$maxPage</strong> pages " . $next . $last; 
 }
+
+function get_select_filters()
+{
+    $sql = "SELECT flt_name FROM tbl_filters ORDER BY flt_name ASC";
+    $res = mysql_query($sql);
+    echo "<select name=\"fltName\" id=\"fltName\" onChange=\"selectFilterValues();\">";
+    echo "<option selected>...</option>";
+    while ($row = mysql_fetch_assoc($res)){
+        echo "<option value=\"".$row['flt_name']."\">".$row['flt_name']."</option>";
+    }
+    echo "</select>";
+}
+
 ?>

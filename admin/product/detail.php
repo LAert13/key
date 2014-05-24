@@ -20,9 +20,9 @@ $row = mysql_fetch_assoc($result);
 extract($row);
 
 if ($pd_image) {
-	$pd_image = '/images/product/' . $pd_image;
+	$pd_image = '../../images/product/' . $pd_image;
 } else {
-	$pd_image = '/images/no-image-large.png';
+	$pd_image = '../../images/no-image-large.png';
 }
 
 

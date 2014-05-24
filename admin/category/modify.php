@@ -37,7 +37,7 @@ extract($row);
 	if ($cat_image != '') {
 ?>
     <br>
-    <img src="/<?php echo CATEGORY_IMAGE_DIR . $cat_image; ?>"> &nbsp;&nbsp;<a href="javascript:deleteImage(<?php echo $cat_id; ?>);">Удалить
+    <img src="/<?php echo CATEGORY_IMAGE_DIR . $cat_image; ?>"> &nbsp;&nbsp;<a href="javascript:deleteCatImage(<?php echo $cat_id; ?>);">Удалить
     Изображение</a> 
     <?php
 	}

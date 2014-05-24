@@ -34,7 +34,7 @@ function deleteCategory(catId)
 	}
 }
 
-function deleteImage(catId)
+function deleteCatImage(catId)
 {
 	if (confirm('Delete this image?')) {
 		window.location.href = 'processCategory.php?action=deleteImage&catId=' + catId;

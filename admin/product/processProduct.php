@@ -40,7 +40,7 @@ function addProduct()
 	$price       = str_replace(',', '', (double)$_POST['txtPrice']);
 	$qty         = (int)$_POST['txtQty'];
 	
-	$images = uploadProductImage('fleImage', SRV_ROOT . 'images/product/');
+	$images = uploadProductImage('fleImage', '../../images/product/');
 
 	$mainImage = $images['image'];
 	$thumbnail = $images['thumbnail'];
@@ -115,7 +115,7 @@ function modifyProduct()
 	$price       = str_replace(',', '', $_POST['txtPrice']);
 	$qty         = $_POST['txtQty'];
 	
-	$images = uploadProductImage('fleImage', SRV_ROOT . 'images/product/');
+	$images = uploadProductImage('fleImage', '../../images/product/');
 
 	$mainImage = $images['image'];
 	$thumbnail = $images['thumbnail'];
@@ -176,8 +176,8 @@ function deleteProduct()
 	
 	// remove the product image and thumbnail
 	if ($row['pd_image']) {
-		unlink(SRV_ROOT . 'images/product/' . $row['pd_image']);
-		unlink(SRV_ROOT . 'images/product/' . $row['pd_thumbnail']);
+		unlink('../../images/product/' . $row['pd_image']);
+		unlink('../../images/product/' . $row['pd_thumbnail']);
 	}
 	
 	// remove the product from database;
@@ -228,8 +228,8 @@ function _deleteImage($productId)
 		
 		if ($pd_image && $pd_thumbnail) {
 			// remove the image file
-			$deleted = @unlink(SRV_ROOT . "images/product/$pd_image");
-			$deleted = @unlink(SRV_ROOT . "images/product/$pd_thumbnail");
+			$deleted = @unlink("../../images/product/$pd_image");
+			$deleted = @unlink("../../images/product/$pd_thumbnail");
 		}
 	}
 	

@@ -58,9 +58,9 @@ if (dbNumRows($result) > 0) {
 		extract($row);
 		
 		if ($pd_thumbnail) {
-			$pd_thumbnail = '/images/product/' . $pd_thumbnail;
+			$pd_thumbnail = '../../images/product/' . $pd_thumbnail;
 		} else {
-			$pd_thumbnail = '/images/no-image-small.png';
+			$pd_thumbnail = '../../images/no-image-small.png';
 		}	
 		
 		
