@@ -5,7 +5,7 @@ function login()
 	
 	$.ajax({
 		type: "POST",
-		url: "/login_submit.php",
+		url: "/submit.php?action=login",
 		data: $('#loginForm').serialize(),
 		dataType: "json",
 		success: function(msg){
@@ -29,7 +29,7 @@ function review()
 	
 	$.ajax({
 		type: "POST",
-		url: "/review_submit.php",
+		url: "/submit.php?action=review",
 		data: $('#reviewForm').serialize(),
 		dataType: "json",
 		success: function(msg){
@@ -60,7 +60,7 @@ function shipping()
 	
 	$.ajax({
 		type: "POST",
-		url: "/include/shipping_submit.php",
+		url: "/submit.php?action=shipping",
 		data: $('#frmCheckout').serialize(),
 		dataType: "json",
 		success: function(msg){
@@ -85,7 +85,7 @@ function contactus()
 	
 	$.ajax({
 		type: "POST",
-		url: "/contact_submit.php",
+		url: "/submit.php?action=contact",
 		data: $('#ContactUsForm').serialize(),
 		dataType: "json",
 		success: function(msg){
@@ -116,7 +116,7 @@ function order()
 	
 	$.ajax({
 		type: "POST",
-		url: "/order_submit.php",
+		url: "/submit.php?action=order",
 		data: $('#orderForm').serialize(),
 		dataType: "json",
 		success: function(msg){
@@ -147,7 +147,7 @@ function register()
 	
 	$.ajax({
 		type: "POST",
-		url: "/reg_submit.php",
+		url: "/submit.php?action=register",
 		data: $('#regForm').serialize(),
 		dataType: "json",
 		success: function(msg){
@@ -178,7 +178,7 @@ function passreset()
 	
 	$.ajax({
 		type: "POST",
-		url: "/pass_reset_submit.php",
+		url: "/submit.php?action=passReset",
 		data: $('#passreset').serialize(),
 		dataType: "json",
 		success: function(msg){
@@ -209,7 +209,7 @@ function editprofile()
 	
 	$.ajax({
 		type: "POST",
-		url: "/edit_profile_submit.php",
+		url: "/submit.php?action=editProfile",
 		data: $('#editprofileForm').serialize(),
 		dataType: "json",
 		success: function(msg){
@@ -271,7 +271,7 @@ function updatepass()
 	
 	$.ajax({
 		type: "POST",
-		url: "/change_pass_submit.php",
+		url: "/submit.php?action=changePass",
 		data: $('#updatepassForm').serialize(),
 		dataType: "json",
 		success: function(msg){
@@ -400,7 +400,7 @@ function search() {
 	if (width > 380) { result.style.width = width +"px"; }
 	//$("#search_drop").width(function(i,val){ return width +"px"; });
     var xmlhttp = getXmlHttp(); // Создаём объект XMLHTTP
-    xmlhttp.open('POST', 'search_submit.php', true); // Открываем асинхронное соединение
+    xmlhttp.open('POST', 'submit.php?action=search', true); // Открываем асинхронное соединение
     xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); // Отправляем кодировку
     xmlhttp.send("search=" + encodeURIComponent(search)); // Отправляем POST-запрос
     xmlhttp.onreadystatechange = function() { // Ждём ответа от сервера

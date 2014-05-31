@@ -14,6 +14,14 @@ switch ($action) {
     case 'modify' :
         modifyCategory();
         break;
+
+    case 'modifyFilters' :
+        modifyFilters();
+        break;
+
+    case 'filterSelect' :
+        filterSelect();
+        break;
         
     case 'delete' :
         deleteCategory();
@@ -22,8 +30,15 @@ switch ($action) {
     case 'deleteImage' :
         deleteImage();
         break;
-    
-	   
+
+    case 'writeLink' :
+        writeLink();
+        break;
+
+    case 'deleteCategoryFilter' :
+        deleteCategoryFilter();
+        break;
+
     default :
         // if action is not defined or unknown
         // move to main category page
@@ -240,4 +255,63 @@ function _deleteImage($catId)
     return $deleted;
 }
 
+function filterSelect()
+{
+    $num=$_POST['num'];
+    $sql = "SELECT flt_name FROM tbl_filters ORDER BY flt_name ASC";
+    $res = mysql_query($sql);
+    $text = '<select name="filter_'.$num.'" id="filter_'.$num.'">';
+    $text .= "<option selected>...</option>";
+    while ($row = mysql_fetch_assoc($res)){
+        $text .= "<option value=\"".$row['flt_name']."\">".$row['flt_name']."</option>";
+    }
+    $text .= "</select>";
+    echo($text);
+}
+
+function writeLink()
+{
+    if (isset($_GET['catId']) && (int)$_GET['catId'] > 0) {
+        $catId = (int)$_GET['catId'];
+    } else {
+        header('Location: index.php');
+    }
+    $n = count($_POST);
+    for ($i = 1; $i <= $n; $i++){
+        $fltName = $_POST['filter_'.$i];
+        $sql = "SELECT flt_id FROM tbl_filters WHERE flt_name = '$fltName'";
+        $res = mysql_query($sql);
+        $row = mysql_fetch_assoc($res);
+        $fltId = $row['flt_id'];
+        $sql   = "INSERT INTO tbl_category_link (cat_id,flt_id)
+              VALUES ('$catId','$fltId')";
+        $result = dbQuery($sql) or die('Не могу добавить связь' . mysql_error());
+    }
+    header("Location: index.php?view=modifyFilters&catId=".$catId);
+}
+
+/*
+	Remove a category filter
+*/
+function deleteCategoryFilter()
+{
+    if (isset($_GET['catId']) && (int)$_GET['catId'] > 0) {
+        $catId = (int)$_GET['catId'];
+    } else {
+        header('Location: index.php');
+    }
+
+    if (isset($_GET['filterId']) && (int)$_GET['filterId'] > 0) {
+        $filterId = (int)$_GET['filterId'];
+    } else {
+        header('Location: index.php');
+    }
+
+    // remove the product filter from database;
+    $sql = "DELETE FROM tbl_category_link
+	        WHERE cat_id = $catId AND flt_id = $filterId";
+    dbQuery($sql);
+
+    header('Location: index.php?view=modifyFilters&catId='.$catId);
+}
 ?>

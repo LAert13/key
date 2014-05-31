@@ -23,10 +23,20 @@ switch ($view) {
 		$pageTitle 	= 'Изменение Товара';
 		break;
 
+    case 'modifyFilters' :
+        $content 	= 'modifyFilters.php';
+        $pageTitle 	= 'Изменение Фильтров Товара';
+        break;
+
 	case 'detail' :
 		$content    = 'detail.php';
 		$pageTitle  = 'Подробная информация Товара';
 		break;
+
+    case 'addValue' :
+        $content 	= 'addValue.php';
+        $pageTitle 	= 'Добавление Значения Фильтра';
+        break;
 		
 	default :
 		$content 	= 'list.php';		

@@ -89,7 +89,7 @@ if (dbNumRows($result) > 0) {
    <td colspan="5">&nbsp;</td>
   </tr>
   <tr> 
-   <td colspan="5" align="right"> <input name="btnAddCategory" type="button" id="btnAddCategory" value="Добавить Категорию" class="box" onClick="addFilter()">
+   <td colspan="5" align="right"> <input name="btnAddCategory" type="button" id="btnAddCategory" value="Добавить Категорию" class="box" onClick="addCategory(<?php echo $cat_parent_id; ?>)">
    </td>
   </tr>
  </table>

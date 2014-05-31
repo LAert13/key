@@ -10,7 +10,7 @@ if (isset($_GET['catId']) && (int)$_GET['catId'] > 0) {
 	header('Location:index.php');
 }	
 	
-$sql = "SELECT cat_id, cat_name, cat_description, cat_image
+$sql = "SELECT cat_id, cat_parent_id, cat_name, cat_description, cat_image
 		FROM tbl_category
 		WHERE cat_id = $catId";
 $result = dbQuery($sql);
@@ -46,7 +46,60 @@ extract($row);
   </tr>
 
  </table>
- <p align="center"> 
+ <?php
+ if ($cat_parent_id > 0){
+ ?>
+    <br>
+    <table width="100%" border="0" align="center" cellpadding="2" cellspacing="1" class="text">
+        <tr align="center" id="listTableHeader">
+            <td>Имя Фильтра</td>
+        </tr>
+        <?php
+        $sql = "SELECT flt_name
+                FROM tbl_category_link lnk, tbl_filters fl
+                WHERE lnk.cat_id = $catId AND fl.flt_id = lnk.flt_id";
+        $result = mysql_query($sql);
+
+        if (dbNumRows($result) > 0) {
+            $i = 0;
+
+            while($row = dbFetchAssoc($result)) {
+                extract($row);
+
+                if ($i%2) {
+                    $class = 'row1';
+                } else {
+                    $class = 'row2';
+                }
+                $i += 1;
+                ?>
+                <tr class="<?php echo $class; ?>">
+                    <td><?php echo $flt_name; ?></td>
+                </tr>
+            <?php
+            } // end while
+            ?>
+        <?php
+        } else {
+            ?>
+            <tr>
+                <td colspan="2" align="center">Пока не добавлено ни одного фильтра</td>
+            </tr>
+        <?php
+        }
+        ?>
+    </table>
+ <?php
+ }
+ ?>
+ <p align="center">
+  <?php
+  if ($cat_parent_id > 0){
+  ?>
+      <input name="btnModifyCatFilters" type="button" id="btnModifyCatFilters" value="Измененить фильтры категории" onClick="changeCatFilters(<?php echo $cat_id;?>);" class="box">
+  <?php
+  }
+  ?>
   <input name="btnModify" type="button" id="btnModify" value="Сохранить Изменения" onClick="checkCategoryForm();" class="box">
   &nbsp;&nbsp;<input name="btnCancel" type="button" id="btnCancel" value="Отмена" onClick="window.location.href='index.php';" class="box">
  </p>

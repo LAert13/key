@@ -107,3 +107,4 @@ foreach ($categories as $key => $value) {
   &nbsp;&nbsp;<input name="btnCancel" type="button" id="btnCancel" value="Отмена" onClick="window.location.href='index.php';" class="box">  
  </p>
 </form>
+

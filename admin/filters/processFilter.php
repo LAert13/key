@@ -22,7 +22,15 @@ switch ($action) {
     case 'delete' :
         deleteFilter();
         break;
-    
+
+    case 'modifyValue' :
+        modifyValue();
+        break;
+
+    case 'deleteValue' :
+        deleteValue();
+        break;
+
     default :
         // if action is not defined or unknown
         // move to main page
@@ -107,4 +115,33 @@ function deleteFilter()
     header('Location: index.php');
 }
 
+/*
+    Modify a Value
+*/
+function modifyValue()
+{
+    $valId       = (int)$_GET['valId'];
+    $value        = $_POST['txtValue'];
+
+    $sql    = "UPDATE tbl_filter_value
+               SET val_value = '$value'
+               WHERE val_id = $valId";
+
+    $result = dbQuery($sql) or die('Не могу обновить значение фильтра. ' . mysql_error());
+    header('Location: index.php');
+}
+
+/*
+    Remove a Value
+*/
+function deleteValue()
+{
+    $valId = (int)$_GET['valId'];
+
+    $sql = "DELETE FROM tbl_filter_value
+			WHERE val_id = $valId";
+    dbQuery($sql);
+
+    header('Location: index.php');
+}
 ?>

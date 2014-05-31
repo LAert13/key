@@ -23,6 +23,11 @@ switch ($view) {
 		$pageTitle 	= 'Редактирование Категории';
 		break;
 
+    case 'modifyFilters' :
+        $content 	= 'modifyFilters.php';
+        $pageTitle 	= 'Редактирование Фильтров Категории';
+        break;
+
 	default :
 		$content 	= 'list.php';		
 		$pageTitle 	= 'Список Категорий';

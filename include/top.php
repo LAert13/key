@@ -86,7 +86,7 @@
                             <li><a href="/order_list">История заказов</a></li>
                             <li><a href="/review_list">Мои отзывы</a></li>
                             <li class="divider"></li>
-                            <li><a href="/log_off.php?action=logoff">Выход</a></li>
+                            <li><a href="/submit.php?action=logoff">Выход</a></li>
                         </ul>
                     </div>
                     <?php } else { ?>

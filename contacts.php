@@ -29,7 +29,7 @@ require_once('include/header.php');?>
 				<h4 align="center">Форма обратной связи</h4>
 				<div class="done"><p>Ваше сообщение успешно отправлено! Мы рассмотрим его как можно быстрее.</p></div>
 				<div class="form">
-					<form id="ContactUsForm" action="/contact_submit.php" method="post"> <!--class="mc-active">-->
+					<form id="ContactUsForm" action="/submit.php?action=contact" method="post"> <!--class="mc-active">-->
 						<table align="center" width="90%" cellspacing="1" cellpadding="1" border="0">
 						  <tr>
 							<td><label for="username" style="margin-right: 5;">Имя</label></td>

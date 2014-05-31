@@ -20,10 +20,6 @@
 	$result     = dbQuery(getPagingQuery($sql, $productsPerPage));
 	$pagingLink = getPagingLink($sql, $productsPerPage, "c=$catId");
 	$numProduct = dbNumRows($result);
-
-// the product images are arranged in a table. to make sure
-// each image gets equal space set the cell width here
-	$columnWidth = (int)(100 / $productsPerRow);
 ?>
 <div class="col-xs-12">
     <div class="ks-block-content ks-block-shadow">
@@ -43,12 +39,6 @@ if ($numProduct > 0 ) {
 		} else {
 			$pd_image = '/images/no-image-large.png';
 		}
-	
-		/*if ($i % $productsPerRow == 0) {
-			echo '<tr>';
-		}*/
-
-		// format how we display the price
 		$pd_price = displayAmount($pd_price);
 ?>
     <div class="col-xs-12 col-s-6 col-sm-6 col-md-6 col-lg-4" name="pos">
@@ -65,7 +55,6 @@ if ($numProduct > 0 ) {
                         </span>
 
                     <?php
-                        // if the product is no longer in stock, tell the customer
                         if ($pd_qty < 1) {
                     ?>
                         <span class="btn btn-primary">Под заказ</span>

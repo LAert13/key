@@ -15,7 +15,7 @@ require_once 'include/header.php';
 <?php require_once('include/top.php');
 
 // get ordered items
-$sql = "SELECT pd_name, pd_price, od_qty, od_sw, od_il
+$sql = "SELECT pd_name, pd_price, od_qty
 	    FROM tbl_order_item oi, tbl_product p 
 		WHERE oi.pd_id = p.pd_id and oi.od_id = $orderId
 		ORDER BY od_id ASC";

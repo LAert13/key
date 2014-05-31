@@ -33,6 +33,11 @@ switch ($view) {
 		$pageTitle 	= 'Редактирование Фильтра';
 		break;
 
+    case 'modifyValue' :
+        $content 	= 'modifyValue.php';
+        $pageTitle 	= 'Редактирование Значения Фильтра';
+        break;
+
 	default :
 		$content 	= 'list.php';		
 		$pageTitle 	= 'Список Фильтров';

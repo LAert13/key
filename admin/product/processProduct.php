@@ -19,11 +19,18 @@ switch ($action) {
 	case 'deleteProduct' :
 		deleteProduct();
 		break;
-	
+
 	case 'deleteImage' :
 		deleteImage();
 		break;
-    
+
+    case 'writeLink' :
+        writeLink();
+        break;
+
+    case 'addValue' :
+        addValue();
+        break;
 
 	default :
 	    // if action is not defined or unknown
@@ -236,7 +243,68 @@ function _deleteImage($productId)
 	return $deleted;
 }
 
+function writeLink()
+{
+    if (isset($_GET['pdId']) && (int)$_GET['pdId'] > 0) {
+        $pdId = (int)$_GET['pdId'];
+    } else {
+        header('Location: index.php');
+    }
+    $n = count($_POST)/2;
+    for ($i = 1; $i <= $n; $i++){
+        $fltName = $_POST['filter_'.$i];
+        $valValue = $_POST['value_'.$i];
+        $sql = "SELECT flt_id,val_id FROM tbl_filters,tbl_filter_value WHERE flt_name = '$fltName' AND val_value = '$valValue'";
+        $res = mysql_query($sql);
+        $row = mysql_fetch_assoc($res);
+        $fltId = $row['flt_id'];
+        $valId = $row['val_id'];
+        if (dbNumRows(mysql_query("SELECT * FROM tbl_product_link WHERE pd_id = '$pdId'")) >= $i){
+            $sql = "UPDATE tbl_product_link
+			        SET val_id = '$valId'
+			        WHERE pd_id = '$pdId' AND flt_id = '$fltId'";
+            $result = dbQuery($sql) or die('Не могу обновить связь' . mysql_error());
+        }
+        else {
+            $sql = "INSERT INTO tbl_product_link (pd_id,flt_id,val_id)
+                    VALUES ('$pdId','$fltId','$valId')";
+            $result = dbQuery($sql) or die('Не могу добавить связь' . mysql_error());
+        }
+    }
+    header("Location: index.php?view=detail&productId=$pdId");
+}
 
+/*
+    Add a Filter value
+*/
+function addValue()
+{
+    $name        = $_POST['fltName'];
+    $value        = $_POST['txtValue'];
+    $pdId = $_GET['pdId'];
 
+    $sql = "SELECT flt_id
+        FROM tbl_filters
+		WHERE flt_name = '$name'";
+    $result = dbQuery($sql);
+    $row = dbFetchAssoc($result);
+    $fltId = $row['flt_id'];
 
+    $sql   = "INSERT INTO tbl_filter_value (val_value)
+              VALUES ('$value')";
+    $result = dbQuery($sql) or die('Не могу добавить значение фильтра' . mysql_error());
+
+    $sql = "SELECT val_id
+        FROM tbl_filter_value
+		WHERE val_value = '$value'";
+    $result = dbQuery($sql);
+    $row = dbFetchAssoc($result);
+    $valId = $row['val_id'];
+
+    $sql   = "INSERT INTO tbl_filter_link (flt_id, val_id)
+              VALUES ('$fltId', '$valId')";
+    $result = dbQuery($sql) or die('Не могу добавить связь фильтра' . mysql_error());
+
+    header('Location: index.php?view=modifyFilters&productId='.$pdId);
+}
 ?>

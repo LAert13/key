@@ -48,3 +48,20 @@ function deleteImage(productId)
 		window.location.href = 'processProduct.php?action=deleteImage&productId=' + productId;
 	}
 }
+
+function addFilterValue(fltId,pdId)
+{
+    window.location.href = 'index.php?view=addValue&flt=' + fltId + '&pdId=' + pdId;
+}
+
+function checkValueForm()
+{
+    with (window.document.frmValue) {
+        if (isEmpty(txtValue, 'Введите значение фильтра')) {
+            return;
+        }
+        else {
+            submit();
+        }
+    }
+}

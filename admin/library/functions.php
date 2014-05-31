@@ -316,7 +316,7 @@ function get_select_filters()
 {
     $sql = "SELECT flt_name FROM tbl_filters ORDER BY flt_name ASC";
     $res = mysql_query($sql);
-    echo "<select name=\"fltName\" id=\"fltName\" onChange=\"selectFilterValues();\">";
+    echo "<select name=\"fltName\" id=\"fltName\">";
     echo "<option selected>...</option>";
     while ($row = mysql_fetch_assoc($res)){
         echo "<option value=\"".$row['flt_name']."\">".$row['flt_name']."</option>";

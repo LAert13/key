@@ -86,7 +86,7 @@ extract($product);
                         <input class="btn btn-primary" data-dismiss="modal" aria-hidden="true" name="btnBack" type="button" id="btnBack" value="Закрыть" />
                     </div>
                     <div class="form2">
-                        <form id="orderForm" action="/order_submit.php" method="post">
+                        <form id="orderForm" action="/submit.php?action=order" method="post">
                             <table align="center" cellspacing="1" cellpadding="1" border="0">
                                 <tr>
                                     <td><label for="name" style="margin-right: 5;">Имя</label></td>

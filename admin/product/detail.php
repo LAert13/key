@@ -55,8 +55,54 @@ if ($pd_image) {
    <td class="content"><img src="<?php echo $pd_image; ?>"></td>
   </tr>
  </table>
+
+    <br>
+    <table width="100%" border="0" align="center" cellpadding="2" cellspacing="1" class="text">
+        <tr align="center" id="listTableHeader">
+            <td>Имя Фильтра</td>
+            <td>Значение Фильтра</td>
+        </tr>
+        <?php
+        $sql = "SELECT flt_name, val_value
+                FROM tbl_product_link lnk, tbl_filters fl, tbl_filter_value vl
+                WHERE lnk.pd_id = $productId AND fl.flt_id = lnk.flt_id AND vl.val_id = lnk.val_id";
+        $result = mysql_query($sql);
+
+        if (dbNumRows($result) > 0) {
+            $i = 0;
+
+            while($row = dbFetchAssoc($result)) {
+                extract($row);
+
+                if ($i%2) {
+                    $class = 'row1';
+                } else {
+                    $class = 'row2';
+                }
+                $i += 1;
+                ?>
+                <tr class="<?php echo $class; ?>">
+                    <td><?php echo $flt_name; ?></td>
+                    <td><?php echo $val_value; ?></td>
+                </tr>
+            <?php
+            } // end while
+            ?>
+        <?php
+        } else {
+            ?>
+            <tr>
+                <td colspan="2" align="center">Пока не добавлено ни одного фильтра</td>
+            </tr>
+        <?php
+        }
+        ?>
+    </table>
+
  <p align="center"> 
-  <input name="btnModifyProduct" type="button" id="btnModifyProduct" value="Изменить" onClick="window.location.href='index.php?view=modify&productId=<?php echo $productId; ?>';" class="box">
+  <input name="btnModifyProduct" type="button" id="btnModifyProduct" value="Изменить Товар" onClick="window.location.href='index.php?view=modify&productId=<?php echo $productId; ?>';" class="box">
+  &nbsp;&nbsp;
+  <input name="btnModifyProductFilters" type="button" id="btnModifyProductFilters" value="Изменить Фильтры" onClick="window.location.href='index.php?view=modifyFilters&productId=<?php echo $productId; ?>';" class="box">
   &nbsp;&nbsp;
   <input name="btnBack" type="button" id="btnBack" value=" Назад " onClick="window.history.back();" class="box">
  </p>
