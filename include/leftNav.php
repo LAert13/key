@@ -81,10 +81,16 @@ $categories = formatCategories($categories, $catId);
                     </label>
                 </div>
             </h4>
+            <?php
+            $r = mysql_fetch_assoc(mysql_query("SELECT MIN( pd_price ) FROM tbl_product"));
+            $min = (int)$r['MIN( pd_price )'];
+            $r = mysql_fetch_assoc(mysql_query("SELECT MAX( pd_price ) FROM tbl_product"));
+            $max = (int)$r['MAX( pd_price )'];
+            ?>
             <div>
-                <input type="number" class="form-control ks-filter__price-input" id="min_price" value="0" min="0">
+                <input type="number" class="form-control ks-filter__price-input" id="min_price" value="<?php echo $min;?>" min="0">
                 <span>&nbsp;—&nbsp;</span>
-                <input type="number" class="form-control ks-filter__price-input" id="max_price" value="400" min="10">
+                <input type="number" class="form-control ks-filter__price-input" id="max_price" value="<?php echo $max;?>" min="10">
                 <span>$</span>
                 <span id="poss"></span>
             </div>
