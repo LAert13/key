@@ -50,6 +50,10 @@ switch ($action) {
     	logoff();
     	break;
 
+    case 'currency' :
+    	changeCurrency();
+    	break;
+
     default :
         // if action is not defined or unknown
         // move to main category page
@@ -378,5 +382,13 @@ function doPassReset() {
 	if($res == 99){
 		die(msg(1,"Временный пароль выслан. Проверьте ваш почтовый ящик для дальнейших инструкций."));
 	}
+}
+
+function changeCurrency() {
+	session_start();
+	extract($_POST);
+	if ($cur == 'USD') $_SESSION['cur'] = 'USD';
+	elseif ($cur == 'GRN') $_SESSION['cur'] = 'GRN';
+	echo $_SESSION['cur'];
 }
 ?>
