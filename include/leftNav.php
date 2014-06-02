@@ -8,6 +8,24 @@ $categories = fetchCategories();
 
 // format the categories for display
 $categories = formatCategories($categories, $catId);
+
+if (isset($_GET['f'])) {
+    $filter = ' (';
+    $value = ' (';
+    $product = ' (';
+    $links = explode("|", $_GET['f']);
+    foreach ($links as $lnk) {
+        list($val,$flt)=explode("*",$lnk);
+        if (mb_substr_count($filter, $flt) == 0) $filter .= $flt.',';
+        $value .= $val.',';
+    }
+    $filter = substr($filter,0,-1).')';
+    $value = substr($value,0,-1).')';
+    $sql = "SELECT pd_id FROM tbl_product_link WHERE flt_id IN $filter AND val_id IN $value";
+    $res = mysql_query($sql);
+    while ($row = mysql_fetch_assoc($res)) { if (mb_substr_count($product, $row['pd_id']) == 0) $product .= $row['pd_id'].','; }
+    $product = substr($product,0,-1).')';
+}
 ?>
 
     <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3">
@@ -53,21 +71,7 @@ $categories = formatCategories($categories, $catId);
                 ?>
             </ul>
         </div>
-<!-- Здесь временно выключен блок валют
-        <div class="ks-block-content ks-block-shadow ks-filter__block">
-            <span><br>Курс: 1$ = <?php echo $shopConfig['exch'];?>грн.<br> Обновлен: <?php echo date("d.m.Y");?><br></span>
-            <span><br>Отображать цены в<br></span>
-            <?php if (empty($_SESSION['cur']))$_SESSION['cur'] = 'USD';?>
-            <div class="btn-group" data-toggle="buttons">
-              <label class="btn btn-primary <?php if ($_SESSION['cur'] == 'USD') echo "active";?>">
-                <input type="radio" name="options" id="USD"> USD
-              </label>
-              <label class="btn btn-primary <?php if ($_SESSION['cur'] == 'GRN') echo "active";?>">
-                <input type="radio" name="options" id="GRN"> ГРН
-              </label>
-            </div>
-        </div>
-Здесь временно выключен блок валют -->
+
        <div class="ks-block-content ks-block-shadow ks-filter__block">
             <div class="ks-block-header">Фильтры</div>
             <h4>Цена&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -96,9 +100,7 @@ $categories = formatCategories($categories, $catId);
             </div>
             <br>
     <!-- Здесь начинается процедура формирования списка фильтров категории -->
-           <div style="text-align: right"><input type="button" id="fltClear" value="Сбросить фильтры"/></div>
            <?php
-
            $sql = "SELECT cat_parent_id FROM tbl_category WHERE cat_id = $catId";
            $res = mysql_query($sql);
            if (dbNumRows($res) > 0){ extract(dbFetchAssoc($res)); }
@@ -111,6 +113,9 @@ $categories = formatCategories($categories, $catId);
                    $result = mysql_query($sql);
 
                    if (dbNumRows($result) > 0) {
+                       ?>
+                       <div style="text-align: right"><input type="button" id="fltClear" value="Сбросить фильтры"/></div>
+                       <?php
                        while($row = dbFetchAssoc($result)) {
                            extract($row);
                            $sql =  "SELECT val_value, vl.val_id
@@ -121,14 +126,18 @@ $categories = formatCategories($categories, $catId);
                            echo "<ul class='fltValue' style='padding-left: 10px'>";
                            while($row1 = dbFetchAssoc($res1)) {
                                extract($row1);
+                               $text = '';
+                               if (isset($product)) $text = " AND pd.pd_id IN $product";
                                $sql =  "SELECT ln.pd_id
                                     FROM tbl_product_link ln, tbl_product pd
-                                    WHERE val_id = '$val_id' AND cat_id = $catId AND pd.pd_id = ln.pd_id";
+                                    WHERE val_id = '$val_id' AND cat_id = $catId AND pd.pd_id = ln.pd_id".$text;
                                $res2 = mysql_query($sql);
                                if (dbNumRows($res2) > 0) {
-                                    echo "<li style='padding-left: 15px; display: inline-block'>
-                                            <input type='checkbox' class='check' name='filter' value='".$val_id."' />
-                                            &nbsp;".$val_value." (".dbNumRows($res2).")</li>";
+                                   $slct = '';
+                                   if (isset($filter))if (mb_substr_count($filter, $flt_id)>0&&mb_substr_count($value, $val_id)>0){ $slct = ' checked'; }
+                                   echo "<li style='padding-left: 15px; display: inline-block'>
+                                        <input type='checkbox' class='check' name='filter'".$slct." value='".$val_id."' />
+                                        &nbsp;".$val_value." (".dbNumRows($res2).")</li>";
                                } else {
 
                                }
@@ -156,38 +165,32 @@ $categories = formatCategories($categories, $catId);
                     };
                 });
             });
-            $(function() {
-                $(".check").on( "click", function() {
-                    if($(this).is(":checked")) {
-                        var text = '';
-                        $(".check").each(function(){
-                           if ($(this).is(":checked")){
-                               text = text + $(this).val() + "*";
-                               text = text + $(this).parent().parent().parent().find(':first-child').find(':first-child').attr("name") + "|";
-                           };
-                        });
-                        text = text.slice(0,-1);
-                        var xmlhttp = getXmlHttp();
-                        xmlhttp.open('POST', '/filteredList.php', true); // Открываем асинхронное соединение
-                        xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); // Отправляем кодировку
-                        xmlhttp.send("text=" + encodeURIComponent(text)); // Отправляем POST-запрос
-                        xmlhttp.onreadystatechange = function() { // Ждём ответа от сервера
-                            if (xmlhttp.readyState == 4) { // Ответ пришёл
-                                if(xmlhttp.status == 200) { // Сервер вернул код 200 (что хорошо)
-                                    //$("#result").html(xmlhttp.responseText);
-                                    console.log(xmlhttp.responseText);
-                                }
-                            }
-                        };
-                    }
-                    else {
-                        alert("Вы деактивировали переключатель");
-                    }
-                })
+
+            $(".check").on( "click", function() {
+
+                    var text = '';
+                    var loc = location.pathname;
+                    var catId = loc.substr(loc.indexOf('-')-loc.length+1, loc.length-loc.indexOf('-')-1);
+                    $(".check").each(function(){
+                        if ($(this).is(":checked")){
+                            text = text + $(this).val() + "*";
+                            text = text + $(this).parent().parent().parent().find(':first-child').find(':first-child').attr("name") + "|";
+                        }
+                    });
+                    text = text.slice(0,-1);
+                    if (text=='') document.location.replace("/shop/category-"+catId);
+                    else  document.location.replace("/shop/category-"+catId+"?f="+text);
+                    //var xmlhttp = getXmlHttp();
+                    //xmlhttp.open('POST', '/submit.php?action=filterList', true); // Открываем асинхронное соединение
+                    //xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); // Отправляем кодировку
+                    //xmlhttp.send("text=" + encodeURIComponent(text)); // Отправляем POST-запрос
+
             });
+
             $("#fltClear").click(function(){
                 $(".check").removeAttr('checked');
-             });
+            });
+
             $(".fltName").click(function(){
                 if ($(this).parent().next().css('display') == "none"){
                     $(this).html('▾'+$(this).html().substr(1));
@@ -197,43 +200,41 @@ $categories = formatCategories($categories, $catId);
                 }
                 $(this).parent().next().slideToggle(100);
             });
-            $(function(){
-                $('#USD').change(function(){
-                    var cur = "USD";
-                    var xmlhttp = getXmlHttp();
-                    xmlhttp.open('POST', '/include/currency.php', true);
-                    xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-                    xmlhttp.send("cur=" + encodeURIComponent(cur));
-                    tagList = document.getElementsByName('price-usd'); 
-                    for (var i = 0; i < tagList.length; i++) tagList.item(i).style.display = 'block';
-                    tagList = document.getElementsByName('price-grn'); 
-                    for (var i = 0; i < tagList.length; i++) tagList.item(i).style.display = 'none';
-                });
+            $('#USD').change(function(){
+                var cur = "USD";
+                var xmlhttp = getXmlHttp();
+                xmlhttp.open('POST', 'submit.php?action=currency', true);
+                xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xmlhttp.send("cur=" + encodeURIComponent(cur));
+                tagList = document.getElementsByName('price-usd');
+                for (var i = 0; i < tagList.length; i++) tagList.item(i).style.display = 'block';
+                tagList = document.getElementsByName('price-grn');
+                for (var i = 0; i < tagList.length; i++) tagList.item(i).style.display = 'none';
             });
-            $(function(){
-                $('#GRN').change(function(){
-                    var cur = "GRN";
-                    var xmlhttp = getXmlHttp();
-                    xmlhttp.open('POST', '/include/currency.php', true);
-                    xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-                    xmlhttp.send("cur=" + encodeURIComponent(cur));
-                    tagList = document.getElementsByName('price-usd'); 
-                    for (var i = 0; i < tagList.length; i++) tagList.item(i).style.display = 'none';
-                    tagList = document.getElementsByName('price-grn'); 
-                    for (var i = 0; i < tagList.length; i++) tagList.item(i).style.display = 'block';
-                });
+
+            $('#GRN').change(function(){
+                var cur = "GRN";
+                var xmlhttp = getXmlHttp();
+                xmlhttp.open('POST', 'submit.php?action=currency', true);
+                xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xmlhttp.send("cur=" + encodeURIComponent(cur));
+                tagList = document.getElementsByName('price-usd');
+                for (var i = 0; i < tagList.length; i++) tagList.item(i).style.display = 'none';
+                tagList = document.getElementsByName('price-grn');
+                for (var i = 0; i < tagList.length; i++) tagList.item(i).style.display = 'block';
             });
+
             $(function(){
                 var inputmin = document.getElementById('min_price');
                 var inputmax = document.getElementById('max_price');
                 var tagList1 = document.getElementsByName('price');
                 var tagList2 = document.getElementsByName('pos');
                 inputmin.oninput = function(){
-                    for (var i = 0; i < tagList1.length; i++) 
+                    for (var i = 0; i < tagList1.length; i++)
                         if (tagList1.item(i).value - inputmin.value < 0 || tagList1.item(i).value - inputmax.value > 0) {tagList2.item(i).style.display = 'none';} else {tagList2.item(i).style.display = '';};
                 };
                 inputmax.oninput = function(){
-                    for (var i = 0; i < tagList1.length; i++) 
+                    for (var i = 0; i < tagList1.length; i++)
                         if (tagList1.item(i).value - inputmin.value < 0 || tagList1.item(i).value - inputmax.value > 0) {tagList2.item(i).style.display = 'none';} else {tagList2.item(i).style.display = '';};
                 };
             });

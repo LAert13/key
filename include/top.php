@@ -240,7 +240,7 @@
                     }
                 ?>
             </ol>
-            <?php if (strpos($_SERVER['REQUEST_URI'],'shop')) {
+            <?php if (strpos($_SERVER['REQUEST_URI'],'category')) {
                 if (isset($_SESSION['arrange'])){$arrange = $_SESSION['arrange'];}
                 ?>
                 <div class="col-md-4" style="overflow: hidden; padding-left: 15px; padding-right: 15px; text-align: right">

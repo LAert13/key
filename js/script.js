@@ -400,7 +400,7 @@ function search() {
 	if (width > 380) { result.style.width = width +"px"; }
 	//$("#search_drop").width(function(i,val){ return width +"px"; });
     var xmlhttp = getXmlHttp(); // Создаём объект XMLHTTP
-    xmlhttp.open('POST', 'submit.php?action=search', true); // Открываем асинхронное соединение
+    xmlhttp.open('POST', '/submit.php?action=search', true); // Открываем асинхронное соединение
     xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); // Отправляем кодировку
     xmlhttp.send("search=" + encodeURIComponent(search)); // Отправляем POST-запрос
     xmlhttp.onreadystatechange = function() { // Ждём ответа от сервера
@@ -421,7 +421,7 @@ function search_list() {
 function arrangeProduct(catId) {
     var arrange = document.getElementById("arrange").value;
     var xmlhttp = getXmlHttp(); // Создаём объект XMLHTTP
-    xmlhttp.open('POST', '/arrange.php', true); // Открываем асинхронное соединение
+    xmlhttp.open('POST', '/submit.php?action=arrange', true); // Открываем асинхронное соединение
     xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); // Отправляем кодировку
     xmlhttp.send("arrange=" + encodeURIComponent(arrange)); // Отправляем POST-запрос
     xmlhttp.onreadystatechange = function() { // Ждём ответа от сервера

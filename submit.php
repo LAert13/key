@@ -54,6 +54,14 @@ switch ($action) {
     	changeCurrency();
     	break;
 
+    case 'arrange' :
+        doArrange();
+        break;
+
+    case 'filterList' :
+        doFilterList();
+        break;
+
     default :
         // if action is not defined or unknown
         // move to main category page
@@ -356,10 +364,7 @@ function doContact() {
 }
 
 function doPassReset() {
-	require_once('library/config.php');
-	include('library/functions.php');
-
-	$sitesettings = getSiteSettings();	
+	$sitesettings = getSiteSettings();
 	$site_url = $sitesettings[0]['site_url'];
 
 	if(!$_POST['email']) {
@@ -385,10 +390,53 @@ function doPassReset() {
 }
 
 function changeCurrency() {
-	session_start();
+    session_start();
 	extract($_POST);
 	if ($cur == 'USD') $_SESSION['cur'] = 'USD';
 	elseif ($cur == 'GRN') $_SESSION['cur'] = 'GRN';
 	echo $_SESSION['cur'];
+}
+
+function doArrange() {
+    switch ($_POST['arrange']){
+        case 1:
+            $_SESSION['arrange'] = 1;
+            $_SESSION['sort_by'] = ' ORDER BY pd_name';
+            break;
+        case 2:
+            $_SESSION['arrange'] = 2;
+            $_SESSION['sort_by'] = ' ORDER BY pd_price ASC';
+            break;
+        case 3:
+            $_SESSION['arrange'] = 3;
+            $_SESSION['sort_by'] = ' ORDER BY pd_price DESC';
+    }
+}
+
+function doFilterList() {
+    $flt_id = array();
+    $n = 0;
+    $sql = "SELECT pd_id
+		FROM tbl_product_link
+		WHERE ";
+    $links = explode("|", $_POST['text']);
+    foreach ($links as $value) {
+        list($val,$flt)=explode("*",$value);
+        if ($n == 0) { $sql .= "flt_id = ".$flt." AND ( val_id = ".$val." OR "; }
+        else {
+            $sql = substr($sql, 0, -3).") AND flt_id = ".$flt." AND ( val_id = ".$val." OR ";
+            if (!($flt_id[$n-1] == $flt)) { $flt_id[$n] = $flt; $n++; } else { $sql .= "val_id = ".$val." OR "; }
+        }
+    }
+    $sql = substr($sql, 0, -4)." )";
+    $res = mysql_query($sql);
+    $mas = array();
+    if (mysql_num_rows($res) > 0) {
+        while ($row = mysql_fetch_assoc($res)){
+            extract($row);
+            $mas[]= $pd_id;
+        }
+    }
+    $_SESSION['filtered'] = $mas;
 }
 ?>
