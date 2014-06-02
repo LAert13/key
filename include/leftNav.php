@@ -96,6 +96,7 @@ $categories = formatCategories($categories, $catId);
             </div>
             <br>
     <!-- Здесь начинается процедура формирования списка фильтров категории -->
+           <div style="text-align: right"><input type="button" id="fltClear" value="Сбросить фильтры"/></div>
            <?php
 
            $sql = "SELECT cat_parent_id FROM tbl_category WHERE cat_id = $catId";
@@ -104,7 +105,7 @@ $categories = formatCategories($categories, $catId);
 
            if ($cat_parent_id > 0){
                echo "<table>";
-                   $sql =  "SELECT flt_name
+                   $sql =  "SELECT flt_name, fl.flt_id
                             FROM tbl_category_link lnk, tbl_filters fl
                             WHERE lnk.cat_id = $catId AND fl.flt_id = lnk.flt_id";
                    $result = mysql_query($sql);
@@ -116,8 +117,8 @@ $categories = formatCategories($categories, $catId);
                                     FROM tbl_filter_link lnk, tbl_filter_value vl, tbl_filters fl
                                     WHERE lnk.val_id = vl.val_id AND fl.flt_id = lnk.flt_id AND fl.flt_name = '$flt_name'";
                            $res1 = mysql_query($sql);
-                           echo "<tr><td><h4 style='margin:0px'>".$flt_name."</h4>";
-                           echo "<ul class='flt' style='padding-left: 10px'>";
+                           echo "<tr><td><h4 style='margin:0px'><span class='fltName' name='".$flt_id."'>▸ ".$flt_name."</span></h4>";
+                           echo "<ul class='fltValue' style='padding-left: 10px'>";
                            while($row1 = dbFetchAssoc($res1)) {
                                extract($row1);
                                $sql =  "SELECT ln.pd_id
@@ -126,7 +127,7 @@ $categories = formatCategories($categories, $catId);
                                $res2 = mysql_query($sql);
                                if (dbNumRows($res2) > 0) {
                                     echo "<li style='padding-left: 15px; display: inline-block'>
-                                            <input type='checkbox' name='filter' value='".$val_id."' />
+                                            <input type='checkbox' class='check' name='filter' value='".$val_id."' />
                                             &nbsp;".$val_value." (".dbNumRows($res2).")</li>";
                                } else {
 
@@ -136,6 +137,7 @@ $categories = formatCategories($categories, $catId);
                            echo "</td></tr>";
                        }
                    }
+               echo "<tr><td><span id='result'></span></td></tr>";
                echo "</table>";
            }
            ?>
@@ -145,11 +147,55 @@ $categories = formatCategories($categories, $catId);
 
         <script>
             $(document).ready(function(){
-                $(".flt").each(function(){
+                $(".fltValue").hide();
+                $(".fltValue:first").show();
+                $(".fltName:first").html('▾'+$(".fltName:first").html().substr(1));
+                $(".fltValue").each(function(){
                     if ($(this).html() == '') {
                         $(this).parent().parent().html('');
                     };
                 });
+            });
+            $(function() {
+                $(".check").on( "click", function() {
+                    if($(this).is(":checked")) {
+                        var text = '';
+                        $(".check").each(function(){
+                           if ($(this).is(":checked")){
+                               text = text + $(this).val() + "*";
+                               text = text + $(this).parent().parent().parent().find(':first-child').find(':first-child').attr("name") + "|";
+                           };
+                        });
+                        text = text.slice(0,-1);
+                        var xmlhttp = getXmlHttp();
+                        xmlhttp.open('POST', '/filteredList.php', true); // Открываем асинхронное соединение
+                        xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); // Отправляем кодировку
+                        xmlhttp.send("text=" + encodeURIComponent(text)); // Отправляем POST-запрос
+                        xmlhttp.onreadystatechange = function() { // Ждём ответа от сервера
+                            if (xmlhttp.readyState == 4) { // Ответ пришёл
+                                if(xmlhttp.status == 200) { // Сервер вернул код 200 (что хорошо)
+                                    //$("#result").html(xmlhttp.responseText);
+                                    console.log(xmlhttp.responseText);
+                                }
+                            }
+                        };
+                    }
+                    else {
+                        alert("Вы деактивировали переключатель");
+                    }
+                })
+            });
+            $("#fltClear").click(function(){
+                $(".check").removeAttr('checked');
+             });
+            $(".fltName").click(function(){
+                if ($(this).parent().next().css('display') == "none"){
+                    $(this).html('▾'+$(this).html().substr(1));
+                }
+                else {
+                    $(this).html('▸'+$(this).html().substr(1));
+                }
+                $(this).parent().next().slideToggle(100);
             });
             $(function(){
                 $('#USD').change(function(){

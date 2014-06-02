@@ -6,35 +6,37 @@ if (!defined('WEB_ROOT')) {
 $productsPerRow = 3;
 $productsPerPage = 9;
 
+if (!isset($sort_by)) {
+    if (!isset($_SESSION['sort_by'])){
+        $sort_by = ' ORDER BY pd_name';
+    }
+    else {
+        $sort_by = $_SESSION['sort_by'];
+    }
+}
+
 //$productList    = getProductList($catId);
 $children = array_merge(array($catId), getChildCategories(NULL, $catId));
 $children = ' (' . implode(', ', $children) . ')';
 
 $sql = "SELECT pd_id, pd_name, pd_price, pd_image, pd_qty, c.cat_id
 		FROM tbl_product pd, tbl_category c
-		WHERE pd.cat_id = c.cat_id AND pd.cat_id IN $children 
-		ORDER BY pd_name";
+		WHERE pd.cat_id = c.cat_id AND pd.cat_id IN $children".$sort_by;
 $result     = dbQuery(getPagingQuery($sql, $productsPerPage));
 $pagingLink = getPagingLink($sql, $productsPerPage, "c=$catId");
 $numProduct = dbNumRows($result);
-?>
 
-<?php
 if ($numProduct > 0 ) {
-
 	$i = 0;
 	while ($row = dbFetchAssoc($result)) {
-
 		extract($row);
 		if ($pd_image) {
 			$pd_image = '/images/product/' . $pd_image;
 		} else {
 			$pd_image = '/images/no-image-large.png';
 		}
-
 		$pd_price = displayAmount($pd_price);
 ?>
-
     <div class="col-xs-12 col-s-6 col-sm-6 col-md-6 col-lg-4" name="pos">
         <div class="ks-block-content ks-block-shadow">
             <div class="ks-position">

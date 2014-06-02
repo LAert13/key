@@ -417,3 +417,18 @@ function search_list() {
 	var search = "index.php?search=" + document.getElementById("search").value;
     document.location.href = search;
 }
+
+function arrangeProduct(catId) {
+    var arrange = document.getElementById("arrange").value;
+    var xmlhttp = getXmlHttp(); // Создаём объект XMLHTTP
+    xmlhttp.open('POST', '/arrange.php', true); // Открываем асинхронное соединение
+    xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); // Отправляем кодировку
+    xmlhttp.send("arrange=" + encodeURIComponent(arrange)); // Отправляем POST-запрос
+    xmlhttp.onreadystatechange = function() { // Ждём ответа от сервера
+        if (xmlhttp.readyState == 4) { // Ответ пришёл
+            if(xmlhttp.status == 200) { // Сервер вернул код 200 (что хорошо)
+                document.location.href = "/shop/category-"+catId;
+            }
+        }
+    };
+}

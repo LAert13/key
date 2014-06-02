@@ -185,7 +185,8 @@
     <div class="ks-bread-crumbs ks-block-shadow">
         <?php if ($_SERVER['REQUEST_URI'] != "/") { ?>
         <div class="container">
-            <ol class="breadcrumb">
+        <div class="row">
+            <ol class="breadcrumb col-md-8">
                 <li><span class="glyphicon glyphicon-home"></span></li>
                 <?php
                     $self = $_SERVER['PHP_SELF'];
@@ -239,9 +240,20 @@
                     }
                 ?>
             </ol>
+            <?php if (strpos($_SERVER['REQUEST_URI'],'shop')) {
+                if (isset($_SESSION['arrange'])){$arrange = $_SESSION['arrange'];}
+                ?>
+                <div class="col-md-4" style="overflow: hidden; padding-left: 15px; padding-right: 15px; text-align: right">
+                    Сортировать по:
+                    <select id="arrange" onchange="arrangeProduct(<?php echo $catId ?>);">
+                        <option <?php if (isset($arrange)&&($arrange == 1)) { echo 'selected';}?> value="1">наименованию</option>
+                        <option <?php if (isset($arrange)&&($arrange == 2)) { echo 'selected';}?> value="2">возрастанию цены</option>
+                        <option <?php if (isset($arrange)&&($arrange == 3)) { echo 'selected';}?> value="3">убыванию цены</option>
+                    </select>
+                </div>
+            <?php } ?>
         </div>
-        <?php } else { ?>
-        <br />
-        <?php } ?>
+        <?php } else { echo "<br>"; } ?>
+    </div>
     </div>
     <div class="container">
