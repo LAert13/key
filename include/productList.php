@@ -20,7 +20,15 @@ $children = array_merge(array($catId), getChildCategories(NULL, $catId));
 $children = ' (' . implode(', ', $children) . ')';
 
 $text = '';
-if (isset($product)) $text = " AND pd_id IN $product";
+if (isset($product)) {
+    if ($product == " )") {
+        $text = " AND pd_id IN (0)";
+    }
+    else {
+        $text = " AND pd_id IN $product";
+    }
+}
+
 $sql = "SELECT pd_id, pd_name, pd_price, pd_image, pd_qty, c.cat_id
 		FROM tbl_product pd, tbl_category c
 		WHERE pd.cat_id = c.cat_id AND pd.cat_id IN $children".$text.$sort_by;
@@ -69,7 +77,7 @@ if ($numProduct > 0 ) {
             <div class="ks-block-content ks-block-shadow">
                 <div style="padding: 0 25px">
                     <br/>
-                    <p class="alert alert-warning">No products in this category <?php echo $catId; ?></p>
+                    <p class="alert alert-warning">Нет товаров, подходящих выбранным критериям или нет товаров в данной категории</p>
                 </div>
             </div>
         </div>

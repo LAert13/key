@@ -46,7 +46,6 @@ if (isset($_GET['f'])) {
     $res = mysql_query($sql);
     while ($row = mysql_fetch_assoc($res)) { if (mb_substr_count($product, $row['pd_id']) == 0) $product .= $row['pd_id'].','; }
     $product = substr($product,0,-1).')';
-
 }
 ?>
 
@@ -128,21 +127,62 @@ if (isset($_GET['f'])) {
            if (dbNumRows($res) > 0){ extract(dbFetchAssoc($res)); }
 
            if ($cat_parent_id > 0){
-               echo "<table>";
+               if (isset($_GET['f'])){
+                   echo "<ul style='list-style-type:none; margin-left: 0; padding-left: 0;'>";
+                   echo "<h4>Выбранные фильтры</h4>";
+                   $sql =  "SELECT flt_name, fl.flt_id
+                            FROM tbl_category_link lnk, tbl_filters fl
+                            WHERE lnk.cat_id = $catId AND fl.flt_id = lnk.flt_id AND fl.flt_id IN $filter";
+                   $result = mysql_query($sql);
+                   while($row = dbFetchAssoc($result)) {
+                       extract($row);
+                       echo "<li><b>".$flt_name."</b><ul style='list-style-type:none; margin-left: 0; padding-left: 20px;'>";
+                       $sql =  "SELECT val_value, vl.val_id
+                                FROM tbl_filter_link lnk, tbl_filter_value vl, tbl_filters fl
+                                WHERE lnk.val_id = vl.val_id AND fl.flt_id = lnk.flt_id AND fl.flt_name = '$flt_name' AND vl.val_id IN $value";
+                       $res1 = mysql_query($sql);
+                       while($row1 = dbFetchAssoc($res1)) {
+                           extract($row1);
+                           $href = $_SERVER['REQUEST_URI'];
+                           $val_txt = $val_id.'*'.$flt_id;
+                           $pos = strripos($href,$val_txt);
+                           $href = str_replace($val_txt,"",$href);
+                           if (substr($href,$pos,1)=="|") {
+                               $a = substr($href,0,$pos);
+                               $b = substr($href,-(strlen($href)-$pos-1));
+                           }
+                           elseif (substr($href,-1)=="=") {
+                               $a = substr($href,0,-3);
+                               $b = '';
+                           }
+                           else {
+                               $a = substr($href,0,-1);
+                               $b = '';
+                           }
+                           echo "<li>".$val_value."  <a href='".$a.$b."'>Удалить</a></li>";
+                       }
+                       echo "</ul></li>";
+                   }
+                   echo "</ul>";
+                   echo '<div style="text-align: right"><input type="button" id="fltClear" value="Сбросить фильтры"/></div><br>';
+               }
+               if (isset($product)&&($product == " )")) { echo '<h3 style="color: red; text-align: center">Неправильное сочетание фильтров</h3>'; }
+               else {
+                   echo "<ul style='list-style-type:none; margin-left: 0; padding-left: 0;'>";
                    $sql =  "SELECT flt_name, fl.flt_id
                             FROM tbl_category_link lnk, tbl_filters fl
                             WHERE lnk.cat_id = $catId AND fl.flt_id = lnk.flt_id";
                    $result = mysql_query($sql);
 
                    if (dbNumRows($result) > 0) {
-                       echo '<div style="text-align: right"><input type="button" id="fltClear" value="Сбросить фильтры"/></div>';
+
                        while($row = dbFetchAssoc($result)) {
                            extract($row);
                            $sql =  "SELECT val_value, vl.val_id
                                     FROM tbl_filter_link lnk, tbl_filter_value vl, tbl_filters fl
                                     WHERE lnk.val_id = vl.val_id AND fl.flt_id = lnk.flt_id AND fl.flt_name = '$flt_name'";
                            $res1 = mysql_query($sql);
-                           echo "<tr><td><h4 style='margin:0px'><span class='fltName' name='".$flt_id."'>▸ ".$flt_name."</span></h4>";
+                           echo "<li><h4 style='margin:0px'><span class='fltName' name='".$flt_id."'>▸ ".$flt_name."</span></h4>";
                            echo "<ul class='fltValue' style='padding-left: 10px'>";
                            while($row1 = dbFetchAssoc($res1)) {
                                extract($row1);
@@ -154,20 +194,19 @@ if (isset($_GET['f'])) {
                                $res2 = mysql_query($sql);
                                if (dbNumRows($res2) > 0) {
                                    $slct = '';
-                                   if (isset($filter))if (mb_substr_count($filter, $flt_id)>0&&mb_substr_count($value, $val_id)>0){ $slct = ' checked'; }
-                                   echo "<li style='padding-left: 15px; display: inline-block'>
+                                   $stl = 'inline-block';
+                                   if (isset($filter))if (mb_substr_count($filter, $flt_id)>0&&mb_substr_count($value, $val_id)>0){ $slct = ' checked'; $stl = 'none';}
+                                   echo "<li style='padding-left: 15px; display: ".$stl."'>
                                         <input type='checkbox' class='check' name='filter'".$slct." value='".$val_id."' />
                                         &nbsp;".$val_value." (".dbNumRows($res2).")</li>";
-                               } else {
-
                                }
                            }
                            echo "</ul>";
-                           echo "</td></tr>";
+                           echo "</li>";
                        }
                    }
-               echo "<tr><td><span id='result'></span></td></tr>";
-               echo "</table>";
+                   echo "</ul>";
+               }
            }
            ?>
     <!-- Здесь заканчивается процедура формирования списка фильтров категории -->
@@ -176,12 +215,12 @@ if (isset($_GET['f'])) {
 
         <script>
             $(document).ready(function(){
-               // $(".fltValue").hide();
-                $(".fltValue:first").show();
-                $(".fltName:first").html('▾'+$(".fltName:first").html().substr(1));
+                //$(".fltValue").hide();
+                //$(".fltValue:first").show();
+                //$(".fltName:first").html('▾'+$(".fltName:first").html().substr(1));
                 $(".fltValue").each(function(){
                     if ($(this).html() == '') {
-                        $(this).parent().parent().html('');
+                        $(this).parent().html('');
                     };
                 });
             });
