@@ -14,17 +14,39 @@ if (isset($_GET['f'])) {
     $value = ' (';
     $product = ' (';
     $links = explode("|", $_GET['f']);
+    $txt = ' ';
     foreach ($links as $lnk) {
         list($val,$flt)=explode("*",$lnk);
-        if (mb_substr_count($filter, $flt) == 0) $filter .= $flt.',';
+        if (mb_substr_count($filter, $flt) == 0) {
+            $filter .= $flt.',';
+            $txt = substr($txt,0,-1).") | flt_id = ".$flt." AND val_id IN (";
+        }
         $value .= $val.',';
+        $txt .= $val.",";
     }
     $filter = substr($filter,0,-1).')';
     $value = substr($value,0,-1).')';
-    $sql = "SELECT pd_id FROM tbl_product_link WHERE flt_id IN $filter AND val_id IN $value";
+    $txt = substr($txt,4,-1).')';
+    $links = explode("|", $txt);
+    $txt = "SELECT pd_id FROM tbl_product_link WHERE ";
+    $sql = $txt;
+    foreach ($links as $lnk) {
+        $sql .= $lnk." AND pd_id IN (".$txt;
+    }
+    $pos = strripos($sql,$txt)-15;
+    $sql = substr($sql,0,$pos);
+    function addClosing($sql){
+        if (substr_count($sql, '(') > substr_count($sql, ')')){
+            $sql .= ')';
+            $sql = addClosing($sql);
+        }
+        return $sql;
+    }
+    $sql = addClosing($sql);
     $res = mysql_query($sql);
     while ($row = mysql_fetch_assoc($res)) { if (mb_substr_count($product, $row['pd_id']) == 0) $product .= $row['pd_id'].','; }
     $product = substr($product,0,-1).')';
+
 }
 ?>
 
@@ -113,9 +135,7 @@ if (isset($_GET['f'])) {
                    $result = mysql_query($sql);
 
                    if (dbNumRows($result) > 0) {
-                       ?>
-                       <div style="text-align: right"><input type="button" id="fltClear" value="Сбросить фильтры"/></div>
-                       <?php
+                       echo '<div style="text-align: right"><input type="button" id="fltClear" value="Сбросить фильтры"/></div>';
                        while($row = dbFetchAssoc($result)) {
                            extract($row);
                            $sql =  "SELECT val_value, vl.val_id
@@ -127,8 +147,8 @@ if (isset($_GET['f'])) {
                            while($row1 = dbFetchAssoc($res1)) {
                                extract($row1);
                                $text = '';
-                               if (isset($product)) $text = " AND pd.pd_id IN $product";
-                               $sql =  "SELECT ln.pd_id
+                               if (isset($product)&&mb_substr_count($filter, $flt_id)==0) $text = " AND pd.pd_id IN $product";
+                               $sql =  "SELECT pd.pd_id
                                     FROM tbl_product_link ln, tbl_product pd
                                     WHERE val_id = '$val_id' AND cat_id = $catId AND pd.pd_id = ln.pd_id".$text;
                                $res2 = mysql_query($sql);
@@ -156,7 +176,7 @@ if (isset($_GET['f'])) {
 
         <script>
             $(document).ready(function(){
-                $(".fltValue").hide();
+               // $(".fltValue").hide();
                 $(".fltValue:first").show();
                 $(".fltName:first").html('▾'+$(".fltName:first").html().substr(1));
                 $(".fltValue").each(function(){
@@ -167,7 +187,6 @@ if (isset($_GET['f'])) {
             });
 
             $(".check").on( "click", function() {
-
                     var text = '';
                     var loc = location.pathname;
                     var catId = loc.substr(loc.indexOf('-')-loc.length+1, loc.length-loc.indexOf('-')-1);
@@ -180,15 +199,12 @@ if (isset($_GET['f'])) {
                     text = text.slice(0,-1);
                     if (text=='') document.location.replace("/shop/category-"+catId);
                     else  document.location.replace("/shop/category-"+catId+"?f="+text);
-                    //var xmlhttp = getXmlHttp();
-                    //xmlhttp.open('POST', '/submit.php?action=filterList', true); // Открываем асинхронное соединение
-                    //xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); // Отправляем кодировку
-                    //xmlhttp.send("text=" + encodeURIComponent(text)); // Отправляем POST-запрос
-
             });
 
             $("#fltClear").click(function(){
-                $(".check").removeAttr('checked');
+                var loc = location.pathname;
+                var catId = loc.substr(loc.indexOf('-')-loc.length+1, loc.length-loc.indexOf('-')-1);
+                document.location.replace("/shop/category-"+catId);
             });
 
             $(".fltName").click(function(){
