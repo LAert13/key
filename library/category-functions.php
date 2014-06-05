@@ -72,7 +72,7 @@ function formatCategories($categories, $parentId)
 */
 function getCategoryList()
 {
-	$sql = "SELECT cat_id, cat_name, cat_image
+	$sql = "SELECT cat_id, cat_name, cat_image, cat_mnu
 	        FROM tbl_category
 			WHERE cat_parent_id = 0
 			ORDER BY cat_name";
@@ -125,7 +125,7 @@ function getChildCategories($categories, $id, $recursive = true)
 
 function fetchCategories()
 {
-    $sql = "SELECT cat_id, cat_parent_id, cat_name, cat_image, cat_description
+    $sql = "SELECT cat_id, cat_parent_id, cat_name, cat_image, cat_description, cat_mnu
 	        FROM tbl_category
 			ORDER BY cat_id, cat_parent_id ";
     $result = dbQuery($sql);
@@ -138,4 +138,54 @@ function fetchCategories()
 	return $cat;
 }
 
+function getCategoriesList($categories,$catId,$mnu) {
+    $isFirst = true;
+    $categoryOpened = false;
+    foreach ($categories as $category) {
+        extract($category);
+        if ($mnu == 0){
+            $level = ($cat_parent_id == 0) ? 1 : 2;
+            $url   = "/shop/category-" . $cat_id;
+            $listId = '';
+            if ($cat_id == $catId) {
+                $listId = ' id="current"';
+            }
+            if ($level == 1) {
+                echo $isFirst ? '' : $categoryOpened ? '</ul></li>' : '</li>';
+                $categoryOpened = false;
+                echo '<li'.$listId.'><a href="'.$url.'">'.$cat_name.'</a>';
+            } else {
+                if ($categoryOpened == false) {
+                    $categoryOpened = true;
+                    echo "<ul>";
+                }
+                echo '<li'.$listId.'><a href="'.$url.'">'.$cat_name.'</a></li>';
+            }
+            $isFirst = false;
+        }
+        else {
+            if ($cat_mnu == $mnu) {
+                $level = ($cat_parent_id == 0) ? 1 : 2;
+                $url   = "/shop/category-" . $cat_id;
+                $listId = '';
+                if ($cat_id == $catId) {
+                    $listId = ' id="current"';
+                }
+                if ($level == 1) {
+                    echo $isFirst ? '' : $categoryOpened ? '</ul></li>' : '</li>';
+                    $categoryOpened = false;
+                    echo '<li'.$listId.'><a href="'.$url.'">'.$cat_name.'</a>';
+                } else {
+                    if ($categoryOpened == false) {
+                        $categoryOpened = true;
+                        echo "<ul>";
+                    }
+                    echo '<li'.$listId.'><a href="'.$url.'">'.$cat_name.'</a></li>';
+                }
+                $isFirst = false;
+            }
+        }
+    }
+    echo $categoryOpened ? '</ul></li>' : '</li>';
+}
 ?>

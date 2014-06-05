@@ -1,4 +1,9 @@
-
+<?php
+require_once('library/config.php');
+require_once('library/category-functions.php');
+$categories = fetchCategories();
+if(!isset($catId)) $catId = 0;
+?>
 <!-- ШАПКА -->
 <div class="navbar-collapse collapse" style="background:#000; min-height: 80px;">
 	<div class="container">
@@ -51,8 +56,51 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav ks-nav">
                 <li class="ks-nav__elem shop">
+                    <span class="dropdown-toggle"  data-toggle="dropdown">
+                        <div width="50px" style="background:#fcd03d;
+                                             margin-left:10px;
+                                             border-radius: 10px;
+                                             margin: 0;
+                                             cursor: default;
+                                             width: 50px;
+                                             height: 50px;
+                                             white-space: nowrap;
+                                             color: #000;
+                                             font-family: 'Open Sans', sans-serif;
+                                             font-weight: 700;
+                                             font-size: 32px;
+                                             text-transform: uppercase;
+                                             letter-spacing: -2px;
+                                             vertical-align: middle;
+                                             line-height: 2.9ex;
+                                             display: inline-block;
+                                             overflow: hidden;
+                                             text-indent: -3px;
+                                             ">KEY</div>
+                        <span style="font-family: 'Open Sans', sans-serif;
+                                             font-weight: 700;
+                                             font-size: 32px;
+                                             text-transform: uppercase;
+                                             letter-spacing: -2px;
+                                             vertical-align: middle;
+                                             margin-left: -6px;">SHOP</span>
+                    </span>
+                    <ul class="dropdown-menu">
+                        <?php getCategoriesList($categories,$catId,10);?>
+                    </ul>
+                </li>
+                <li class="ks-nav__elem shop">
                 	<img src="/images/weapoon.png" alt="Оружие" class="img-rounded" width="50px" style="background:#fcd03d; margin-left:10px; border-radius: 10px"/>
-                    <a href="/shop/">Оружие</a>
+                    <span class="dropdown-toggle"  data-toggle="dropdown">Оружие</span>
+                    <ul class="dropdown-menu">
+                        <?php getCategoriesList($categories,$catId,1);?>
+                    </ul>
+                </li>
+                <li class="ks-nav__elem shop">
+                    <a href="#"  class="dropdown-toggle"  data-toggle="dropdown">Оптика</a>
+                    <ul class="dropdown-menu">
+                        <?php getCategoriesList($categories,$catId,2);?>
+                    </ul>
                 </li><li class="ks-nav__elem">
                     <a href="/delivery">Аксессуары</a>
                 </li><li class="ks-nav__elem">

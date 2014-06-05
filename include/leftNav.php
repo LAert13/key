@@ -5,7 +5,6 @@ if (!defined('WEB_ROOT')) {
 
 // get all categories
 $categories = fetchCategories();
-
 // format the categories for display
 $categories = formatCategories($categories, $catId);
 
@@ -50,48 +49,12 @@ if (isset($_GET['f'])) {
 ?>
 
     <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3">
-        <div class="ks-block-content ks-block-shadow ks-filter__block">
+        <!--     <div class="ks-block-content ks-block-shadow ks-filter__block">
             <div class="ks-block-header">Категории</div>
             <ul style="margin-bottom: 0px; margin-top: 15px">
-                <?php
-                $isFirst = true;
-                $categoryOpened = false;
-                foreach ($categories as $category) {
-                    extract($category);
-                    // now we have $cat_id, $cat_parent_id, $cat_name
-
-                    $level = ($cat_parent_id == 0) ? 1 : 2;
-                    $url   = "/shop/category-" . $cat_id;
-
-
-                    // assign id="current" for the currently selected category
-                    // this will highlight the category name
-                    $listId = '';
-                    if ($cat_id == $catId) {
-                        $listId = ' id="current"';
-                    }
-
-                    // for second level categories we print extra spaces to give
-                    // indentation look
-                    if ($level == 1) {
-                        echo $isFirst ? '' : $categoryOpened ? '</ul></li>' : '</li>';
-                        $categoryOpened = false;
-                    ?>
-                    <li<?php echo $listId; ?>><a href="<?php echo $url; ?>"><?php echo $cat_name; ?></a>
-                    <?php } else {
-                        if ($categoryOpened == false) { $categoryOpened = true; ?><ul><?php }?>
-                        <li<?php echo $listId; ?>><a href="<?php echo $url; ?>"><?php echo $cat_name; ?></a></li>
-                    <?php }
-
-
-
-                    $isFirst = false;
-                }
-
-                echo $categoryOpened ? '</ul></li>' : '</li>';
-                ?>
+                <?php //getCategoriesList($categories,$catId,0); ?>
             </ul>
-        </div>
+        </div>-->
 
        <div class="ks-block-content ks-block-shadow ks-filter__block">
             <div class="ks-block-header">Фильтры</div>
@@ -124,7 +87,7 @@ if (isset($_GET['f'])) {
            <?php
            $sql = "SELECT cat_parent_id FROM tbl_category WHERE cat_id = $catId";
            $res = mysql_query($sql);
-           if (dbNumRows($res) > 0){ extract(dbFetchAssoc($res)); }
+           if (dbNumRows($res) > 0){ extract(dbFetchAssoc($res)); } else {$cat_parent_id = 0 ;}
 
            if ($cat_parent_id > 0){
                if (isset($_GET['f'])){

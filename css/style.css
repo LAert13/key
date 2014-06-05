@@ -176,8 +176,10 @@ a:hover {
   margin-left: 20px;
   font-size: 20px;
 }
+.ks-nav .shop span {
+    color: #ffffff !important;
+}
 .ks-nav__elem a {
-  color: #fff !important;
   display: inline-block !important;
   padding: 0 10px 0 11px !important;
   height: 50px;

@@ -25,17 +25,21 @@ extract($product);
     <h1><?php echo $pd_name; ?></strong></h1>
     <div class="row" style="padding-bottom: 30px">
         <div class="col-xs-12 col-s-8 col-sm-8 col-md-8 col-lg-9">
-            <ul class="gallery__preview-list col-sm-hide">
-                <?php for ($i = 0; $i < $pd_img_cnt; $i++) { ?>
-                <li class="gallery__preview-elem">
-                    <a class="gallery__preview-handle" href="/images/<?php echo $pd_img_dir?>/<?php echo $pd_img_dir?>_<?php echo $i?>.jpg">
-                        <img src="/images/<?php echo $pd_img_dir?>/<?php echo $pd_img_dir?>_<?php echo $i?>.jpg" />
-                    </a>
-                </li>
-                <?php } ?>
-            </ul>
-            <div class="gallery__image-container"></div>
-            <script src="/js/gallery.js"></script>
+            <?php if (!empty($pd_img_dir)) { ?>
+                <ul class="gallery__preview-list col-sm-hide">
+                    <?php for ($i = 0; $i < $pd_img_cnt; $i++) { ?>
+                    <li class="gallery__preview-elem">
+                        <a class="gallery__preview-handle" href="/images/<?php echo $pd_img_dir?>/<?php echo $pd_img_dir?>_<?php echo $i?>.jpg">
+                            <img src="/images/<?php echo $pd_img_dir?>/<?php echo $pd_img_dir?>_<?php echo $i?>.jpg" />
+                        </a>
+                    </li>
+                    <?php } ?>
+                </ul>
+                <div class="gallery__image-container"></div>
+                <script src="/js/gallery.js"></script>
+            <?php } else { ?>
+                <div class="gallery__image-container"><a class="gallery__preview-handle" href="<?php echo $pd_image; ?>"><img src="<?php echo $pd_image; ?>" /></a></div>
+            <?php }?>
         </div>
         <div class="col-xs-12 col-s-4 col-sm-4 col-md-4 col-lg-3">
             <form action="<?php echo "/cart.php?action=add&p=$pdId" ?>" method="post" name="frmAdd" id="frmAdd">
@@ -67,7 +71,48 @@ extract($product);
     </ul>
 
     <div class="tab-content">
-      <div class="tab-pane active brd" id="descr"><?php echo $pd_description; ?></div>
+      <div class="tab-pane active brd" id="descr">
+          <?php echo $pd_description; ?>
+          <br>
+          <br>
+          <table width="40%" border="0" cellpadding="2" cellspacing="1" class="text">
+          <?php
+          $sql = "SELECT flt_name, val_value
+                FROM tbl_product_link lnk, tbl_filters fl, tbl_filter_value vl
+                WHERE lnk.pd_id = $pdId AND fl.flt_id = lnk.flt_id AND vl.val_id = lnk.val_id";
+          $result = mysql_query($sql);
+
+          if (dbNumRows($result) > 0) {
+              $i = 0;
+
+              while($row = dbFetchAssoc($result)) {
+                  extract($row);
+
+                  if ($i%2) {
+                      $class = 'row1';
+                  } else {
+                      $class = 'row2';
+                  }
+                  $i += 1;
+                  ?>
+                  <tr class="<?php echo $class; ?>">
+                      <td><?php echo $flt_name; ?></td>
+                      <td><?php echo $val_value; ?></td>
+                  </tr>
+              <?php
+              } // end while
+              ?>
+          <?php
+          } else {
+              ?>
+              <tr>
+                  <td colspan="2" align="center">Пока не добавлено ни одного фильтра</td>
+              </tr>
+          <?php
+          }
+          ?>
+          </table>
+      </div>
       <div class="tab-pane brd" id="review"><?php include('include/reviews.php'); ?></div>
     </div>
 
