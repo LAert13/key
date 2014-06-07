@@ -143,47 +143,22 @@ function getCategoriesList($categories,$catId,$mnu) {
     $categoryOpened = false;
     foreach ($categories as $category) {
         extract($category);
-        if ($mnu == 0){
+        if ($cat_mnu == $mnu) {
             $level = ($cat_parent_id == 0) ? 1 : 2;
             $url   = "/shop/category-" . $cat_id;
-            $listId = '';
-            if ($cat_id == $catId) {
-                $listId = ' id="current"';
-            }
+
             if ($level == 1) {
                 echo $isFirst ? '' : $categoryOpened ? '</ul></li>' : '</li>';
                 $categoryOpened = false;
-                echo '<li'.$listId.'><a href="'.$url.'">'.$cat_name.'</a>';
+                echo '<li><a href="'.$url.'"><b>'.$cat_name.'</b></a>';
             } else {
                 if ($categoryOpened == false) {
                     $categoryOpened = true;
-                    echo "<ul>";
+                    echo '<ul style="list-style-type:none; margin-left: 0; padding-left: 20px;">';
                 }
-                echo '<li'.$listId.'><a href="'.$url.'">'.$cat_name.'</a></li>';
+                echo '<li><a href="'.$url.'"><b>'.$cat_name.'</b></a></li>';
             }
             $isFirst = false;
-        }
-        else {
-            if ($cat_mnu == $mnu) {
-                $level = ($cat_parent_id == 0) ? 1 : 2;
-                $url   = "/shop/category-" . $cat_id;
-                $listId = '';
-                if ($cat_id == $catId) {
-                    $listId = ' id="current"';
-                }
-                if ($level == 1) {
-                    echo $isFirst ? '' : $categoryOpened ? '</ul></li>' : '</li>';
-                    $categoryOpened = false;
-                    echo '<li'.$listId.'><a href="'.$url.'">'.$cat_name.'</a>';
-                } else {
-                    if ($categoryOpened == false) {
-                        $categoryOpened = true;
-                        echo "<ul>";
-                    }
-                    echo '<li'.$listId.'><a href="'.$url.'">'.$cat_name.'</a></li>';
-                }
-                $isFirst = false;
-            }
         }
     }
     echo $categoryOpened ? '</ul></li>' : '</li>';

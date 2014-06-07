@@ -46,8 +46,9 @@ if (isset($_GET['f'])) {
     while ($row = mysql_fetch_assoc($res)) { if (mb_substr_count($product, $row['pd_id']) == 0) $product .= $row['pd_id'].','; }
     $product = substr($product,0,-1).')';
 }
-?>
 
+if ($catId >0) {
+?>
     <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3">
         <!--     <div class="ks-block-content ks-block-shadow ks-filter__block">
             <div class="ks-block-header">Категории</div>
@@ -175,6 +176,7 @@ if (isset($_GET['f'])) {
     <!-- Здесь заканчивается процедура формирования списка фильтров категории -->
         </div>
     </div>
+<?php } ?>
 
         <script>
             $(document).ready(function(){

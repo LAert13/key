@@ -2,8 +2,166 @@
 require_once('library/config.php');
 require_once('library/category-functions.php');
 $categories = fetchCategories();
-if(!isset($catId)) $catId = 0;
+if(!isset($catId)or($catId == 0)) {
+    $catId = 0;
+    $cat_mnu = 0;
+} else {
+    $sql = "SELECT cat_mnu FROM tbl_category WHERE cat_id = $catId";
+    $mnu = mysql_query($sql) or die(mysql_error());
+    $mnu = mysql_fetch_assoc($mnu);
+    extract($mnu);
+}
 ?>
+<style>
+    .ks-navbar {
+        border-top: 1px solid #a0a0a0;
+        border-bottom: 4px solid #fcd03d;
+        background: linear-gradient(to bottom, #838383 0%, #a0a0a0 50%, #6b6b6b 100%);
+    }
+    .element-menu {
+        cursor: pointer;
+        font-size: 16px;
+    }
+    .not_last{
+        background: url(/images/line.png) no-repeat right center;
+    }
+    .element-menu > span {
+        height: 50px;
+        color: #fff;
+        position: relative;
+        padding: 12px;
+    }
+    .ks-nav .ks-nav__elem .logo {
+        color: #ffffff !important;
+    }
+    .current-menu,
+    .selected-menu {
+        background-color: #ffffff;
+        color: #000000;
+        border: 4px solid #fcd03d;
+        border-radius:  10px 10px 0 0;
+        border-bottom: 0;
+        top: -4px;
+        margin-bottom: -4px;
+    }
+    .current-menu > span,
+    .selected-menu > span {
+        z-index: 100;
+        height: 50px;
+        background: #fff;
+        color: #000;
+        position: relative;
+        top: 2px;
+        padding: 8px;
+        padding-bottom: 19px;
+        border-radius: 10px 10px 0 0;
+    }
+    .current-menu > span {
+        z-index: 60;
+    }
+    .current-menu > a,
+    .selected-menu > a{
+        color: #000000;
+        background-color: #ffffff;
+    }
+    .current-menu > a:focus,
+    .current-menu > a:hover,
+    .selected-menu > a:focus,
+    .selected-menu > a:hover {
+        color: #fcd03d;
+    }
+    .key-logo {
+
+    }
+    .key-logo span {
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 700;
+        font-size: 32px;
+        text-transform: uppercase;
+        letter-spacing: -2px;
+        vertical-align: middle;
+        margin-left: -6px;
+    }
+    .key-logo div {
+        background:#fcd03d;
+        border-radius: 10px;
+        margin: 0;
+        cursor: default;
+        width: 50px;
+        height: 50px;
+        white-space: nowrap;
+        color: #000000;
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 700;
+        font-size: 32px;
+        text-transform: uppercase;
+        letter-spacing: -2px;
+        vertical-align: middle;
+        line-height: 2.9ex;
+        display: inline-block;
+        overflow: hidden;
+        text-indent: -3px;
+    }
+    .menu-logo {
+        width:50px;
+        background:#fcd03d;
+        border-radius: 10px;
+        margin-right: 5px;
+    }
+    .popup-menu {
+        position: absolute;
+        display: none;
+        padding: 10px;
+        border: 4px solid #fcd03d;
+        border-radius: 0 0 10px 10px;
+        margin-left: -4px;
+        z-index: 70 !important;
+        top: 100%;
+        left: 0;
+        float: left;
+        min-width: 180px;
+        font-size: 14px;
+        list-style: none;
+        background-color: #ffffff;
+        -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+        background-clip: padding-box;
+    }
+    .popup-menu > li > a,
+    .popup-menu > li > ul > li > a {
+        display: block;
+        padding: 3px 20px;
+        clear: both;
+        font-weight: normal;
+        line-height: 1.428571429;
+        color: #333333;
+        white-space: nowrap;
+    }
+    .popup-menu > li > a:hover,
+    .popup-menu > li > a:focus,
+    .popup-menu > li > ul > li > a:hover,
+    .popup-menu > li > ul > li > a:focus{
+        color: #262626;
+        text-decoration: none;
+        background-color: #f5f5f5;
+    }
+    .popup-menu > .active > a,
+    .popup-menu > .active > a:hover,
+    .popup-menu > .active > a:focus {
+        color: #ffffff;
+        text-decoration: none;
+        background-color: #428bca;
+        outline: 0;
+    }
+    .popup-menu a {
+        height: 30px;
+        line-height: 30px !important;
+    }
+    .popup-menu ul {
+        margin-left: 0;
+        padding-left: 0;
+    }
+</style>
 <!-- ШАПКА -->
 <div class="navbar-collapse collapse" style="background:#000; min-height: 80px;">
 	<div class="container">
@@ -55,58 +213,44 @@ if(!isset($catId)) $catId = 0;
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav ks-nav">
-                <li class="ks-nav__elem shop">
-                    <span class="dropdown-toggle"  data-toggle="dropdown">
-                        <div width="50px" style="background:#fcd03d;
-                                             margin-left:10px;
-                                             border-radius: 10px;
-                                             margin: 0;
-                                             cursor: default;
-                                             width: 50px;
-                                             height: 50px;
-                                             white-space: nowrap;
-                                             color: #000;
-                                             font-family: 'Open Sans', sans-serif;
-                                             font-weight: 700;
-                                             font-size: 32px;
-                                             text-transform: uppercase;
-                                             letter-spacing: -2px;
-                                             vertical-align: middle;
-                                             line-height: 2.9ex;
-                                             display: inline-block;
-                                             overflow: hidden;
-                                             text-indent: -3px;
-                                             ">KEY</div>
-                        <span style="font-family: 'Open Sans', sans-serif;
-                                             font-weight: 700;
-                                             font-size: 32px;
-                                             text-transform: uppercase;
-                                             letter-spacing: -2px;
-                                             vertical-align: middle;
-                                             margin-left: -6px;">SHOP</span>
+                <li class="element-menu not_last <?php if ($cat_mnu==10) echo "current-menu";?>">
+                    <span class="key-logo">
+                        <div>KEY</div>
+                        <span>SHOP</span>
                     </span>
-                    <ul class="dropdown-menu">
+                    <ul class="popup-menu">
                         <?php getCategoriesList($categories,$catId,10);?>
                     </ul>
                 </li>
-                <li class="ks-nav__elem shop">
-                	<img src="/images/weapoon.png" alt="Оружие" class="img-rounded" width="50px" style="background:#fcd03d; margin-left:10px; border-radius: 10px"/>
-                    <span class="dropdown-toggle"  data-toggle="dropdown">Оружие</span>
-                    <ul class="dropdown-menu">
+                <li class="element-menu not_last <?php if ($cat_mnu==1) echo "current-menu";?>">
+                    <ul class="popup-menu">
                         <?php getCategoriesList($categories,$catId,1);?>
                     </ul>
+                    <span><img src="/images/weapoon.png" alt="Оружие" class="menu-logo"/>Оружие</span>
                 </li>
-                <li class="ks-nav__elem shop">
-                    <a href="#"  class="dropdown-toggle"  data-toggle="dropdown">Оптика</a>
-                    <ul class="dropdown-menu">
+                <li class="element-menu not_last <?php if ($cat_mnu==2) echo "current-menu";?>">
+                    <span><img src="/images/optics.png" alt="Оптика" class="menu-logo"/>Оптика</span>
+                    <ul class="popup-menu">
                         <?php getCategoriesList($categories,$catId,2);?>
                     </ul>
-                </li><li class="ks-nav__elem">
-                    <a href="/delivery">Аксессуары</a>
-                </li><li class="ks-nav__elem">
-                    <a href="#">Одежда</a>
-                </li><li class="ks-nav__elem">
-                    <a href="/contacts">Туризм</a>
+                </li>
+                <li class="element-menu not_last <?php if ($cat_mnu==3) echo "current-menu";?>">
+                    <span><img src="/images/armor.png" alt="Одежда" class="menu-logo"/>Одежда</span>
+                    <ul class="popup-menu">
+                        <?php getCategoriesList($categories,$catId,3);?>
+                    </ul>
+                </li>
+                <li class="element-menu not_last <?php if ($cat_mnu==4) echo "current-menu";?>">
+                    <span><img src="/images/boots.png" alt="Обувь" class="menu-logo"/>Обувь</span>
+                    <ul class="popup-menu">
+                        <?php getCategoriesList($categories,$catId,4);?>
+                    </ul>
+                </li>
+                <li class="element-menu <?php if ($cat_mnu==5) echo "current-menu";?>">
+                    <span><img src="/images/defence.png" alt="Защита" class="menu-logo"/>Защита</span>
+                    <ul class="popup-menu">
+                        <?php getCategoriesList($categories,$catId,5);?>
+                    </ul>
                 </li>
             </ul>
             <div class="nav navbar-nav navbar-right">
@@ -211,7 +355,22 @@ if(!isset($catId)) $catId = 0;
             }
         });
     }());
-
+    $('.element-menu').mouseover( function(){
+        if ($(this).hasClass('current-menu')) {
+            $(this).children('span').css('z-index',100);
+        } else {
+            $(this).addClass('selected-menu');
+        }
+        $(this).children('ul').css('display','block');
+    });
+    $('.element-menu').mouseout( function(){
+        if ($(this).hasClass('current-menu')) {
+            $(this).children('span').css('z-index',60);
+        } else {
+            $(this).removeClass('selected-menu');
+        }
+        $(this).children('ul').css('display','none');
+    });
     $('body').click(function() {
     	document.getElementById("search_drop").style.display = 'none';
     });

@@ -107,7 +107,6 @@ a:hover {
   width: 100%;
   margin-bottom: 0;
   z-index: 1000;
-  border-color: transparent !important;
   background-size: 100% 50px;
   background-repeat: no-repeat;
 }
@@ -171,14 +170,6 @@ a:hover {
   text-transform: uppercase;
   font-weight: bold;
 }
-.ks-nav .shop{
-  margin-right: 20px;
-  margin-left: 20px;
-  font-size: 20px;
-}
-.ks-nav .shop span {
-    color: #ffffff !important;
-}
 .ks-nav__elem a {
   display: inline-block !important;
   padding: 0 10px 0 11px !important;
@@ -186,7 +177,7 @@ a:hover {
   line-height: 50px !important;
   position: relative;
 }
-.ks-nav__elem a:before {
+.ks-nav__elem:before {
   content: '';
   position: absolute;
   display: inline-block;
