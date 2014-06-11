@@ -137,6 +137,9 @@ if(!isset($catId)or($catId == 0)) {
         color: #333333;
         white-space: nowrap;
     }
+    .popup-menu > li > ul > li > a {
+        color: #285e8e;
+    }
     .popup-menu > li > a:hover,
     .popup-menu > li > a:focus,
     .popup-menu > li > ul > li > a:hover,
@@ -144,6 +147,10 @@ if(!isset($catId)or($catId == 0)) {
         color: #262626;
         text-decoration: none;
         background-color: #f5f5f5;
+    }
+    .popup-menu > li > ul > li > a:hover,
+    .popup-menu > li > ul > li > a:focus{
+        color: #285e8e;
     }
     .popup-menu > .active > a,
     .popup-menu > .active > a:hover,

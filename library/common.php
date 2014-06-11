@@ -60,7 +60,7 @@ function getShopConfig()
 function displayAmount($amount)
 {
 	global $shopConfig;
-	return  number_format($amount) . $shopConfig['currency'];
+	return  sprintf("%.02f",$amount) . $shopConfig['currency'];
 }
 
 /*

@@ -80,7 +80,7 @@ function uploadProductImage($inputName, $uploadDir)
 
 		// make sure the image width does not exceed the
 		// maximum allowed width
-		if (LIMIT_PRODUCT_WIDTH && $width > MAX_PRODUCT_IMAGE_WIDTH) {
+		if (LIMIT_PRODUCT_WIDTH && $width > 0) {//MAX_PRODUCT_IMAGE_WIDTH) {
 			$result    = createThumbnail($image['tmp_name'], $uploadDir . $imagePath, MAX_PRODUCT_IMAGE_WIDTH);
 			$imagePath = $result;
 		} else {

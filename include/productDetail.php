@@ -12,7 +12,6 @@ extract($product);
 
 <script type="text/javascript">
 		$(document).ready(function(){
-	
 			$('#orderForm').submit(function(e) {
 				order();
 				e.preventDefault();	
@@ -24,7 +23,7 @@ extract($product);
     <div class="ks-block-content ks-block-shadow" style="padding: 0 20px 20px">
     <h1><?php echo $pd_name; ?></strong></h1>
     <div class="row" style="padding-bottom: 30px">
-        <div class="col-xs-12 col-s-8 col-sm-8 col-md-8 col-lg-9">
+        <div class="col-xs-12 col-s-9 col-sm-9 col-md-9 col-lg-9">
             <?php if (!empty($pd_img_dir)) { ?>
                 <ul class="gallery__preview-list col-sm-hide">
                     <?php for ($i = 0; $i < $pd_img_cnt; $i++) { ?>
@@ -41,78 +40,157 @@ extract($product);
                 <div class="gallery__image-container"><a class="gallery__preview-handle" href="<?php echo $pd_image; ?>"><img src="<?php echo $pd_image; ?>" /></a></div>
             <?php }?>
         </div>
-        <div class="col-xs-12 col-s-4 col-sm-4 col-md-4 col-lg-3">
+        <div class="col-xs-12 col-s-3 col-sm-3 col-md-3 col-lg-3">
             <form action="<?php echo "/cart.php?action=add&p=$pdId" ?>" method="post" name="frmAdd" id="frmAdd">
-                <div class="rview">
-					Цена : <?php if ($_SESSION['cur'] == 'USD') {echo displayAmount($pd_price);} elseif ($_SESSION['cur'] == 'GRN') {echo sprintf("%.02f",$pd_price*$shopConfig['exch']) . "грн";} ?><br><br>
+                <div class="rview" style="border: 3px solid #fcd03d;">
+                    <span class="price">
+                        <?php
+                            if ($_SESSION['cur'] == 'USD') {
+                                echo displayAmount($pd_price);
+                            } elseif ($_SESSION['cur'] == 'GRN') {
+                                echo sprintf("%.02f",$pd_price*$shopConfig['exch']) . "грн";
+                            }
+                        ?>
+                    </span>
+                    <br>
 
-					<br>
-
-					<?php
-					// if we still have this product in stock
-					// show the 'Add to cart' button
-					if ($pd_qty > 0) {
-					?>
-						<input type="submit" class="btn btn-success btn-block" name="btnAddToCart" value="Добавить в корзину">
-					<?php
-					} else {
-					?>
-						<!--<input type="button" class="btn btn-primary btn-block" name="btnAddToOrder" value="Заказать" onClick="window.location.href='<?php echo "/cart.php?action=add&p=$pdId" ?>';" class="addToOrderButton">-->
-						<a data-toggle="modal" data-target="#modal" class="btn btn-primary btn-block" >Заказать</a>
-					<?php } ?>
+                    <?php
+                    // if we still have this product in stock
+                    // show the 'Add to cart' button
+                    if ($pd_qty > 0) {
+                        ?>
+                        <input type="submit" class="btn btn-success btn-block" name="btnAddToCart" value="Добавить в корзину">
+                    <?php
+                    } else {
+                        ?>
+                        <!--<input type="button" class="btn btn-primary btn-block" name="btnAddToOrder" value="Заказать" onClick="window.location.href='<?php echo "/cart.php?action=add&p=$pdId" ?>';" class="addToOrderButton">-->
+                        <a data-toggle="modal" data-target="#modal" class="btn btn-primary btn-block" >Заказать</a>
+                    <?php } ?>
                 </div>
             </form>
+            <div class="rview">
+                <h4>Доставка заказа</h4>
+                — Службой доставки "Новая почта" по Украине<br>
+                — Самовывоз в г. Днепропетровск
+                <h4>Оплата</h4>
+                — Наличными при получении заказа<br>
+                — Через систему Privat24 или терминал на карточку ПриватБанка<br>
+                — Наложенным платежом через "Новую почту" <b>(для покупателей из Крыма - недоступно!)</b><br>
+            </div>
         </div>
     </div>
 
     <ul class="nav nav-tabs nav-justified">
-      <li class="active"><a href="#descr" data-toggle="tab" style="height: 34px; padding-top: 5px; padding-bottom: 5px;">Описание</a></li>
-      <li><a href="#review" data-toggle="tab" style="height: 34px; padding-top: 5px; padding-bottom: 5px;">Отзывы</a></li>
+      <li class="product-tabs active"><a href="#allInfo" data-toggle="tab">Вся информация</a></li>
+      <li class="product-tabs"><a href="#descr" data-toggle="tab">Описание</a></li>
+      <li class="product-tabs"><a href="#techSpecs" data-toggle="tab">Технические характеристики</a></li>
+      <li class="product-tabs"><a href="#review" data-toggle="tab">Отзывы</a></li>
     </ul>
 
     <div class="tab-content">
-      <div class="tab-pane active brd" id="descr">
-          <?php echo $pd_description; ?>
-          <br>
-          <br>
-          <table width="40%" border="0" cellpadding="2" cellspacing="1" class="text">
-          <?php
-          $sql = "SELECT flt_name, val_value
+        <div class="tab-pane active brd" id="allInfo">
+            <div class="row">
+                <div class="col-xs-12 col-s-6 col-sm-6 col-md-6 col-lg-6">
+                    <?php echo $pd_description; ?>
+                    <br>
+                    <br>
+                    <table width="100%" border="0" cellpadding="2" cellspacing="1" class="text">
+                    <?php
+                    $sql = "SELECT flt_name, val_value
+                            FROM tbl_product_link lnk, tbl_filters fl, tbl_filter_value vl
+                            WHERE lnk.pd_id = $pdId AND fl.flt_id = lnk.flt_id AND vl.val_id = lnk.val_id";
+                    $result = mysql_query($sql);
+                    if (dbNumRows($result) > 0) {
+                        $i = 0;
+                        while($row = dbFetchAssoc($result)) {
+                            extract($row);
+                            if ($i%2) {
+                                  $class = 'row1';
+                              } else {
+                                  $class = 'row2';
+                              }
+                              $i += 1;
+                              ?>
+                              <tr class="<?php echo $class; ?>">
+                                  <td><?php echo $flt_name; ?></td>
+                                  <td><?php echo $val_value; ?></td>
+                              </tr>
+                          <?php
+                          }
+                    } else { ?>
+                    <tr>
+                        <td colspan="2" align="center">Пока не добавлено ни одного фильтра</td>
+                    </tr>
+                    <?php } ?>
+                    </table>
+                </div>
+                <div class="col-xs-12 col-s-6 col-sm-6 col-md-6 col-lg-6">
+                    <?php
+                        $sql = "SELECT rv_id, rv_pd_id, rv_usr_name, rv_usr_rating, rv_text, rv_valid, rv_date
+		                        FROM tbl_review
+		                        WHERE rv_pd_id = $pdId
+		                        ORDER BY rv_id LIMIT 4";
+                    $result     = dbQuery($sql);
+                    $numReviews = dbNumRows($result);
+                    if ($numReviews > 0 ) {
+                        $i = 0;
+                        while ($row = dbFetchAssoc($result)) {
+                            extract($row);
+                            if ($rv_valid == 1) {
+                                ?>
+                                <div>
+                                    <b><?php echo "$rv_usr_name";?></b>&nbsp;>>&nbsp;<?php echo "$rv_date";?><br>Оценка : <?php echo "$rv_usr_rating";?><br>Отзыв: <?php echo "$rv_text";?>
+                                </div>
+                            <?php } } }
+                    else {
+                        ?>
+                        <div style="text-align: center">Нет пользовательских отзывов об этом товаре</br><a class="review-click" href="<?php echo $_SERVER['REQUEST_URI']?>#review">Ваш отзыв может быть первым</a></div>
+                    <?php } ?>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane brd" id="descr">
+            <?php echo $pd_description; ?>
+        </div>
+        <div class="tab-pane brd" id="techSpecs">
+            <table width="100%" border="0" cellpadding="2" cellspacing="1" class="text">
+                <?php
+                $sql = "SELECT flt_name, val_value
                 FROM tbl_product_link lnk, tbl_filters fl, tbl_filter_value vl
                 WHERE lnk.pd_id = $pdId AND fl.flt_id = lnk.flt_id AND vl.val_id = lnk.val_id";
-          $result = mysql_query($sql);
+                $result = mysql_query($sql);
 
-          if (dbNumRows($result) > 0) {
-              $i = 0;
+                if (dbNumRows($result) > 0) {
+                    $i = 0;
 
-              while($row = dbFetchAssoc($result)) {
-                  extract($row);
+                    while($row = dbFetchAssoc($result)) {
+                        extract($row);
 
-                  if ($i%2) {
-                      $class = 'row1';
-                  } else {
-                      $class = 'row2';
-                  }
-                  $i += 1;
-                  ?>
-                  <tr class="<?php echo $class; ?>">
-                      <td><?php echo $flt_name; ?></td>
-                      <td><?php echo $val_value; ?></td>
-                  </tr>
-              <?php
-              } // end while
-              ?>
-          <?php
-          } else {
-              ?>
-              <tr>
-                  <td colspan="2" align="center">Пока не добавлено ни одного фильтра</td>
-              </tr>
-          <?php
-          }
-          ?>
-          </table>
-      </div>
+                        if ($i%2) {
+                            $class = 'row1';
+                        } else {
+                            $class = 'row2';
+                        }
+                        $i += 1;
+                        ?>
+                        <tr class="<?php echo $class; ?>">
+                            <td><?php echo $flt_name; ?></td>
+                            <td><?php echo $val_value; ?></td>
+                        </tr>
+                    <?php
+                    }
+                    ?>
+                <?php
+                } else {
+                    ?>
+                    <tr>
+                        <td colspan="2" align="center">Пока не добавлено ни одного фильтра</td>
+                    </tr>
+                <?php
+                }
+                ?>
+            </table>
+        </div>
       <div class="tab-pane brd" id="review"><?php include('include/reviews.php'); ?></div>
     </div>
 
@@ -169,3 +247,21 @@ extract($product);
     </div>
 </div>
 </div>
+
+<script type="text/javascript">
+    $('.review-click').click(function(){
+        $(".product-tabs").each(function(){
+            if ($(this).hasClass('active')){ $(this).removeClass('active'); }
+            if ($(this).html() == '<a href="#review" data-toggle="tab">Отзывы</a>') {
+                $(this).addClass('active');
+                $(".tab-pane").each(function(){
+                    if ($(this).hasClass('active')){ $(this).removeClass('active'); }
+                    if ($(this).attr('id') == 'review') {
+                        $(this).addClass('active');
+                        $(".ks-navbar").addClass('navbar-fixed-top');
+                    }
+                });
+            }
+        });
+    });
+</script>

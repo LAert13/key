@@ -25,3 +25,26 @@
         display: none;
     }
 }
+
+.nav-tabs.nav-justified > li > a {
+    border-bottom: 3px solid #fcd03d;
+    border-radius: 10px 10px 0 0;
+}
+.nav-tabs.nav-justified > .active > a,
+.nav-tabs.nav-justified > .active > a:hover,
+.nav-tabs.nav-justified > .active > a:focus {
+    border: 3px solid #fcd03d;
+    border-radius: 10px 10px 0 0;
+    padding-bottom: 13px;
+    border-bottom: 0px;
+}
+.nav-tabs > li > a,
+.nav-tabs > li > a:hover,
+.nav-tabs > li > a:focus {
+    border: 0px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #000000;
+    border-bottom: 3px solid #fcd03d;
+    border-radius: 10px 10px 0 0;
+}

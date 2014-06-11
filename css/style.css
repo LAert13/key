@@ -587,3 +587,20 @@ a:hover {
   margin-left: -15px;
   padding-left: 25px; 
 }
+.price{
+    color: #000;
+    font-size: 30px;
+    font-style: normal;
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+    text-align: center;
+}
+.row1 {
+    background-color: #FFFFFF;
+}
+
+.row2 {
+    background-color: #EFEFEF;
+}

@@ -49,6 +49,39 @@ if (isset($_GET['f'])) {
 
 if ($catId >0) {
 ?>
+<style>
+    .filters,
+    .selectedFilters,
+    .selectedFilters > li > ul {
+        list-style-type:none;
+        margin-left: 0;
+        padding-left: 0px;
+    }
+    .selectedFilters > li {
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .selectedFilters > li > ul {
+        padding-left: 20px;
+    }
+    .selectedFilters > li > ul > li {
+        padding-top: 3px;
+    }
+    .filters > li {
+        padding-top: 5px;
+    }
+    .filters > li > h4 {
+        padding-bottom: 5px;
+        margin: 0px;
+    }
+    .filters > li > ul > li > label {
+        font-weight: normal;
+    }
+    .fltValue {
+        padding-left: 10px
+    }
+</style>
+
     <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3">
         <!--     <div class="ks-block-content ks-block-shadow ks-filter__block">
             <div class="ks-block-header">Категории</div>
@@ -60,7 +93,13 @@ if ($catId >0) {
        <div class="ks-block-content ks-block-shadow ks-filter__block">
             <div class="ks-block-header">Фильтры</div>
             <h4>Цена&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <?php if (empty($_SESSION['cur']))$_SESSION['cur'] = 'USD';?>
+                <?php
+                    if (session_id() == "") {
+                        session_start();
+                        if (empty($_SESSION['cur']))$_SESSION['cur'] = 'USD';
+                        echo $_SESSION['cur'];
+                    }
+                ?>
                 <div class="btn-group" data-toggle="buttons">
                     <label class="btn btn-primary <?php if ($_SESSION['cur'] == 'USD') echo "active";?>">
                         <input type="radio" name="options" id="USD"> USD
@@ -92,7 +131,7 @@ if ($catId >0) {
 
            if ($cat_parent_id > 0){
                if (isset($_GET['f'])){
-                   echo "<ul style='list-style-type:none; margin-left: 0; padding-left: 0;'>";
+                   echo "<ul class='selectedFilters'>";
                    echo "<h4>Выбранные фильтры</h4>";
                    $sql =  "SELECT flt_name, fl.flt_id
                             FROM tbl_category_link lnk, tbl_filters fl
@@ -100,7 +139,7 @@ if ($catId >0) {
                    $result = mysql_query($sql);
                    while($row = dbFetchAssoc($result)) {
                        extract($row);
-                       echo "<li><b>".$flt_name."</b><ul style='list-style-type:none; margin-left: 0; padding-left: 20px;'>";
+                       echo "<li><b>".$flt_name."</b><ul>";
                        $sql =  "SELECT val_value, vl.val_id
                                 FROM tbl_filter_link lnk, tbl_filter_value vl, tbl_filters fl
                                 WHERE lnk.val_id = vl.val_id AND fl.flt_id = lnk.flt_id AND fl.flt_name = '$flt_name' AND vl.val_id IN $value";
@@ -132,7 +171,7 @@ if ($catId >0) {
                }
                if (isset($product)&&($product == " )")) { echo '<h3 style="color: red; text-align: center">Неправильное сочетание фильтров</h3>'; }
                else {
-                   echo "<ul style='list-style-type:none; margin-left: 0; padding-left: 0;'>";
+                   echo "<ul class='filters'>";
                    $sql =  "SELECT flt_name, fl.flt_id
                             FROM tbl_category_link lnk, tbl_filters fl
                             WHERE lnk.cat_id = $catId AND fl.flt_id = lnk.flt_id";
@@ -146,8 +185,8 @@ if ($catId >0) {
                                     FROM tbl_filter_link lnk, tbl_filter_value vl, tbl_filters fl
                                     WHERE lnk.val_id = vl.val_id AND fl.flt_id = lnk.flt_id AND fl.flt_name = '$flt_name'";
                            $res1 = mysql_query($sql);
-                           echo "<li><h4 style='margin:0px'><span class='fltName' name='".$flt_id."'>▸ ".$flt_name."</span></h4>";
-                           echo "<ul class='fltValue' style='padding-left: 10px'>";
+                           echo "<li><h4><span class='fltName' name='".$flt_id."'>▸ ".$flt_name."</span></h4>";
+                           echo "<ul class='fltValue'>";
                            while($row1 = dbFetchAssoc($res1)) {
                                extract($row1);
                                $text = '';
@@ -161,8 +200,8 @@ if ($catId >0) {
                                    $stl = 'inline-block';
                                    if (isset($filter))if (mb_substr_count($filter, $flt_id)>0&&mb_substr_count($value, $val_id)>0){ $slct = ' checked'; $stl = 'none';}
                                    echo "<li style='padding-left: 15px; display: ".$stl."'>
-                                        <input type='checkbox' class='check' name='filter'".$slct." value='".$val_id."' />
-                                        &nbsp;".$val_value." (".dbNumRows($res2).")</li>";
+                                        <label><input type='checkbox' class='check'".$slct." value='".$val_id."' />
+                                        &nbsp;".$val_value." <b>(".dbNumRows($res2).")</b></label></li>";
                                }
                            }
                            echo "</ul>";
@@ -180,13 +219,15 @@ if ($catId >0) {
 
         <script>
             $(document).ready(function(){
-                //$(".fltValue").hide();
-                //$(".fltValue:first").show();
-                //$(".fltName:first").html('▾'+$(".fltName:first").html().substr(1));
                 $(".fltValue").each(function(){
+                    $(this).hide();
                     if ($(this).html() == '') {
                         $(this).parent().html('');
                     };
+                });
+                $(".fltValue:lt(2)").show();
+                $(".fltName:lt(2)").each(function() {
+                    $(this).html('▾'+$(this).html().substr(1));
                 });
             });
 
@@ -195,9 +236,10 @@ if ($catId >0) {
                     var loc = location.pathname;
                     var catId = loc.substr(loc.indexOf('-')-loc.length+1, loc.length-loc.indexOf('-')-1);
                     $(".check").each(function(){
+                        $(this).attr("disabled", true);
                         if ($(this).is(":checked")){
                             text = text + $(this).val() + "*";
-                            text = text + $(this).parent().parent().parent().find(':first-child').find(':first-child').attr("name") + "|";
+                            text = text + $(this).parent().parent().parent().parent().find(':first-child').find(':first-child').attr("name") + "|";
                         }
                     });
                     text = text.slice(0,-1);
@@ -223,7 +265,7 @@ if ($catId >0) {
             $('#USD').change(function(){
                 var cur = "USD";
                 var xmlhttp = getXmlHttp();
-                xmlhttp.open('POST', 'submit.php?action=currency', true);
+                xmlhttp.open('POST', '/submit.php?action=currency', true);
                 xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                 xmlhttp.send("cur=" + encodeURIComponent(cur));
                 tagList = document.getElementsByName('price-usd');
@@ -235,7 +277,7 @@ if ($catId >0) {
             $('#GRN').change(function(){
                 var cur = "GRN";
                 var xmlhttp = getXmlHttp();
-                xmlhttp.open('POST', 'submit.php?action=currency', true);
+                xmlhttp.open('POST', '/submit.php?action=currency', true);
                 xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                 xmlhttp.send("cur=" + encodeURIComponent(cur));
                 tagList = document.getElementsByName('price-usd');
