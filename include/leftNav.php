@@ -92,34 +92,18 @@ if ($catId >0) {
 
        <div class="ks-block-content ks-block-shadow ks-filter__block">
             <div class="ks-block-header">Фильтры</div>
-            <h4>Цена&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <?php
-                    if (session_id() == "") {
-                        session_start();
-                        if (empty($_SESSION['cur']))$_SESSION['cur'] = 'USD';
-                        echo $_SESSION['cur'];
-                    }
-                ?>
-                <div class="btn-group" data-toggle="buttons">
-                    <label class="btn btn-primary <?php if ($_SESSION['cur'] == 'USD') echo "active";?>">
-                        <input type="radio" name="options" id="USD"> USD
-                    </label>
-                    <label class="btn btn-primary <?php if ($_SESSION['cur'] == 'GRN') echo "active";?>">
-                        <input type="radio" name="options" id="GRN"> ГРН
-                    </label>
-                </div>
-            </h4>
+            <h4>Цена</h4>
             <?php
             $r = mysql_fetch_assoc(mysql_query("SELECT MIN( pd_price ) FROM tbl_product"));
-            $min = (int)$r['MIN( pd_price )'];
+            $min = (int)$r['MIN( pd_price )']*$shopConfig['exch'];
             $r = mysql_fetch_assoc(mysql_query("SELECT MAX( pd_price ) FROM tbl_product"));
-            $max = (int)$r['MAX( pd_price )'];
+            $max = (int)$r['MAX( pd_price )']*$shopConfig['exch'];
             ?>
             <div>
                 <input type="number" class="form-control ks-filter__price-input" id="min_price" value="<?php echo $min;?>" min="0">
                 <span>&nbsp;—&nbsp;</span>
                 <input type="number" class="form-control ks-filter__price-input" id="max_price" value="<?php echo $max;?>" min="10">
-                <span>$</span>
+                <span>грн</span>
                 <span id="poss"></span>
             </div>
             <br>
@@ -261,29 +245,6 @@ if ($catId >0) {
                     $(this).html('▸'+$(this).html().substr(1));
                 }
                 $(this).parent().next().slideToggle(100);
-            });
-            $('#USD').change(function(){
-                var cur = "USD";
-                var xmlhttp = getXmlHttp();
-                xmlhttp.open('POST', '/submit.php?action=currency', true);
-                xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-                xmlhttp.send("cur=" + encodeURIComponent(cur));
-                tagList = document.getElementsByName('price-usd');
-                for (var i = 0; i < tagList.length; i++) tagList.item(i).style.display = 'block';
-                tagList = document.getElementsByName('price-grn');
-                for (var i = 0; i < tagList.length; i++) tagList.item(i).style.display = 'none';
-            });
-
-            $('#GRN').change(function(){
-                var cur = "GRN";
-                var xmlhttp = getXmlHttp();
-                xmlhttp.open('POST', '/submit.php?action=currency', true);
-                xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-                xmlhttp.send("cur=" + encodeURIComponent(cur));
-                tagList = document.getElementsByName('price-usd');
-                for (var i = 0; i < tagList.length; i++) tagList.item(i).style.display = 'none';
-                tagList = document.getElementsByName('price-grn');
-                for (var i = 0; i < tagList.length; i++) tagList.item(i).style.display = 'block';
             });
 
             $(function(){

@@ -50,10 +50,6 @@ switch ($action) {
     	logoff();
     	break;
 
-    case 'currency' :
-    	changeCurrency();
-    	break;
-
     case 'arrange' :
         doArrange();
         break;
@@ -181,6 +177,7 @@ function changePass(){
 }
 
 function doSearch() {
+    $shopConfig = getShopConfig();
 	$text = '';
 	$query = $_POST['search'];
   	$query = trim($query); 
@@ -207,10 +204,7 @@ function doSearch() {
 	            $row = mysql_fetch_assoc($result); 
 	            $num = mysql_num_rows($result);
 	            do {
-					if ($_SESSION["cur"] == "USD") 
-						{$row['pd_price'] = displayAmount($row['pd_price']);} 
-					elseif ($_SESSION["cur"] == "GRN") 
-						{$row['pd_price'] = sprintf("%.02f",$row['pd_price']*$shopConfig["exch"])."грн";} 
+					$row['pd_price'] = sprintf("%.02f",$row['pd_price']*$shopConfig["exch"])."грн";
 	                $text .= '<li>
 	                			  <a href="/shop/product-'.$row['pd_id'].'" title="'.$row['pd_name'].'">
 	                			  <img src="/images/product/'.$row['pd_thumbnail'].'" style="padding-right:20px"/>
@@ -383,13 +377,6 @@ function doPassReset() {
 	if($res == 99){
 		die(msg(1,"Временный пароль выслан. Проверьте ваш почтовый ящик для дальнейших инструкций."));
 	}
-}
-
-function changeCurrency() {
-	extract($_POST);
-	if ($cur == 'USD') $_SESSION['cur'] = 'USD';
-	elseif ($cur == 'GRN') $_SESSION['cur'] = 'GRN';
-	echo $_SESSION['cur'];
 }
 
 function doArrange() {

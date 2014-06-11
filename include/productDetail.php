@@ -4,9 +4,6 @@ if (!defined('WEB_ROOT')) {
 }
 
 $product = getProductDetail($pdId, $catId);
-if (empty($_SESSION['cur'])) {$_SESSION['cur'] = 'USD';}
-
-// we have $pd_name, $pd_price, $pd_description, $pd_image, $cart_url
 extract($product);
 ?> 
 
@@ -44,13 +41,7 @@ extract($product);
             <form action="<?php echo "/cart.php?action=add&p=$pdId" ?>" method="post" name="frmAdd" id="frmAdd">
                 <div class="rview" style="border: 3px solid #fcd03d;">
                     <span class="price">
-                        <?php
-                            if ($_SESSION['cur'] == 'USD') {
-                                echo displayAmount($pd_price);
-                            } elseif ($_SESSION['cur'] == 'GRN') {
-                                echo sprintf("%.02f",$pd_price*$shopConfig['exch']) . "грн";
-                            }
-                        ?>
+                        <?php echo sprintf("%.02f",$pd_price*$shopConfig['exch']) . "грн"; ?>
                     </span>
                     <br>
 
