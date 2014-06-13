@@ -39,6 +39,14 @@ switch ($action) {
         deleteCategoryFilter();
         break;
 
+    case 'upCategoryFilter' :
+        upCategoryFilter();
+        break;
+
+    case 'downCategoryFilter' :
+        downCategoryFilter();
+        break;
+
     default :
         // if action is not defined or unknown
         // move to main category page
@@ -312,6 +320,106 @@ function deleteCategoryFilter()
 	        WHERE cat_id = $catId AND flt_id = $filterId";
     dbQuery($sql);
 
+    header('Location: index.php?view=modifyFilters&catId='.$catId);
+}
+
+/*
+	Moves UP category filter
+*/
+function upCategoryFilter()
+{
+    if (isset($_GET['catId']) && (int)$_GET['catId'] > 0) {
+        $catId = (int)$_GET['catId'];
+    } else {
+        header('Location: index.php');
+    }
+
+    if (isset($_GET['filterId']) && (int)$_GET['filterId'] > 0) {
+        $fltId = (int)$_GET['filterId'];
+    } else {
+        header('Location: index.php');
+    }
+    $sql = "SELECT lnk_id FROM `tbl_category_link` WHERE cat_id = $catId AND flt_id = $fltId";
+    $row = mysql_fetch_assoc(mysql_query($sql));
+    $lnkId = $row['lnk_id'];
+
+    $sql = "SELECT flt_id, lnk_id FROM `tbl_category_link`
+            WHERE cat_id = $catId LIMIT 1";
+    $row = mysql_fetch_assoc(mysql_query($sql));
+    $lnkUp = $row['lnk_id'];
+    $fltUp = $row['flt_id'];
+
+    $sql = "SELECT flt_id, lnk_id FROM tbl_category_link
+	        WHERE cat_id = $catId";
+    $res = mysql_query($sql);
+    while ($row = mysql_fetch_assoc($res)){
+        extract($row);
+        if ($flt_id == $fltId) {
+            $sql = "UPDATE tbl_category_link
+			   SET flt_id = '$fltId'
+			 WHERE cat_id = '$catId' AND lnk_id = '$lnkUp'";
+            dbQuery($sql);
+            $sql = "UPDATE tbl_category_link
+			   SET flt_id = '$fltUp'
+			 WHERE cat_id = '$catId' AND lnk_id = '$lnkId'";
+            dbQuery($sql);
+            break;
+        }
+        else {
+            $lnkUp = $lnk_id;
+            $fltUp = $flt_id;
+        }
+    }
+    header('Location: index.php?view=modifyFilters&catId='.$catId);
+}
+
+/*
+	Moves DOWN category filter
+*/
+function downCategoryFilter()
+{
+    if (isset($_GET['catId']) && (int)$_GET['catId'] > 0) {
+        $catId = (int)$_GET['catId'];
+    } else {
+        header('Location: index.php');
+    }
+
+    if (isset($_GET['filterId']) && (int)$_GET['filterId'] > 0) {
+        $fltId = (int)$_GET['filterId'];
+    } else {
+        header('Location: index.php');
+    }
+    $sql = "SELECT lnk_id FROM `tbl_category_link` WHERE cat_id = $catId AND flt_id = $fltId";
+    $row = mysql_fetch_assoc(mysql_query($sql));
+    $lnkId = $row['lnk_id'];
+
+    $sql = "SELECT flt_id, lnk_id FROM `tbl_category_link`
+            WHERE cat_id = $catId ORDER BY lnk_id DESC LIMIT 1";
+    $row = mysql_fetch_assoc(mysql_query($sql));
+    $lnkDown = $row['lnk_id'];
+    $fltDown = $row['flt_id'];
+
+    $sql = "SELECT flt_id, lnk_id FROM tbl_category_link
+	        WHERE cat_id = $catId ORDER BY lnk_id DESC";
+    $res = mysql_query($sql);
+    while ($row = mysql_fetch_assoc($res)){
+        extract($row);
+        if ($flt_id == $fltId) {
+            $sql = "UPDATE tbl_category_link
+			   SET flt_id = '$fltId'
+			 WHERE cat_id = '$catId' AND lnk_id = '$lnkDown'";
+            dbQuery($sql);
+            $sql = "UPDATE tbl_category_link
+			   SET flt_id = '$fltDown'
+			 WHERE cat_id = '$catId' AND lnk_id = '$lnkId'";
+            dbQuery($sql);
+            break;
+        }
+        else {
+            $lnkDown = $lnk_id;
+            $fltDown = $flt_id;
+        }
+    }
     header('Location: index.php?view=modifyFilters&catId='.$catId);
 }
 ?>

@@ -111,6 +111,16 @@ function deleteFilter()
 	$sql = "DELETE FROM tbl_filters
 			WHERE flt_id = $fltId";
 	dbQuery($sql);
+    $sql = "DELETE FROM tbl_category_link
+			WHERE flt_id = $fltId";
+    dbQuery($sql);
+    $sql = "DELETE FROM tbl_product_link
+			WHERE flt_id = $fltId";
+    dbQuery($sql);
+    $sql = "DELETE FROM tbl_filter_link
+			WHERE flt_id = $fltId";
+    dbQuery($sql);
+
 
     header('Location: index.php');
 }
@@ -139,6 +149,12 @@ function deleteValue()
     $valId = (int)$_GET['valId'];
 
     $sql = "DELETE FROM tbl_filter_value
+			WHERE val_id = $valId";
+    dbQuery($sql);
+    $sql = "DELETE FROM tbl_filter_link
+			WHERE val_id = $valId";
+    dbQuery($sql);
+    $sql = "DELETE FROM tbl_product_link
 			WHERE val_id = $valId";
     dbQuery($sql);
 

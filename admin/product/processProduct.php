@@ -254,12 +254,12 @@ function writeLink()
     for ($i = 1; $i <= $n; $i++){
         $fltName = $_POST['filter_'.$i];
         $valValue = $_POST['value_'.$i];
-        $sql = "SELECT flt_id,val_id FROM tbl_filters,tbl_filter_value WHERE flt_name = '$fltName' AND val_value = '$valValue'";
+        $sql = "SELECT flt_id, val_id FROM tbl_filters,tbl_filter_value WHERE flt_name = '$fltName' AND val_value = '$valValue'";
         $res = mysql_query($sql);
         $row = mysql_fetch_assoc($res);
         $fltId = $row['flt_id'];
         $valId = $row['val_id'];
-        if (dbNumRows(mysql_query("SELECT * FROM tbl_product_link WHERE pd_id = '$pdId'")) >= $i){
+        if (dbNumRows(mysql_query("SELECT * FROM tbl_product_link WHERE pd_id = '$pdId' AND flt_id = '$fltId'")) > 0){
             $sql = "UPDATE tbl_product_link
 			        SET val_id = '$valId'
 			        WHERE pd_id = '$pdId' AND flt_id = '$fltId'";

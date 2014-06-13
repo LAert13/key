@@ -74,3 +74,12 @@ function deleteCategoryFilter(catId, filterId)
         window.location.href = 'processCategory.php?action=deleteCategoryFilter&catId=' + catId + '&filterId=' + filterId;
     }
 }
+function moveUpCategoryFilter(catId, filterId)
+{
+    window.location.href = 'processCategory.php?action=upCategoryFilter&catId=' + catId + '&filterId=' + filterId;
+}
+
+function moveDownCategoryFilter(catId, filterId)
+{
+    window.location.href = 'processCategory.php?action=downCategoryFilter&catId=' + catId + '&filterId=' + filterId;
+}

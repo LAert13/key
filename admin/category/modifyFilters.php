@@ -23,6 +23,8 @@ $row = dbFetchAssoc($result);
         <td>Имя Фильтра</td>
         <!--<td width="70">Изменить</td>-->
         <td width="70">Удалить</td>
+        <td width="70">Выше</td>
+        <td width="70">Ниже</td>
     </tr>
     <?php
     $sql = "SELECT fl.flt_id, flt_name
@@ -47,6 +49,8 @@ $row = dbFetchAssoc($result);
                 <td><?php echo $flt_name; ?></td>
                 <!--<td width="70" align="center"><a href="javascript:modifyProductFilter(<?php echo $productId; ?>);">Изменить</a></td>-->
                 <td width="70" align="center"><a href="javascript:deleteCategoryFilter(<?php echo $catId; ?>,<?php echo $flt_id; ?>);">Удалить</a></td>
+                <td width="70" align="center"><a href="javascript:moveUpCategoryFilter(<?php echo $catId; ?>,<?php echo $flt_id; ?>);">Выше</a></td>
+                <td width="70" align="center"><a href="javascript:moveDownCategoryFilter(<?php echo $catId; ?>,<?php echo $flt_id; ?>);">Ниже</a></td>
             </tr>
         <?php
         } // end while
