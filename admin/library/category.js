@@ -83,3 +83,16 @@ function moveDownCategoryFilter(catId, filterId)
 {
     window.location.href = 'processCategory.php?action=downCategoryFilter&catId=' + catId + '&filterId=' + filterId;
 }
+
+function viewCategory()
+{
+    with (window.document.frmListCategory) {
+        if (cboFilter.value == 0) {
+            window.location.href = 'index.php?sort=id';
+        } else if (cboFilter.value == 1) {
+            window.location.href = 'index.php?sort=name';
+        } else {
+            window.location.href = 'index.php?sort=menu';
+        }
+    }
+}

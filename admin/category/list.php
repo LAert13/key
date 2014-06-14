@@ -10,20 +10,43 @@ if (isset($_GET['catId']) && (int)$_GET['catId'] >= 0) {
 	$catId = 0;
 	$queryString = '';
 }
+
+if (isset($_GET['sort']) && $_GET['sort'] == 'id') {
+    $sort = 'cat_id';
+} else if (isset($_GET['sort']) && $_GET['sort'] == 'name') {
+    $sort = 'cat_name';
+} else {
+    $sort = 'cat_mnu';
+}
 	
 // for paging
 // how many rows to show per page
-$rowsPerPage = 5;
+$rowsPerPage = 10;
 
 $sql = "SELECT cat_id, cat_parent_id, cat_name, cat_description, cat_image
         FROM tbl_category
 		WHERE cat_parent_id = $catId
-		ORDER BY cat_name";
+		ORDER BY $sort";
 $result     = dbQuery(getPagingQuery($sql, $rowsPerPage));
-$pagingLink = getPagingLink($sql, $rowsPerPage);
+if (isset($_GET['sort'])) { $sort = $_GET['sort']; } else { $sort = 'menu'; }
+$pagingLink = getPagingLink($sql, $rowsPerPage, "sort=".$sort);
 ?>
 <p>&nbsp;</p>
 <form action="processCategory.php?action=addCategory" method="post"  name="frmListCategory" id="frmListCategory">
+
+    <table width="100%" border="0" cellspacing="0" cellpadding="2" class="text">
+        <tr>
+            <td align="right">Сортировка фильтров по :
+                <select name="cboFilter" class="box" id="cboFilter" onChange="viewCategory();">
+                    <option selected>...</option>
+                    <option value="0">Номер категории</option>
+                    <option value="1">Название категории</option>
+                    <option value="2">Номер меню категории</option>
+                </select>
+            </td>
+        </tr>
+    </table>
+
  <table width="100%" border="0" align="center" cellpadding="2" cellspacing="1" class="text">
   <tr align="center" id="listTableHeader"> 
    <td>Имя Категории</td>
