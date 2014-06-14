@@ -18,7 +18,7 @@ $sql = "SELECT vl.val_id, val_value, flt_id, lnk.val_id
 		WHERE flt_id = '$fltId' AND vl.val_id = lnk.val_id
 		ORDER BY val_value";
 $result     = dbQuery(getPagingQuery($sql, $rowsPerPage));
-$pagingLink = getPagingLink($sql, $rowsPerPage);
+$pagingLink = getPagingLink($sql, $rowsPerPage,"flt=".$fltId."&view=listValues");
 $name = dbFetchAssoc(dbQuery("SELECT flt_name FROM tbl_filters WHERE flt_id = '$fltId'"));
 ?>
 

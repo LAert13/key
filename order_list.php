@@ -34,11 +34,11 @@ $pagingLink = getPagingLink($sql, $rowsPerPage, $queryString);
        <table class="table" width="96%" border="0" align="center" cellpadding="2" cellspacing="1" class="text">
         <thead>
           <tr align="center"> 
-           <th><p align="center" style="margin-bottom:0;">Номер</p></td>
-           <th><p align="center" style="margin-bottom:0;">Сумма</p></td>
-           <th><p align="center" style="margin-bottom:0;">Дата и время</p></td>
-           <th><p align="center" style="margin-bottom:0;">Статус</p></td>
-           <th>&nbsp;</td>
+           <th><p align="center" style="margin-bottom:0;">Номер</p></th>
+           <th><p align="center" style="margin-bottom:0;">Сумма</p></th>
+           <th><p align="center" style="margin-bottom:0;">Дата и время</p></th>
+           <th><p align="center" style="margin-bottom:0;">Статус</p></th>
+           <th>&nbsp;</th>
           </tr>
         </thead>
         <tbody>

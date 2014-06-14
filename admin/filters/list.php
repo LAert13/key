@@ -22,7 +22,8 @@ $sql = "SELECT flt_id, flt_name
         FROM tbl_filters
 		ORDER BY $sort";
 $result     = dbQuery(getPagingQuery($sql, $rowsPerPage));
-$pagingLink = getPagingLink($sql, $rowsPerPage);
+if (isset($_GET['sort'])) { $sort = $_GET['sort']; } else { $sort = 'id'; }
+$pagingLink = getPagingLink($sql, $rowsPerPage,"sort=".$sort);
 ?>
 
 <p>&nbsp;</p>
