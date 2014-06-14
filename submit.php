@@ -198,7 +198,7 @@ function doSearch() {
         		$q .= "(`pd_id` LIKE '%".$value."%' OR `pd_name` LIKE '%".$value."%' OR `pd_description` LIKE '%".$value."%') AND ";
         	}
         	$q = substr($q, 0, -4);
-	        $q .= "ORDER BY `pd_id` LIMIT 5";
+	        $q .= "ORDER BY `pd_id` LIMIT 8";
 	        $result = mysql_query($q);
 			if (mysql_affected_rows() > 0) { 
 	            $row = mysql_fetch_assoc($result); 
@@ -211,7 +211,7 @@ function doSearch() {
 	                			  <span>'.$row['pd_name'].'</span>&nbsp;<span style="padding-left:20px;">Цена&nbsp;'.$row['pd_price'].'</span></a>
 	                		  </li>';
 	            } while ($row = mysql_fetch_assoc($result)); 
-	            if (mysql_affected_rows() == 5) { 
+	            if (mysql_affected_rows() == 8) {
 	            	$text .= '<li><a href="index.php?search='.$_POST['search'].'" title="'.$row['pd_name'].'">Просмотреть все результаты поиска -></a></li>';
 	            }
 		    } else {

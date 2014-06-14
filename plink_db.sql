@@ -4,7 +4,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Июн 13 2014 г., 18:20
+-- Время создания: Июн 14 2014 г., 10:53
 -- Версия сервера: 5.1.69
 -- Версия PHP: 5.2.17
 
@@ -210,7 +210,7 @@ CREATE TABLE IF NOT EXISTS `tbl_category_link` (
   `cat_id` smallint(5) NOT NULL,
   `flt_id` smallint(5) NOT NULL,
   PRIMARY KEY (`lnk_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=191 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=196 ;
 
 --
 -- Дамп данных таблицы `tbl_category_link`

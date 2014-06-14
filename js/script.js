@@ -414,7 +414,7 @@ function search() {
 }
 
 function search_list() {
-	var search = "index.php?search=" + document.getElementById("search").value;
+	var search = "/index.php?search=" + document.getElementById("search").value;
     document.location.href = search;
 }
 

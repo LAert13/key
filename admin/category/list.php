@@ -36,7 +36,7 @@ $pagingLink = getPagingLink($sql, $rowsPerPage, "sort=".$sort);
 
     <table width="100%" border="0" cellspacing="0" cellpadding="2" class="text">
         <tr>
-            <td align="right">Сортировка фильтров по :
+            <td align="right">Сортировка категорий по :
                 <select name="cboFilter" class="box" id="cboFilter" onChange="viewCategory();">
                     <option selected>...</option>
                     <option value="0">Номер категории</option>

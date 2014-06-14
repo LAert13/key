@@ -55,8 +55,8 @@ if ($numProduct > 0 ) {
                             <span class="ks-position__details">
                                 <span class="ks-position__name"><?php echo $pd_name; ?></span>
                                 <span class="ks-position__price">
-                                    <input hidden name="price" value="<?php echo sprintf("%.02f",$pd_price*$shopConfig['exch']); ?>"/>
-                                    <div name="price-grn">Цена <?php echo sprintf("%.02f",$pd_price*$shopConfig['exch']); ?>грн</div>
+                                    <input hidden name="price" value="<?php echo $pd_price*1; ?>"/>
+                                    <div name="price-grn">Цена <?php echo $pd_price; ?></div>
                                 </span>
 
                             <?php

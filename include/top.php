@@ -175,7 +175,7 @@ if(!isset($catId)or($catId == 0)) {
         <ul class="ks-menu">
             <li><a href="/shop/">О магазине</a></li>
             <li><a href="/delivery">Доставка и оплата</a></li>
-            <li><a href="#">Помощь</a></li>
+            <li><a href="/help">Помощь</a></li>
             <li><a href="/contacts">Контакты</a></li>
         </ul>
 	    <div class="navbar-form navbar-left">
@@ -320,7 +320,7 @@ if(!isset($catId)or($catId == 0)) {
                         <div class="dropdown-menu">
                         	<div class="btn btn-plink">
 	                        	<span class="ks-header-cart__icon glyphicon glyphicon-shopping-cart" style="width: 1em;"></span>
-	                            <a href="/cart">В корзине <?php echo $qty; ?> товар<?php echo $ending; ?><br />на сумму <?php echo displayAmount($subTotal); ?></a>
+	                            <a href="/cart" style="display: inherit">В корзине <?php echo $qty; ?> товар<?php echo $ending; ?><br />на сумму <?php echo displayAmount($subTotal); ?></a>
                            	</div>
                         </div>
                             <?php } else { ?>

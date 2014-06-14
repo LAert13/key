@@ -41,7 +41,7 @@ extract($product);
             <form action="<?php echo "/cart.php?action=add&p=$pdId" ?>" method="post" name="frmAdd" id="frmAdd">
                 <div class="rview" style="border: 3px solid #fcd03d;">
                     <span class="price">
-                        <?php echo sprintf("%.02f",$pd_price*$shopConfig['exch']) . "грн"; ?>
+                        <?php echo $pd_price; ?>
                     </span>
                     <br>
 

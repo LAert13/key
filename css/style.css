@@ -122,7 +122,7 @@ a:hover {
   font-size: 24px;
   width: 2em;
   text-align: center;
-  line-height: 45px;
+  line-height: 40px;
 }
 .ks-logo {
   margin: 0;
@@ -317,8 +317,8 @@ a:hover {
   .ks-header-cart {
     float: left;
     margin: 0;
-    margin-right: 10px;
-    margin-left: 10px;
+    margin-right: 5px;
+    margin-left: 5px;
   }
   .ks-header-user li,
   .ks-header-cart li {
