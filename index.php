@@ -108,11 +108,9 @@ switch ($order) {
     case 'confirmation' :
         if (isCartEmpty()) {
             header('Location: /cart');
-        } elseif ($ref != $host.'/order/contactInfo') {
+        } else {
             $content 	= 'include/checkout/confirmation.php';
             $pageTitle = 'Оформление заказа - Подтверждение заказа';
-        } else {
-            header('Location: /shop/');
         }
         break;
 
@@ -133,7 +131,6 @@ switch ($order) {
         }
         break;
 
-
     case '';
         break;
 
@@ -149,13 +146,7 @@ require_once('include/top.php');
 
 
 <?php
-if ($view) {
-    require_once($content);
-}
-elseif ($user) {
-    require_once($content);
-}
-elseif ($order) {
+if ($view || $user || $order) {
     require_once($content);
 }
 elseif ($catId) {

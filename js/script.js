@@ -233,37 +233,6 @@ function editprofile()
 
 }
 
-function edituser()
-{
-	hideshow('loading',1);
-	error(0);
-	
-	$.ajax({
-		type: "POST",
-		url: "/edit_user_submit.php",
-		data: $('#edituserForm').serialize(),
-		dataType: "json",
-		success: function(msg){
-			
-			if(parseInt(msg.status)==1)
-			{
-				//hide the form
-				$('.form').fadeOut('slow');					
-					
-				//show the success message
-				$('.done').fadeIn('slow');
-			}
-			else if(parseInt(msg.status)==0)
-			{
-				error(1,msg.txt);
-			}
-			
-			hideshow('loading',0);
-		}
-	});
-
-}
-
 function updatepass()
 {
 	hideshow('loading',1);
@@ -273,68 +242,6 @@ function updatepass()
 		type: "POST",
 		url: "/submit.php?action=changePass",
 		data: $('#updatepassForm').serialize(),
-		dataType: "json",
-		success: function(msg){
-			
-			if(parseInt(msg.status)==1)
-			{
-				//hide the form
-				$('.form').fadeOut('slow');					
-					
-				//show the success message
-				$('.done').fadeIn('slow');
-			}
-			else if(parseInt(msg.status)==0)
-			{
-				error(1,msg.txt);
-			}
-			
-			hideshow('loading',0);
-		}
-	});
-
-}
-
-function updateuserpass()
-{
-	hideshow('loading',1);
-	error(0);
-	
-	$.ajax({
-		type: "POST",
-		url: "/change_user_pass_submit.php",
-		data: $('#updatepassForm').serialize(),
-		dataType: "json",
-		success: function(msg){
-			
-			if(parseInt(msg.status)==1)
-			{
-				//hide the form
-				$('.form').fadeOut('slow');					
-					
-				//show the success message
-				$('.done').fadeIn('slow');
-			}
-			else if(parseInt(msg.status)==0)
-			{
-				error(1,msg.txt);
-			}
-			
-			hideshow('loading',0);
-		}
-	});
-
-}
-
-function editsiteset()
-{
-	hideshow('loading',1);
-	error(0);
-	
-	$.ajax({
-		type: "POST",
-		url: "/edit_siteset_submit.php",
-		data: $('#sitesetForm').serialize(),
 		dataType: "json",
 		success: function(msg){
 			
