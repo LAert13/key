@@ -263,7 +263,7 @@ if(!isset($catId)or($catId == 0)) {
             <div class="nav navbar-nav navbar-right">
                 <div class="ks-header-user">
                     <?php
-                        include '/library/functions.php';
+                        include 'library/functions.php';
                         if (!empty($_SESSION['user_id'])) {
                             checkLogin('2');
                             $getuser = getUserRecords($_SESSION['user_id']);

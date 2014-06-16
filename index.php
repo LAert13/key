@@ -14,65 +14,65 @@ $view = (isset($_GET['view']) && $_GET['view'] != '') ? $_GET['view'] : '';
 
 switch ($user) {
     case 'login' :
-        $content 	= '/include/user/login.php';
+        $content 	= 'include/user/login.php';
         $pageTitle = 'Вход в интернет-магазин';
         break;
 
     case 'register' :
-        $content 	= '/include/user/register.php';
+        $content 	= 'include/user/register.php';
         $pageTitle = 'Регистрация';
         break;
 
     case 'pass_reset' :
-        $content 	= '/include/user/pass_reset.php';
+        $content 	= 'include/user/pass_reset.php';
         $pageTitle = 'Восстановление пароля';
         break;
 
     case 'confirm_pass' :
-        $content 	= '/include/user/confirm_pass.php';
+        $content 	= 'include/user/confirm_pass.php';
         $pageTitle = 'Подтверждение пароля';
         break;
 
     case 'change_pass' :
-        $content 	= '/include/user/change_pass.php';
+        $content 	= 'include/user/change_pass.php';
         $pageTitle = 'Смена пароля';
         break;
 
     case 'edit_profile' :
-        $content 	= '/include/user/edit_profile.php';
+        $content 	= 'include/user/edit_profile.php';
         $pageTitle 	= 'Редактирование профиля';
         break;
 
     case 'order_detail' :
-        $content 	= '/include/user/order_detail.php';
+        $content 	= 'include/user/order_detail.php';
         $orderId = (int)$_GET['oid'];
         $pageTitle = 'Заказ №' . $orderId;
         break;
 
     case 'order_list' :
-        $content 	= '/include/user/order_list.php';
+        $content 	= 'include/user/order_list.php';
         $pageTitle 	= 'История заказов';
         break;
 
     case 'review_list' :
-        $content 	= '/include/user/review_list.php';
+        $content 	= 'include/user/review_list.php';
         $pageTitle 	= 'Мои отзывы';
         break;
 }
 
 switch ($view) {
     case 'contacts' :
-        $content 	= '/include/info/contacts.php';
+        $content 	= 'include/info/contacts.php';
         $pageTitle = 'Контакты';
         break;
 
     case 'delivery' :
-        $content 	= '/include/info/delivery.php';
+        $content 	= 'include/info/delivery.php';
         $pageTitle = 'Оплата и доставка';
         break;
 
     case 'help' :
-        $content 	= '/include/info/help.php';
+        $content 	= 'include/info/help.php';
         $pageTitle = 'Помощь и гарантийные обязательства';
         break;
 }
