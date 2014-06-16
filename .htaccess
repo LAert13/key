@@ -52,6 +52,11 @@ RewriteRule ^shop/category-(\d+)$ /shopController.php?c=$1 [QSA,L]
 RewriteRule ^shop/product-(\d+)/$ /shop/product-$1
 RewriteRule ^shop/product-(\d+)$ /shopController.php?p=$1 [QSA,L]
 
+RewriteRule ^info/([^/]*)/$ /info/$1
 RewriteRule ^info/([^/]*)$ /index.php?view=$1 [QSA,L]
+
+RewriteRule ^user/([^/]*)/$ /user/$1
 RewriteRule ^user/([^/]*)$ /index.php?user=$1 [QSA,L]
+
+RewriteRule ^search/([^/]*)/$ /search/$1
 RewriteRule ^search/([^/]*)$ /index.php?search=$1 [QSA,L]
