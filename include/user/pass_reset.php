@@ -1,10 +1,3 @@
-<?PHP
-$pageTitle = 'Восстановление пароля';
-
-require_once('library/cart-functions.php');
-require_once('include/header.php');
-?>
-		
 	<script type="text/javascript">
 		$(document).ready(function(){
 	
@@ -15,11 +8,6 @@ require_once('include/header.php');
 		});
 
 	</script>
-
-</head>
-<body>
-
-<?php require_once('include/top.php'); ?>
 
 <div class="container" style="width: 960; padding:0;">
 	<div class="rview" style="margin-bottom:0; margin-top:5; min-height:400">
@@ -41,7 +29,7 @@ require_once('include/header.php');
 			  <tr>
 				<td>&nbsp;</td>
 				<td>
-					<input type="submit" value="Отправить" /><img id="loading" src="images/loading.gif" alt="Sending.." />
+					<input type="submit" value="Отправить" /><img id="loading" src="/images/loading.gif" alt="Sending.." />
 				</td>
 			  </tr>
 			  <tr>
@@ -52,4 +40,3 @@ require_once('include/header.php');
 		</div><!--close form-->
 	</div>
 </div>
-<?php require_once('include/footer.php'); ?>

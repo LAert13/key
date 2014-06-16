@@ -103,7 +103,7 @@ else {
 		<?php } ?>
 		<tr>
 			<td>&nbsp;</td>
-			<td><input class="btn btn-primary btn-block" type="submit" value="Отправить отзыв" /><img id="loading" src="images/loading.gif" alt="Отправляю..." /></td>
+			<td><input class="btn btn-primary btn-block" type="submit" value="Отправить отзыв" /><img id="loading" src="/images/loading.gif" alt="Отправляю..." /></td>
 		</tr>
 		<tr><td colspan="2"><div id="error">&nbsp;</div></td></tr>
 	</table>

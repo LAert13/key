@@ -1,23 +1,8 @@
-<?PHP
-$pageTitle = 'История заказов';
-
-require_once 'library/cart-functions.php';
-require_once 'include/header.php';
-
-?>
-
-</head>
-<body>
-
-<?php require_once('include/top.php');
-
+<?php
 $queryString = '';
 $usrid = $getuser[0]['id'];
 
-// for paging
-// how many rows to show per page
 $rowsPerPage = 10;
-
 
 $sql = "SELECT o.od_id, o.od_shipping_first_name, od_date, od_status,
                SUM(pd_price * od_qty) AS od_amount
@@ -27,7 +12,8 @@ $sql = "SELECT o.od_id, o.od_shipping_first_name, od_date, od_status,
 		ORDER BY od_id DESC";
 $result     = dbQuery(getPagingQuery($sql, $rowsPerPage));
 $pagingLink = getPagingLink($sql, $rowsPerPage, $queryString);
-?> 
+?>
+
 <div class="container" style="width: 960; padding:0;">
   <div class="panel panel-default" style="margin-bottom:0; margin-top:5; min-height:400">
     <div class="panel-heading">История заказов</div>
@@ -61,7 +47,7 @@ $pagingLink = getPagingLink($sql, $rowsPerPage, $queryString);
          <td width="15%"><?php echo displayAmount($od_amount); ?></td>
          <td width="30%"><?php echo $od_date; ?></td>
          <td width="20%"><?php echo $od_status; ?></td>
-         <td width="20%"><a href="order_detail?oid=<?php echo $od_id; ?>" class="btn btn-primary btn-sm">Просмотр заказа</a></td>
+         <td width="20%"><a href="/user/order_detail&oid=<?php echo $od_id; ?>" class="btn btn-primary btn-sm">Просмотр заказа</a></td>
         </tr>
         <?php
       	   } // end while
@@ -85,5 +71,3 @@ $pagingLink = getPagingLink($sql, $rowsPerPage, $queryString);
       </table>
   </div>
 </div>
-
-<?php require_once('include/footer.php'); ?>

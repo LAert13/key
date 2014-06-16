@@ -1,8 +1,4 @@
 <?PHP
-DEFINE('INCLUDE_CHECK',1);
-require_once('library/config.php');
-include('library/functions.php');
-
 $id = '';
 if (isset($_GET['id'])){
 	if (is_numeric($_GET['id'])){
@@ -25,21 +21,14 @@ if (isset($_GET['new'])){
 			$error = "Пользователя с таким именем не существует.";
 			}
 		if ($res == 99){
-			$message = "Ваш новый пароль подтвержен. Вы можете <a href='login'>войти на сайт</a> используя его.";
+			$message = "Ваш новый пароль подтвержен. Вы можете <a href='/user/login'>войти на сайт</a> используя его.";
 			}
 
 
 $sitesettings = getSiteSettings();
 
-$pageTitle = 'Подтверждение пароля';
-require_once('include/head.php');
 ?>
 	
-</head>
-<body>
-
-<?php require_once('include/top.php'); ?>
-
 	<hr/>
 				<? if(isset($error))
 					{
@@ -49,5 +38,4 @@ require_once('include/head.php');
 							echo '<div class="message">' . $message . '</div>' . "\n";
 						} 
 				?>
-</body>
-</html>
+

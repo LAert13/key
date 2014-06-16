@@ -1,18 +1,5 @@
 <?PHP
-
 $orderId = (int)$_GET['oid'];
-$pageTitle = 'Заказ №' . $orderId;
-
-require_once 'library/cart-functions.php';
-require_once 'include/header.php';
-
-?>
-
-</head>
-
-<body>
-
-<?php require_once('include/top.php');
 
 // get ordered items
 $sql = "SELECT pd_name, pd_price, od_qty
@@ -46,6 +33,7 @@ foreach ($orderStatus as $status) {
 	$orderOption .= ">$status</option>\r\n";
 }
 ?>
+
 <div class="container" style="width: 960; padding:0;">
   <div class="panel panel-default" style="margin-bottom:0; margin-top:5; min-height:400">
     <div class="panel-heading">Информация о заказе №<?php echo $orderId?></div>
@@ -128,5 +116,3 @@ foreach ($orderStatus as $status) {
     <p align="center"><input name="btnBack" type="button" id="btnBack" onClick="window.history.back();" class="btn btn-primary"value="Назад к списку" /></p>
   </div>
 </div>
-
-<?php require_once('include/footer.php'); ?>

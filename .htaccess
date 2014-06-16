@@ -27,6 +27,16 @@ RewriteCond %{REQUEST_URI} ^/index(?:\.php)+$
 RewriteCond %{QUERY_STRING} p=(\d+)
 RewriteRule .+ /shop/product-%1? [R=301,N,L]
 
+# перекидываение с /index.php?view=Page на /info/Page
+RewriteCond %{REQUEST_URI} ^/index(?:\.php)+$
+RewriteCond %{QUERY_STRING} view=(\W+)
+RewriteRule .+ /info/%1? [R=301,N,L]
+
+# перекидываение с /index.php?user=Page на /user/Page
+RewriteCond %{REQUEST_URI} ^/index(?:\.php)+$
+RewriteCond %{QUERY_STRING} user=(\W+)
+RewriteRule .+ /user/%1? [R=301,N,L]
+
 # корень магазина
 RewriteRule ^shop(?:\.php)?$ /shop/ [R=301,N,L]
 RewriteRule ^shop/$ /shopController.php [L]
@@ -36,3 +46,6 @@ RewriteRule ^shop/category-(\d+)$ /shopController.php?c=$1 [QSA,L]
 # позиция в магазине
 RewriteRule ^shop/product-(\d+)/$ /shop/product-$1
 RewriteRule ^shop/product-(\d+)$ /shopController.php?p=$1 [QSA,L]
+
+RewriteRule ^info/([^/]*)$ /index.php?view=$1 [QSA,L]
+RewriteRule ^user/([^/]*)$ /index.php?user=$1 [QSA,L]

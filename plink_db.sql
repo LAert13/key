@@ -1,14 +1,13 @@
-
 -- phpMyAdmin SQL Dump
--- version 3.5.2.2
+-- version 4.0.10
 -- http://www.phpmyadmin.net
 --
--- Хост: localhost
--- Время создания: Июн 14 2014 г., 10:53
--- Версия сервера: 5.1.69
--- Версия PHP: 5.2.17
+-- Хост: 127.0.0.1:3306
+-- Время создания: Июн 16 2014 г., 12:20
+-- Версия сервера: 5.5.37-log
+-- Версия PHP: 5.3.28
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -18,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- База данных: `u283661699_plink`
+-- База данных: `plink_db`
 --
 
 -- --------------------------------------------------------
@@ -64,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `pages` (
   `pg_parent` smallint(5) NOT NULL DEFAULT '0',
   `pg_alias` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`pg_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=18 ;
 
 --
 -- Дамп данных таблицы `pages`
@@ -72,20 +71,21 @@ CREATE TABLE IF NOT EXISTS `pages` (
 
 INSERT INTO `pages` (`pg_id`, `pg_title`, `pg_parent`, `pg_alias`) VALUES
 (1, 'Keyshop', 0, '/index.php'),
-(2, 'Магазин', 1, '/shopController.php'),
-(3, 'Вход в интернет-магазин', 1, '/login.php'),
-(5, 'Регистрация', 1, '/register.php'),
-(6, 'Доставка и оплата', 1, '/delivery.php'),
-(7, 'Контакты', 1, '/contacts.php'),
-(8, 'Корзина', 1, '/cart.php'),
-(9, 'Оформление заказа', 1, '/checkout.php'),
-(10, 'Изменение пароля', 1, '/change_pass.php'),
-(11, 'Подтверждение пароля', 1, '/confirm_pass.php'),
-(12, 'Редактирование профиля', 1, '/edit_profile.php'),
-(13, 'Список заказов', 1, '/order_list.php'),
-(14, 'Детали заказа', 1, '/order_detail.php'),
-(15, 'Восстановление пароля', 1, '/pass_reset.php'),
-(16, 'Список отзывов', 1, '/review_list.php');
+(2, 'Магазин', 1, '/shop/'),
+(3, 'Вход в интернет-магазин', 1, '/user/login'),
+(5, 'Регистрация', 1, '/user/register'),
+(6, 'Доставка и оплата', 1, '/info/delivery'),
+(7, 'Контакты', 1, '/info/contacts'),
+(8, 'Корзина', 1, '/cart'),
+(9, 'Оформление заказа', 1, '/checkout'),
+(10, 'Изменение пароля', 1, '/user/change_pass'),
+(11, 'Подтверждение пароля', 1, '/user/confirm_pass'),
+(12, 'Редактирование профиля', 1, '/user/edit_profile'),
+(13, 'Список заказов', 1, '/user/order_list'),
+(14, 'Детали заказа', 1, '/user/order_detail'),
+(15, 'Восстановление пароля', 1, '/user/pass_reset'),
+(16, 'Список отзывов', 1, '/user/review_list'),
+(17, 'Помощь и гарантийные обязательства', 1, '/info/help');
 
 -- --------------------------------------------------------
 
@@ -122,14 +122,14 @@ CREATE TABLE IF NOT EXISTS `tbl_cart` (
   PRIMARY KEY (`ct_id`),
   KEY `pd_id` (`pd_id`),
   KEY `ct_session_id` (`ct_session_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
 -- Дамп данных таблицы `tbl_cart`
 --
 
 INSERT INTO `tbl_cart` (`ct_id`, `pd_id`, `ct_qty`, `ct_session_id`, `ct_date`) VALUES
-(3, 9, 1, 'f89c640c214d1fb13fa03aead41788fb', '2014-06-10 08:10:29');
+(7, 26, 1, '5ol6vuvk1a0agg7q2tqigvpm55', '2014-06-16 11:15:10');
 
 -- --------------------------------------------------------
 
@@ -1873,7 +1873,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `reg_date` varchar(45) CHARACTER SET utf8 NOT NULL,
   `last_active` varchar(50) CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
 
 --
 -- Дамп данных таблицы `users`
@@ -1881,7 +1881,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`id`, `username`, `password`, `temp_pass`, `temp_pass_active`, `first_name`, `last_name`, `email`, `dialing_code`, `phone`, `city`, `country`, `thumb_path`, `img_path`, `active`, `level_access`, `act_key`, `reg_date`, `last_active`) VALUES
 (2, 'admin', 'eb0e08b3bd3351091697316934808133', '', 0, 'Site', 'Admin', 'admin@test.com', 254, 722123123, 'Nairobi', 'Kenya', '', '', 1, 1, '', '', ''),
-(15, 'laert', '5fcd08bd06b1e0798df933f80515a363', '', 0, 'Артем', 'Петренко', 'laert13@ya.ru', 0, 509221571, 'Днепропетровск', 'Украина', '', '', 1, 2, '', 'Thursday, Mar 13, 2014, 5:47 pm', '');
+(15, 'laert', '266e8d5449777ef4651279cb8517d157', '', 0, 'Артем', 'Петренко', 'laert13@ya.ru', 0, 509221571, 'Днепропетровск', 'Украина', '', '', 1, 2, '', 'Thursday, Mar 13, 2014, 5:47 pm', ''),
+(22, 'bash', '266e8d5449777ef4651279cb8517d157', '', 0, '', '', 'zone-i@i.ua', 0, 0, '', '', '', '', 1, 2, '', '2014-06-16 10:05:11', '');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

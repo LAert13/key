@@ -1,10 +1,3 @@
-<?PHP
-$pageTitle = 'Редактирование профиля';
-
-require_once('library/cart-functions.php');
-require_once('include/header.php');
-
-?>
 	<script type="text/javascript">
 		$(document).ready(function(){
 	
@@ -14,10 +7,7 @@ require_once('include/header.php');
 			});	
 		});
 	</script>
-</head>
 
-<body>
-<?php require_once('include/top.php'); ?>
 <div class="container" style="width: 960; padding:0;">
 	<div class="panel panel-default" style="margin-bottom:0; margin-top:5; min-height:400">
 		<div class="panel-heading">Редактирование профиля</div>
@@ -50,7 +40,7 @@ require_once('include/header.php');
 						<td><?= get_select_countries($_SESSION['user_id']);?></td>
 					</tr>
 					<tr>
-						<td colspan="2"><input class="btn btn-primary btn-block" type="submit" name="editprofile" value="Обновить данные" /><img id="loading" src="../images/loading.gif" alt="Updating.." /></td>
+						<td colspan="2"><input class="btn btn-primary btn-block" type="submit" name="editprofile" value="Обновить данные" /><img id="loading" src="/images/loading.gif" alt="Updating.." /></td>
 					</tr>
 					<tr>
 						<td colspan="2"><div id="error">&nbsp;</div></td>
@@ -60,4 +50,3 @@ require_once('include/header.php');
 		</div><!--close form-->
 	</div>
 </div>
-<?php require_once('include/footer.php'); ?>

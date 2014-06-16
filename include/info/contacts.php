@@ -1,9 +1,3 @@
-<?php
-require_once('library/config.php');
-require_once('library/cart-functions.php');
-$pageTitle = 'Контакты';
-require_once('include/header.php');?>
-
 	<script type="text/javascript">
 		$(document).ready(function(){
 	
@@ -13,8 +7,6 @@ require_once('include/header.php');?>
 			});	
 		});
 	</script>
-
-<?php require_once('include/top.php');?>
 
 <div class="container" style="width: 960; padding:0;">
 <div class="panel panel-default" style="margin-bottom:0; margin-top:5; min-height:400">
@@ -54,7 +46,7 @@ require_once('include/header.php');?>
 						  <?php } ?>
 						  <tr>
 						    <td colspan="2">
-								<input class="btn btn-primary btn-block" style="margin-top: 5;" type="submit" name="submit" value="Отправить" /><img id="loading" src="images/loading.gif" alt="Отправляю..." />
+								<input class="btn btn-primary btn-block" style="margin-top: 5;" type="submit" name="submit" value="Отправить" /><img id="loading" src="/images/loading.gif" alt="Отправляю..." />
 							</td>
 						  </tr>
 						  <tr>
@@ -68,5 +60,3 @@ require_once('include/header.php');?>
 	</div>
 </div>
 </div>
-
-<?php require_once('include/footer.php'); ?>

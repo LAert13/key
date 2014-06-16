@@ -1,10 +1,3 @@
-<?PHP
-$pageTitle = 'Смена пароля';
-
-require_once 'library/cart-functions.php';
-require_once 'include/header.php';
-
-?>
 		<script type="text/javascript">
 			$(document).ready(function(){
 		
@@ -15,10 +8,6 @@ require_once 'include/header.php';
 			});
 
 		</script>
-</head>
-<body>
-
-<?php require_once('include/top.php'); ?>
 
 <div class="container" style="width: 960; padding:0;">
 	<div class="panel panel-default" style="margin-bottom:0; margin-top:5; min-height:400">
@@ -40,7 +29,7 @@ require_once 'include/header.php';
 						<td><input class="form-control" name="newpassword2" type="password"/></td>
 					</tr>
 					<tr>
-						<td colspan="2" align="center"><input class="btn btn-primary btn-block" type="submit" name="submit" value="Сменить пароль" style="margin-top: 5;" /><img id="loading" src="../images/loading.gif" alt="Обновляю..." /></td>
+						<td colspan="2" align="center"><input class="btn btn-primary btn-block" type="submit" name="submit" value="Сменить пароль" style="margin-top: 5;" /><img id="loading" src="/images/loading.gif" alt="Обновляю..." /></td>
 					</tr>
 					<tr>
 						<td colspan="2"><div id="error">&nbsp;</div></td>
@@ -50,5 +39,3 @@ require_once 'include/header.php';
 		</div><!--close form-->
 	</div>
 </div>
-
-<?php require_once('include/footer.php'); ?>

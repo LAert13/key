@@ -15,15 +15,10 @@ require_once('include/header.php');
 		});
 	</script>
 
-</head>
-<body>
-
-<?php require_once('include/top.php'); ?>
-
 <div class="container" style="width: 960; padding:0;">
 		<div class="panel panel-default" style="margin-bottom:0; margin-top:5; min-height:400">
 		<div class="panel-heading">Регистрация</div>
-		<div class="panel-body"><div class="done" style="display: none"><p class="alert alert-success">Регистрация успешна! <a href="login">Нажмите сюда</a> для входа.</p></div></div>
+		<div class="panel-body"><div class="done" style="display: none"><p class="alert alert-success">Регистрация успешна! <a href="/user/login">Нажмите сюда</a> для входа.</p></div></div>
 		<div class="form">
 			<form id="regForm" action="/submit.php?action=register" method="post">
 				<table align="center" width="40%" cellspacing="1" cellpadding="1" border="0">
@@ -54,7 +49,7 @@ require_once('include/header.php');
 				  </tr>
 				   <tr>
 			        <td colspan="2">
-						<input class="btn btn-primary btn-block" style="margin-top: 5;" type="submit" name="register" value="Зарегистрироваться" /><img style="visibility: hidden" id="loading" src="images/loading.gif" alt="working.." />
+						<input class="btn btn-primary btn-block" style="margin-top: 5;" type="submit" name="register" value="Зарегистрироваться" /><img style="visibility: hidden" id="loading" src="/images/loading.gif" alt="working.." />
 					</td>
 				  </tr>
 				  <tr>
@@ -65,4 +60,3 @@ require_once('include/header.php');
 		</div><!--close form-->
 	</div>
 </div>
-<?php require_once('include/footer.php'); ?>

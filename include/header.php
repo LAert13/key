@@ -3,9 +3,6 @@ if (!defined('WEB_ROOT')) {
 	exit;
 }
 
-// set the default page title
-$pageTitle = 'KeyShop';
-
 // if a product id is set add the product name
 // to the page title but if the product id is not
 // present check if a category id exist in the query string
@@ -30,8 +27,9 @@ if (isset($_GET['p']) && (int)$_GET['p'] > 0) {
 	$row       = dbFetchAssoc($result);
 	$pageTitle = $row['cat_name'];
 
-}
-?><!DOCTYPE html>
+}?>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
 
@@ -43,7 +41,7 @@ if (isset($_GET['p']) && (int)$_GET['p'] > 0) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-
+<?php if (!isset($pageTitle)) $pageTitle = 'KeyShop'; ?>
     <title><?php echo $pageTitle; ?></title>
 
     <link rel="shortcut icon" href="/favicon.png">

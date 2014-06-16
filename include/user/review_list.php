@@ -1,22 +1,7 @@
-<?PHP
-$pageTitle = 'История заказов';
-
-require_once 'library/cart-functions.php';
-require_once 'include/header.php';
-
-?>
-
-</head>
-
-<body>
-
-<?php require_once('include/top.php');
-
+<?php
 $queryString = '';
 $usrid = $getuser[0]['id'];
 
-// for paging
-// how many rows to show per page
 $reviewsPerPage = 10;
 
 $sql = "SELECT rv_id, rv_pd_id, pd_id, pd_name, rv_usr_id, rv_usr_name, rv_usr_rating, rv_text, rv_date 
@@ -49,4 +34,3 @@ $numReviews = dbNumRows($result);
     ?>
   </div>
 </div>
-<? require_once('include/footer.php'); ?>

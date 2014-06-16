@@ -174,9 +174,9 @@ if(!isset($catId)or($catId == 0)) {
 	<div class="container">
         <ul class="ks-menu">
             <li><a href="/shop/">О магазине</a></li>
-            <li><a href="/delivery">Доставка и оплата</a></li>
-            <li><a href="/help">Помощь</a></li>
-            <li><a href="/contacts">Контакты</a></li>
+            <li><a href="/info/delivery">Доставка и оплата</a></li>
+            <li><a href="/info/help">Помощь</a></li>
+            <li><a href="/info/contacts">Контакты</a></li>
         </ul>
 	    <div class="navbar-form navbar-left">
 	        <div class="input-group" style="margin-left:220px; margin-right:400px; margin-top:24px;">
@@ -263,7 +263,7 @@ if(!isset($catId)or($catId == 0)) {
             <div class="nav navbar-nav navbar-right">
                 <div class="ks-header-user">
                     <?php
-                        include 'library/functions.php';
+                        include '/library/functions.php';
                         if (!empty($_SESSION['user_id'])) {
                             checkLogin('2');
                             $getuser = getUserRecords($_SESSION['user_id']);
@@ -280,18 +280,18 @@ if(!isset($catId)or($catId == 0)) {
                             ?></span>
                             <span class="ks-header-user__cab">Личный кабинет</span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="/edit_profile">Редактировать профиль</a></li>
-                            <li><a href="/change_pass">Изменить пароль</a></li>
-                            <li><a href="/order_list">История заказов</a></li>
-                            <li><a href="/review_list">Мои отзывы</a></li>
+                            <li><a href="/user/edit_profile">Редактировать профиль</a></li>
+                            <li><a href="/user/change_pass">Изменить пароль</a></li>
+                            <li><a href="/user/order_list">История заказов</a></li>
+                            <li><a href="/user/review_list">Мои отзывы</a></li>
                             <li class="divider"></li>
                             <li><a href="/submit.php?action=logoff">Выход</a></li>
                         </ul>
                     </div>
                     <?php } else { ?>
 	                    <div class="btn-group" style="margin:0px;">
-	                    	<a class="ks-header-user__authorization-link btn btn-plink" width="50px" href="/login" style="border-radius: 0 0 0 4px; padding-top: 3px; padding-bottom: 3px;">Вход</a>
-	                    	<a class="ks-header-user__authorization-link btn btn-plink" href="/register" style="border-radius: 0 0 4px 0; padding-top: 3px; padding-bottom: 3px;" href="/register">Регистрация</a>
+	                    	<a class="ks-header-user__authorization-link btn btn-plink" width="50px" href="/user/login" style="border-radius: 0 0 0 4px; padding-top: 3px; padding-bottom: 3px;">Вход</a>
+	                    	<a class="ks-header-user__authorization-link btn btn-plink" href="/user/register" style="border-radius: 0 0 4px 0; padding-top: 3px; padding-bottom: 3px;">Регистрация</a>
 	                    </div>
                     <?php } ?>
                 </div>
@@ -403,7 +403,7 @@ if(!isset($catId)or($catId == 0)) {
             <ol class="breadcrumb col-md-8">
                 <li><span class="glyphicon glyphicon-home"></span></li>
                 <?php
-                    $self = $_SERVER['PHP_SELF'];
+                    $self = $_SERVER['REQUEST_URI'];
                     $sql = "SELECT * FROM pages WHERE pg_alias = '$self'";
                     $res = mysql_query($sql) or die(mysql_error());
                     $res = mysql_fetch_assoc($res);

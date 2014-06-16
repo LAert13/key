@@ -1,10 +1,3 @@
-<?php
-$pageTitle = 'Вход в интернет-магазин';
-
-require_once('library/cart-functions.php');
-require_once('include/header.php');
-?>
-		
 	<script type="text/javascript">
 		$(document).ready(function(){
 	
@@ -14,11 +7,6 @@ require_once('include/header.php');
 			});	
 		});
 	</script>
-
-</head>
-<body>
-
-<?php require_once('include/top.php'); ?>
 
 <div class="container" style="width: 960; padding:0;">
 	<div class="panel panel-default" style="margin-bottom:0; margin-top:5; min-height:400">
@@ -41,9 +29,9 @@ require_once('include/header.php');
 			  	<td colspan="2">
 				  	<div class="row">
 				  		<div class="col-xs-6">
-							<input class="btn btn-success btn-block" type="submit" name="submit" value="Войти" /><img style="visibility: hidden" id="loading" src="images/loading.gif" alt="Logging in.." />
+							<input class="btn btn-success btn-block" type="submit" name="submit" value="Войти" /><img style="visibility: hidden" id="loading" src="/images/loading.gif" alt="Logging in.." />
 						</div>
-						<div class="col-xs-6"><a class="btn btn-primary btn-block" id="fgtpass" href="pass_reset">Забыли пароль?</a></div>
+						<div class="col-xs-6"><a class="btn btn-primary btn-block" id="fgtpass" href="/user/pass_reset">Забыли пароль?</a></div>
 					</div>
 				</td>
 			  </tr>
@@ -53,7 +41,7 @@ require_once('include/header.php');
 			  <tr>
 			  	<td colspan="2">
 					<label for="regusr" style="margin-top: 10;">Нет учетной записи?</label>
-					<a class="btn btn-primary btn-block" style="color: #fff" id="regusr" name="regusr" href="register">Зарегистрироваться.</a>
+					<a class="btn btn-primary btn-block" style="color: #fff" id="regusr" name="regusr" href="/user/register">Зарегистрироваться</a>
                     <br />
 				</td>
 			  </tr>
@@ -61,4 +49,3 @@ require_once('include/header.php');
 		</form>
 	</div>
 </div>
-<?php require_once('include/footer.php'); ?>

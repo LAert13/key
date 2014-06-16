@@ -1,10 +1,3 @@
-<?php
-require_once('library/config.php');
-require_once('library/cart-functions.php');
-$pageTitle = 'Оплата и доставка';
-require_once('include/header.php');
-require_once('include/top.php');?>
-
 <div class="container" style="width: 960; padding:0;">
 	<div class="panel panel-default" style="margin-bottom:0; margin-top:5; min-height:400">
 		<div class="panel-heading">Оплата и доставка</div>
@@ -33,5 +26,3 @@ require_once('include/top.php');?>
 		</div>
 	</div>
 </div>
-
-<?php require_once('include/footer.php'); ?>
