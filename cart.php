@@ -97,16 +97,13 @@ require_once('include/top.php'); ?>
          </tr>
         </table>
         <?php } ?>
-
-        <?php $shoppingReturnUrl = isset($_SESSION['shop_return_url']) ? $_SESSION['shop_return_url'] : 'shop'; ?>
-        
         <table width="50%" border="0" align="center" cellpadding="10" cellspacing="0">
          <tr align="center"> 
-          <td><input class="btn btn-primary btn-block" name="btnContinue" type="button" id="btnContinue" value="Продолжить покупки" onClick="window.location.href='<?php echo $shoppingReturnUrl; ?>';"></td>
+          <td><input class="btn btn-primary btn-block" name="btnContinue" type="button" id="btnContinue" value="Продолжить покупки" onClick="window.location.href='/shop/';"></td>
         <?php 
         if ($numItem > 0) {
         ?>  
-          <td><input class="btn btn-success btn-block" name="btnCheckout" type="button" id="btnCheckout" value="Оформить заказ" onClick="window.location.href='checkout?step=1';"></td>
+          <td><input class="btn btn-success btn-block" name="btnCheckout" type="button" id="btnCheckout" value="Оформить заказ" onClick="window.location.href='/order/contactInfo';"></td>
         <?php
         }
         ?>  

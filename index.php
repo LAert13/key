@@ -3,6 +3,7 @@ require_once('library/config.php');
 require_once('library/category-functions.php');
 require_once('library/product-functions.php');
 require_once('library/cart-functions.php');
+require_once('library/checkout-functions.php');
 
 $_SESSION['shop_return_url'] = $_SERVER['REQUEST_URI'];
 
@@ -11,6 +12,7 @@ $pdId   = (isset($_GET['p']) && $_GET['p'] != '') ? $_GET['p'] : 0;
 $search   = (isset($_GET['search']) && $_GET['search'] != '') ? $_GET['search'] : 0;
 $user = (isset($_GET['user']) && $_GET['user'] != '') ? $_GET['user'] : '';
 $view = (isset($_GET['view']) && $_GET['view'] != '') ? $_GET['view'] : '';
+$order = (isset($_GET['order']) && $_GET['order'] != '') ? $_GET['order'] : '';
 
 switch ($user) {
     case 'login' :
@@ -58,6 +60,14 @@ switch ($user) {
         $content 	= 'include/user/review_list.php';
         $pageTitle 	= 'Мои отзывы';
         break;
+
+    case '';
+        break;
+
+    default:
+        $content 	= 'include/404.php';
+        $pageTitle 	= '404';
+        break;
 }
 
 switch ($view) {
@@ -75,6 +85,62 @@ switch ($view) {
         $content 	= 'include/info/help.php';
         $pageTitle = 'Помощь и гарантийные обязательства';
         break;
+
+    case '';
+        break;
+
+    default:
+        $content 	= 'include/404.php';
+        $pageTitle 	= '404';
+        break;
+}
+
+switch ($order) {
+    case 'contactInfo' :
+        if (isCartEmpty()) {
+            header('Location: /cart');
+        } else {
+            $content 	= 'include/checkout/contactInfo.php';
+            $pageTitle = 'Оформление заказа - Контактная информация';
+        }
+        break;
+
+    case 'confirmation' :
+        if (isCartEmpty()) {
+            header('Location: /cart');
+        } elseif ($ref != $host.'/order/contactInfo') {
+            $content 	= 'include/checkout/confirmation.php';
+            $pageTitle = 'Оформление заказа - Подтверждение заказа';
+        } else {
+            header('Location: /shop/');
+        }
+        break;
+
+    case 'success' :
+        if (isCartEmpty()) {
+            header('Location: /cart');
+        } else {
+            $orderId     = saveOrder();
+            $orderAmount = getOrderAmount($orderId);
+            if ($shopConfig['sendOrderEmail'] == 'y') {
+                $subject = "[New Order] " . $orderId;
+                $email   = 'keyshop.ua@gmail.com';
+                $message = "Пришел новый заказ. Проверьте подробности \n http://" . $_SERVER['HTTP_HOST'] . WEB_ROOT . 'admin/order/index.php?view=detail&oid=' . $orderId;
+                mail($email, $subject, $message, "From: $email\r\nReturn-path: $email");
+            }
+            $content 	= 'include/checkout/success.php';
+            $pageTitle = 'Заказ успешен';
+        }
+        break;
+
+
+    case '';
+        break;
+
+    default:
+        $content 	= 'include/404.php';
+        $pageTitle 	= '404';
+        break;
 }
 
 require_once('include/header.php');
@@ -83,7 +149,13 @@ require_once('include/top.php');
 
 
 <?php
-if ($view or $user) {
+if ($view) {
+    require_once($content);
+}
+elseif ($user) {
+    require_once($content);
+}
+elseif ($order) {
     require_once($content);
 }
 elseif ($catId) {

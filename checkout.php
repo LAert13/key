@@ -12,20 +12,22 @@ if (isCartEmpty()) {
 
 	$includeFile = '';
 	if ($step == 1) {
-		$includeFile = 'shippingAndPaymentInfo.php';
-		$pageTitle   = 'Checkout - Step 1 of 2';
+		$includeFile = 'contactInfo.php';
+		$pageTitle   = 'Оформление заказа - Контактная информация';
 	} else if ($step == 2) {
-		$includeFile = 'checkoutConfirmation.php';
-		$pageTitle   = 'Checkout - Step 2 of 2';
+		$includeFile = 'confirmation.php';
+		$pageTitle   = 'Оформление заказа - Подтверждение заказа';
 	} else if ($step == 3) {
 		$orderId     = saveOrder();
 		$orderAmount = getOrderAmount($orderId);
-		
-		$_SESSION['orderId'] = $orderId;
-		
-        header('Location: success');
-        exit;
-      
+        if ($shopConfig['sendOrderEmail'] == 'y') {
+            $subject = "[New Order] " . $orderId;
+            $email   = 'keyshop.ua@gmail.com';
+            $message = "Пришел новый заказ. Проверьте подробности \n http://" . $_SERVER['HTTP_HOST'] . WEB_ROOT . 'admin/order/index.php?view=detail&oid=' . $orderId;
+            mail($email, $subject, $message, "From: $email\r\nReturn-path: $email");
+        }
+        $pageTitle   = 'Заказ успешен';
+        $includeFile = 'success.php';
 	}
 } else {
 	// missing or invalid step number, just redirect
@@ -33,14 +35,11 @@ if (isCartEmpty()) {
 }
 
 require_once('include/header.php');
-$pageTitle = 'Контактная информация';
-?>
-
-<?php require_once('include/top.php'); ?>
+require_once('include/top.php'); ?>
 
 <table width="960" border="0" align="center" cellpadding="0" cellspacing="0">
  <tr valign="top"> 
-  <td><?php require_once "include/$includeFile"; ?></td>
+  <td><?php require_once "include/checkout/$includeFile"; ?></td>
  </tr>
 </table>
 

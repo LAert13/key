@@ -225,7 +225,7 @@ function doSearch() {
 }
 
 function doShipping() {
-	$returnURL = "/checkout?step=2";
+	$returnURL = "/order/confirmation";
 	if(!$_POST['name'])	{
 		die(msg(0,"<p>Пожалуйста укажите имя.</p>"));
 	}

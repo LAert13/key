@@ -1,15 +1,4 @@
 <?php
-/*
-Line 1 : Make sure this file is included instead of requested directly
-Line 2 : Check if step is defined and the value is two
-Line 3 : The POST request must come from this page but the value of step is one
-*/
-if (!defined('WEB_ROOT')
-    || !isset($_GET['step']) || (int)$_GET['step'] != 2
-	|| $_SERVER['HTTP_REFERER'] != 'http://' . $_SERVER['HTTP_HOST'] . '/checkout?step=1') {
-	exit;
-}
-
 $sid = session_id();
 $sql = "SELECT * FROM tbl_shipping WHERE sh_session = '$sid' ORDER BY sh_id DESC LIMIT 1";
 $res = mysql_query($sql) or die(mysql_error());
@@ -26,7 +15,7 @@ $cartContent = getCartContent();
         <div class="panel-heading">Шаг 2 из 2 : Подтверждение заказа</div>
         <div class="panel-body"><p id="errorMessage"><?php echo $errorMessage; ?></p></div>
         <div class="form">
-			<form action="/checkout?step=3" method="post" name="frmCheckout" id="frmCheckout">
+			<form action="/order/success" method="post" name="frmCheckout" id="frmCheckout">
 				<div class="container" style="width: 940; padding:0;">
 				    <table class="table table-bordered" border="0" align="center" cellpadding="1" cellspacing="1">
 				        <thead>
@@ -112,7 +101,7 @@ $cartContent = getCartContent();
 			        </td>
                   </tr>
                   <tr>
-                    <td><input class="btn btn-primary btn-block" style="margin-top: 5;" name="btnBack" type="button" id="btnBack" onClick="window.location.href='<?php echo "checkout?step=1"; ?>';" value="Назад" /></td>
+                    <td><input class="btn btn-primary btn-block" style="margin-top: 5;" name="btnBack" type="button" id="btnBack" onClick="window.location.href='<?php echo "/order/contactInfo"; ?>';" value="Назад" /></td>
                     <td>
                         <input class="btn btn-success btn-block" style="margin-top: 5;" type="submit" name="btnConfirm" id="btnConfirm" value="ЗАКАЗАТЬ" />
                     </td>
