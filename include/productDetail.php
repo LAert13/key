@@ -5,6 +5,7 @@ if (!defined('WEB_ROOT')) {
 
 $product = getProductDetail($pdId, $catId);
 extract($product);
+$pd_price = displayAmount($pd_price);
 ?> 
 
 <script type="text/javascript">
