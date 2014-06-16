@@ -212,7 +212,7 @@ function doSearch() {
 	                		  </li>';
 	            } while ($row = mysql_fetch_assoc($result)); 
 	            if (mysql_affected_rows() == 8) {
-	            	$text .= '<li><a href="index.php?search='.$_POST['search'].'" title="'.$row['pd_name'].'">Просмотреть все результаты поиска -></a></li>';
+	            	$text .= '<li><a href="/search/'.$_POST['search'].'" title="'.$row['pd_name'].'">Просмотреть все результаты поиска -></a></li>';
 	            }
 		    } else {
 	            $text = '<li>По вашему запросу ничего не найдено.</li>';
