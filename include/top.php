@@ -403,7 +403,12 @@ if(!isset($catId)or($catId == 0)) {
             <ol class="breadcrumb col-md-8">
                 <li><span class="glyphicon glyphicon-home"></span></li>
                 <?php
-                    $self = $_SERVER['REQUEST_URI'];
+                    $self=$_SERVER['REQUEST_URI'];
+                    $str=strpos($self, "&");
+                    if ($str > 0 ) $self=substr($self, 0, $str);
+                    $str=strpos($self, "?");
+                    if ($str > 0 ) $self=substr($self, 0, $str);
+
                     $sql = "SELECT * FROM pages WHERE pg_alias = '$self'";
                     $res = mysql_query($sql) or die(mysql_error());
                     $res = mysql_fetch_assoc($res);
