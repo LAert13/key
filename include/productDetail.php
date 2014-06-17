@@ -39,7 +39,7 @@ $pd_price = displayAmount($pd_price);
             <?php }?>
         </div>
         <div class="col-xs-12 col-s-3 col-sm-3 col-md-3 col-lg-3">
-            <form action="<?php echo "/cart.php?action=add&p=$pdId" ?>" method="post" name="frmAdd" id="frmAdd">
+            <form action="<?php echo "/order/add&q=$pdId" ?>" method="post" name="frmAdd" id="frmAdd">
                 <div class="rview" style="border: 3px solid #fcd03d;">
                     <span class="price">
                         <?php echo $pd_price; ?>
@@ -55,7 +55,6 @@ $pd_price = displayAmount($pd_price);
                     <?php
                     } else {
                         ?>
-                        <!--<input type="button" class="btn btn-primary btn-block" name="btnAddToOrder" value="Заказать" onClick="window.location.href='<?php echo "/cart.php?action=add&p=$pdId" ?>';" class="addToOrderButton">-->
                         <a data-toggle="modal" data-target="#modal" class="btn btn-primary btn-block" >Заказать</a>
                     <?php } ?>
                 </div>

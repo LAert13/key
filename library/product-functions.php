@@ -31,7 +31,7 @@ function getProductDetail($pdId, $catId)
 		$row['pd_image'] = WEB_ROOT . 'images/no-image-large.png';
 	}
 	
-	$row['cart_url'] = "/cart.php?action=add&p=$pdId";
+	$row['cart_url'] = "/order/add&q=$pdId";
 	
 	return $row;			
 }

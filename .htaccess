@@ -42,7 +42,7 @@ RewriteCond %{REQUEST_URI} ^/index(?:\.php)+$
 RewriteCond %{QUERY_STRING} search=(\W+)
 RewriteRule .+ /search/%1? [R=301,N,L]
 
-# перекидываение с /index.php?search=Query на /search/Query
+# перекидываение с /index.php?order=Page на /order/Page
 RewriteCond %{REQUEST_URI} ^/index(?:\.php)+$
 RewriteCond %{QUERY_STRING} order=(\W+)
 RewriteRule .+ /order/%1? [R=301,N,L]

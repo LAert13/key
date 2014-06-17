@@ -320,7 +320,7 @@ if(!isset($catId)or($catId == 0)) {
                         <div class="dropdown-menu">
                         	<div class="btn btn-plink">
 	                        	<span class="ks-header-cart__icon glyphicon glyphicon-shopping-cart" style="width: 1em;"></span>
-	                            <a href="/cart" style="display: inherit">В корзине <?php echo $qty; ?> товар<?php echo $ending; ?><br />на сумму <?php echo displayAmount($subTotal); ?></a>
+	                            <a href="/order/cart" style="display: inherit">В корзине <?php echo $qty; ?> товар<?php echo $ending; ?><br />на сумму <?php echo displayAmount($subTotal); ?></a>
                            	</div>
                         </div>
                             <?php } else { ?>

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Июн 16 2014 г., 18:15
+-- Время создания: Июн 17 2014 г., 17:27
 -- Версия сервера: 5.5.37-log
 -- Версия PHP: 5.3.28
 
@@ -39,13 +39,13 @@ CREATE TABLE IF NOT EXISTS `pages` (
 --
 
 INSERT INTO `pages` (`pg_id`, `pg_title`, `pg_parent`, `pg_alias`) VALUES
-(1, 'Keyshop', 0, '/index.php'),
+(1, 'Keyshop', 0, '/'),
 (2, 'Магазин', 1, '/shop/'),
 (3, 'Вход в интернет-магазин', 1, '/user/login'),
 (5, 'Регистрация', 1, '/user/register'),
 (6, 'Доставка и оплата', 1, '/info/delivery'),
 (7, 'Контакты', 1, '/info/contacts'),
-(8, 'Корзина', 1, '/cart'),
+(8, 'Корзина', 1, '/order/cart'),
 (9, 'Оформление заказа', 1, '/checkout'),
 (10, 'Изменение пароля', 1, '/user/change_pass'),
 (11, 'Подтверждение пароля', 1, '/user/confirm_pass'),
@@ -57,7 +57,7 @@ INSERT INTO `pages` (`pg_id`, `pg_title`, `pg_parent`, `pg_alias`) VALUES
 (17, 'Помощь и гарантийные обязательства', 1, '/info/help'),
 (18, 'Оформление заказа > Контактная информация', 1, '/order/contactInfo'),
 (19, 'Оформление заказа > Подтверждение заказа', 1, '/order/confirmation'),
-(20, 'Оформление заказа > Заказ успешен', 1, '/checkout/step-3');
+(20, 'Оформление заказа > Заказ успешен', 1, '/order/success');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

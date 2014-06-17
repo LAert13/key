@@ -96,9 +96,29 @@ switch ($view) {
 }
 
 switch ($order) {
+    case 'add' :
+        $_SESSION['shop_return_url'] = '/shop/product-'.$_GET['q'];
+        addToCart();
+        break;
+
+    case 'update' :
+        updateCart();
+        break;
+
+    case 'delete' :
+        deleteFromCart();
+        break;
+
+    case 'cart' :
+        $cartContent = getCartContent();
+        $numItem = count($cartContent);
+        $content 	= 'include/cart.php';
+        $pageTitle 	= 'Корзина';
+        break;
+
     case 'contactInfo' :
         if (isCartEmpty()) {
-            header('Location: /cart');
+            header('Location: /order/cart');
         } else {
             $content 	= 'include/checkout/contactInfo.php';
             $pageTitle = 'Оформление заказа - Контактная информация';
@@ -107,7 +127,7 @@ switch ($order) {
 
     case 'confirmation' :
         if (isCartEmpty()) {
-            header('Location: /cart');
+            header('Location: /order/cart');
         } else {
             $content 	= 'include/checkout/confirmation.php';
             $pageTitle = 'Оформление заказа - Подтверждение заказа';
@@ -116,7 +136,7 @@ switch ($order) {
 
     case 'success' :
         if (isCartEmpty()) {
-            header('Location: /cart');
+            header('Location: /order/cart');
         } else {
             $orderId     = saveOrder();
             $orderAmount = getOrderAmount($orderId);

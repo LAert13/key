@@ -8,8 +8,8 @@ require_once 'config.php';
 function addToCart()
 {
 	// make sure the product id exist
-	if (isset($_GET['p']) && (int)$_GET['p'] > 0) {
-		$productId = (int)$_GET['p'];
+	if (isset($_GET['q']) && (int)$_GET['q'] > 0) {
+		$productId = (int)$_GET['q'];
 	} else {
 		header('Location: shop');
 	}
@@ -22,7 +22,7 @@ function addToCart()
 	
 	if (dbNumRows($result) != 1) {
 		// the product doesn't exist
-		header('Location: cart');
+		header('Location: /order/cart');
 	} else {
 		// how many of this product we
 		// have in stock
@@ -33,7 +33,7 @@ function addToCart()
 			// we no longer have this product in stock
 			// show the error message
 			setError('Добавление в корзину товаров везущихся под заказ пока не реализовано. Обратитесь к нам по телефону.');
-			header('Location: cart');
+			header('Location: /order/cart');
 			exit;
 		}
 
@@ -112,7 +112,7 @@ function deleteFromCart($cartId = 0)
 		$result = dbQuery($sql);
 	}
 	
-	header('Location: cart');
+	header('Location: /order/cart');
 }
 
 /*
@@ -173,7 +173,7 @@ function updateCart()
 		// the customer visited before going to shopping cart
 		header("Location: $returnUrl" . $_SESSION['shop_return_url']);
 	} else {
-		header('Location: cart');
+		header('Location: /order/cart');
 	}
 	
 	exit;

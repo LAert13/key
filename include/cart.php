@@ -1,36 +1,9 @@
-<?php
-require_once('library/config.php');
-require_once('library/cart-functions.php');
-
-$action = (isset($_GET['action']) && $_GET['action'] != '') ? $_GET['action'] : 'view';
-
-switch ($action) {
-	case 'add' :
-		addToCart();
-		break;
-	case 'update' :
-		updateCart();
-		break;	
-	case 'delete' :
-		deleteFromCart();
-		break;
-	case 'view' :
-}
-
-$cartContent = getCartContent();
-$numItem = count($cartContent);
-
-require_once('include/header.php');
-
-$pageTitle = 'Корзина';
-require_once('include/top.php'); ?>
-
 <div class="container" style="width: 960; padding:0;">
     <div class="panel panel-default" style="margin-bottom:0; margin-top:5; min-height:400">
         <div class="panel-heading">Корзина</div>
         <div class="panel-body"><?php displayError(); ?></div>
         <? if ($numItem > 0 ) { ?>
-        <form action="<?php echo "/cart?action=update"; ?>" method="post" name="frmCart" id="frmCart">
+        <form action="<?php echo "/order/update"; ?>" method="post" name="frmCart" id="frmCart">
             <div class="container" style="width: 940; padding:0;">
                 <table class="table table-bordered" border="0" align="center" cellpadding="1" cellspacing="1">
                     <thead>
@@ -63,7 +36,7 @@ require_once('include/top.php'); ?>
                             </td>
                             <td width="15%" align="right"><?php echo displayAmount($pd_price); ?></td>
                             <td width="15%" align="right"><?php echo displayAmount($ct_qty * $pd_price); ?></td>
-                            <td width="15%" align="center"><input class="btn btn-primary btn-sm btn-block" name="btnDelete" type="button" id="btnDelete" value="Удалить" onClick="window.location.href='<?php echo "/cart?action=delete&cid=$ct_id"; ?>';"></td>
+                            <td width="15%" align="center"><input class="btn btn-primary btn-sm btn-block" name="btnDelete" type="button" id="btnDelete" value="Удалить" onClick="window.location.href='<?php echo "/order/delete?cid=$ct_id"; ?>';"></td>
                         </tr>
                         <?php
                         }
@@ -111,5 +84,3 @@ require_once('include/top.php'); ?>
         </table>
     </div>
 </div>
-
-<?php require_once('include/footer.php'); ?>

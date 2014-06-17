@@ -73,7 +73,9 @@ ul.ks-menu li {
   width: 100%;
 /* Set the fixed height of the footer here */
   height: 60px;
-  color: #999;
+  color: #000;
+  background: #fff;
+  line-height: 50px;
 /*color: #fff;
     background-color: #2e5888;
     border-top 42px solid #6d8916;*/
