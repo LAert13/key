@@ -44,7 +44,7 @@ if (isset($_GET['p']) && (int)$_GET['p'] > 0) {
 <?php if (!isset($pageTitle)) $pageTitle = 'KeyShop'; ?>
     <title><?php echo $pageTitle; ?></title>
 
-    <link rel="shortcut icon" href="/favicon.png">
+    <link rel="shortcut icon" href="/images/favicon.png">
 
     <!-- Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:700,800' rel='stylesheet' type='text/css'>
