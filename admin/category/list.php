@@ -57,6 +57,13 @@ $pagingLink = getPagingLink($sql, $rowsPerPage, "sort=".$sort);
   </tr>
   <?php
 $cat_parent_id = 0;
+
+$parent = array();
+$sql = "SELECT cat_parent_id FROM tbl_category";
+$res = dbQuery($sql);
+while ($row = mysql_fetch_assoc($res)) { $parent[] = $row['cat_parent_id']; }
+
+
 if (dbNumRows($result) > 0) {
 	$i = 0;
 	
@@ -71,7 +78,7 @@ if (dbNumRows($result) > 0) {
 		
 		$i += 1;
 		
-		if ($cat_parent_id == 0) {
+		if (in_array($cat_id, $parent)) {
 			$cat_name = "<a href=\"index.php?catId=$cat_id\">$cat_name</a>";
 		}
 		
