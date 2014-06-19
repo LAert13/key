@@ -27,9 +27,27 @@ if(!isset($catId)or($catId == 0)) {
     }
     .element-menu > span {
         height: 50px;
-        color: #fff;
         position: relative;
         padding: 12px;
+    }
+    .element-menu > span > a {
+        color: #fff;
+    }
+    .current-menu > span > a,
+    .selected-menu > span > a
+    {
+        color: #000000;
+    }
+    .current-menu > span > a:focus,
+    .current-menu > span > a:hover,
+    .current-menu > span > a:focus,
+    .current-menu > span > a:hover,
+    .selected-menu > span > a:focus,
+    .selected-menu > span > a:hover,
+    .selected-menu > span > a:focus,
+    .selected-menu > span > a:hover {
+        color: #fcd03d;
+        text-decoration: none;
     }
     .ks-nav .ks-nav__elem .logo {
         color: #ffffff !important;
@@ -73,7 +91,7 @@ if(!isset($catId)or($catId == 0)) {
     .key-logo {
 
     }
-    .key-logo span {
+    .key-logo > a > span {
         font-family: 'Open Sans', sans-serif;
         font-weight: 700;
         font-size: 32px;
@@ -82,7 +100,7 @@ if(!isset($catId)or($catId == 0)) {
         vertical-align: middle;
         margin-left: -6px;
     }
-    .key-logo div {
+    .key-logo > a > div {
         background:#fcd03d;
         border-radius: 10px;
         margin: 0;
@@ -222,41 +240,43 @@ if(!isset($catId)or($catId == 0)) {
             <ul class="nav navbar-nav ks-nav">
                 <li class="element-menu not_last <?php if ($cat_mnu==10) echo "current-menu";?>">
                     <span class="key-logo">
-                        <div>KEY</div>
-                        <span>SHOP</span>
+                        <a href="/shop/category-18">
+                            <div>KEY</div>
+                            <span>SHOP</span>
+                        </a>
                     </span>
                     <ul class="popup-menu">
-                        <?php getCategoriesList($categories,$catId,10);?>
+                        <?php getCategoriesList($categories,18,10);?>
                     </ul>
                 </li>
                 <li class="element-menu not_last <?php if ($cat_mnu==1) echo "current-menu";?>">
                     <ul class="popup-menu">
-                        <?php getCategoriesList($categories,$catId,1);?>
+                        <?php getCategoriesList($categories,13,1);?>
                     </ul>
-                    <span><img src="/images/weapoon.png" alt="Оружие" class="menu-logo"/>Оружие</span>
+                    <span><a href="/shop/category-13"><img src="/images/weapoon.png" alt="Оружие" class="menu-logo"/>Оружие</a></span>
                 </li>
                 <li class="element-menu not_last <?php if ($cat_mnu==2) echo "current-menu";?>">
-                    <span><img src="/images/optics.png" alt="Оптика" class="menu-logo"/>Оптика</span>
+                    <span><a href="/shop/category-17"><img src="/images/optics.png" alt="Оптика" class="menu-logo"/>Оптика</a></span>
                     <ul class="popup-menu">
-                        <?php getCategoriesList($categories,$catId,2);?>
+                        <?php getCategoriesList($categories,17,2);?>
                     </ul>
                 </li>
                 <li class="element-menu not_last <?php if ($cat_mnu==3) echo "current-menu";?>">
-                    <span><img src="/images/armor.png" alt="Одежда" class="menu-logo"/>Одежда</span>
+                    <span><a href="/shop/category-16"><img src="/images/armor.png" alt="Одежда" class="menu-logo"/>Одежда</a></span>
                     <ul class="popup-menu">
-                        <?php getCategoriesList($categories,$catId,3);?>
+                        <?php getCategoriesList($categories,16,3);?>
                     </ul>
                 </li>
                 <li class="element-menu not_last <?php if ($cat_mnu==4) echo "current-menu";?>">
-                    <span><img src="/images/boots.png" alt="Обувь" class="menu-logo"/>Обувь</span>
+                    <span><a href="/shop/category-15"><img src="/images/boots.png" alt="Обувь" class="menu-logo"/>Обувь</a></span>
                     <ul class="popup-menu">
-                        <?php getCategoriesList($categories,$catId,4);?>
+                        <?php getCategoriesList($categories,15,4);?>
                     </ul>
                 </li>
                 <li class="element-menu <?php if ($cat_mnu==5) echo "current-menu";?>">
-                    <span><img src="/images/defence.png" alt="Защита" class="menu-logo"/>Защита</span>
+                    <span><a href="/shop/category-16"><img src="/images/defence.png" alt="Защита" class="menu-logo"/>Защита</a></span>
                     <ul class="popup-menu">
-                        <?php getCategoriesList($categories,$catId,5);?>
+                        <?php getCategoriesList($categories,14,5);?>
                     </ul>
                 </li>
             </ul>

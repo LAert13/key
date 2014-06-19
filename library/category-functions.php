@@ -144,19 +144,20 @@ function getCategoriesList($categories,$catId,$mnu) {
     foreach ($categories as $category) {
         extract($category);
         if ($cat_mnu == $mnu) {
-            $level = ($cat_parent_id == 0) ? 1 : 2;
+            $level = ($cat_parent_id == $catId) ? 1 : 2;
             $url   = "/shop/category-" . $cat_id;
-
-            if ($level == 1) {
-                echo $isFirst ? '' : $categoryOpened ? '</ul></li>' : '</li>';
-                $categoryOpened = false;
-                echo '<li><a href="'.$url.'"><b>'.$cat_name.'</b></a>';
-            } else {
-                if ($categoryOpened == false) {
-                    $categoryOpened = true;
-                    echo '<ul style="list-style-type:none; margin-left: 0; padding-left: 20px;">';
+            if ($cat_id != $catId) {
+                if ($level == 1) {
+                    echo $isFirst ? '' : $categoryOpened ? '</ul></li>' : '</li>';
+                    $categoryOpened = false;
+                    echo '<li><a href="'.$url.'"><b>'.$cat_name.'</b></a>';
+                } else {
+                    if ($categoryOpened == false) {
+                        $categoryOpened = true;
+                        echo '<ul style="list-style-type:none; margin-left: 0; padding-left: 20px;">';
+                    }
+                    echo '<li><a href="'.$url.'"><b>'.$cat_name.'</b></a></li>';
                 }
-                echo '<li><a href="'.$url.'"><b>'.$cat_name.'</b></a></li>';
             }
             $isFirst = false;
         }
