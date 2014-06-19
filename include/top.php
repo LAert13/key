@@ -3,7 +3,7 @@ require_once('library/config.php');
 require_once('library/category-functions.php');
 $categories = fetchCategories();
 if(!isset($catId)or($catId == 0)) {
-    if(!isset($pdId)) {
+    if(!isset($pdId)or($pdId == 0)) {
         $catId = 0;
         $cat_mnu = 0;
     } else {
