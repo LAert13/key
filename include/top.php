@@ -3,8 +3,15 @@ require_once('library/config.php');
 require_once('library/category-functions.php');
 $categories = fetchCategories();
 if(!isset($catId)or($catId == 0)) {
-    $catId = 0;
-    $cat_mnu = 0;
+    if(!isset($pdId)) {
+        $catId = 0;
+        $cat_mnu = 0;
+    } else {
+        $sql = "SELECT cat_mnu FROM tbl_category c, tbl_product p WHERE p.pd_id = $pdId AND c.cat_id = p.cat_id";
+        $mnu = mysql_query($sql) or die(mysql_error());
+        $mnu = mysql_fetch_assoc($mnu);
+        extract($mnu);
+    }
 } else {
     $sql = "SELECT cat_mnu FROM tbl_category WHERE cat_id = $catId";
     $mnu = mysql_query($sql) or die(mysql_error());
