@@ -80,6 +80,10 @@ if ($catId >0) {
     .fltValue {
         padding-left: 10px
     }
+    .fltValue > li > label,
+    .fltValue > li > label > input {
+        cursor: pointer;
+    }
 </style>
 
     <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3">

@@ -3,7 +3,7 @@
 	Contain the common functions 
 	required in shop and admin pages
 */
-require_once 'config.php';
+require_once '../../library/config.php';
 require_once 'database.php';
 
 /*

@@ -5,7 +5,7 @@
 * Main user page after login
 */
 
-require_once '../lib/config.php';
+require_once '/lib/config.php';
 require_once '../lib/functions.php';
 require_once '../lib/opendb.php';
 require_once '../lib/checkUser.php';

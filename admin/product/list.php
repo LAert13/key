@@ -76,7 +76,7 @@ if (dbNumRows($result) > 0) {
   <tr class="<?php echo $class; ?>"> 
    <td><a href="index.php?view=detail&productId=<?php echo $pd_id; ?>"><?php echo $pd_name; ?></a></td>
    <td width="75" align="center"><img src="<?php echo $pd_thumbnail; ?>"></td>
-   <td width="75" align="center"><a href="?c=<?php echo $cat_id; ?>"><?php echo $cat_name; ?></a></td>
+   <td width="75" align="center"><a href="?catId=<?php echo $cat_id; ?>"><?php echo $cat_name; ?></a></td>
    <td width="70" align="center"><a href="javascript:modifyProduct(<?php echo $pd_id; ?>);">Изменить</a></td>
    <td width="70" align="center"><a href="javascript:deleteProduct(<?php echo $pd_id; ?>, <?php echo $catId; ?>);">Удалить</a></td>
   </tr>

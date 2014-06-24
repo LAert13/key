@@ -148,10 +148,15 @@ function buildCategoryOptions($catId = 0)
 	$result = dbQuery($sql) or die('Cannot get Product. ' . mysql_error());
 	
 	$categories = array();
+    $parent = array();
+    $sql = "SELECT cat_parent_id FROM tbl_category";
+    $res = dbQuery($sql);
+    while ($row = mysql_fetch_assoc($res)) { $parent[] = $row['cat_parent_id']; }
+
 	while($row = dbFetchArray($result)) {
 		list($id, $parentId, $name) = $row;
 		
-		if ($parentId == 0) {
+		if (in_array($id, $parent)) {
 			// we create a new array for each top level categories
 			$categories[$id] = array('name' => $name, 'children' => array());
 		} else {
