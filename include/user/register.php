@@ -1,10 +1,3 @@
-<?php
-$pageTitle = 'Регистрация';
-
-require_once('library/cart-functions.php');
-require_once('include/header.php');
-?>
-
 	<script type="text/javascript">
 		$(document).ready(function(){
 	
