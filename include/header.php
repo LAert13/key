@@ -2,7 +2,7 @@
 if (!defined('WEB_ROOT')) {
 	exit;
 }
-
+header("Content-Type: text/html; charset=utf-8");
 // if a product id is set add the product name
 // to the page title but if the product id is not
 // present check if a category id exist in the query string
@@ -32,9 +32,7 @@ if (isset($_GET['p']) && (int)$_GET['p'] > 0) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta charset="utf-8">
+    <meta http-equiv="content-type" content="text/html; charset=utf8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -75,4 +73,4 @@ if (isset($_GET['p']) && (int)$_GET['p'] > 0) {
     <script language="JavaScript" type="text/javascript" src="/js/modernizr.js"></script>
 </head>
 
-<body>
+<body>	

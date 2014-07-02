@@ -3,7 +3,9 @@ require_once '../../library/config.php';
 
 $dbConn = mysql_connect ($dbHost, $dbUser, $dbPass) or die ('MySQL connect failed. ' . mysql_error());
 mysql_select_db($dbName) or die('Невозможно присоединиться к базе. ' . mysql_error());
-mysql_query("set names utf8");
+mysql_query("SET NAMES 'utf8'"); 
+mysql_query("SET CHARACTER SET 'utf8'");
+mysql_query("SET SESSION collation_connection = 'utf8_general_ci'");
 
 function dbQuery($sql)
 {

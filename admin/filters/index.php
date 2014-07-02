@@ -2,6 +2,8 @@
 require_once '../../library/config.php';
 require_once '../library/functions.php';
 
+header("Content-Type: text/html; charset=utf-8");
+
 $_SESSION['login_return_url'] = $_SERVER['REQUEST_URI'];
 checkUser();
 

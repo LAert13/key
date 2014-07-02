@@ -1,6 +1,8 @@
 # Do not remove this line or mod_rewrite rules and search engine friendly URLs will stop working
 RewriteBase /
 
+AddDefaultCharset UTF8
+
 <Files .htaccess>
 order allow,deny
 deny from all

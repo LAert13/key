@@ -8,7 +8,7 @@ $self = '/admin/index.php';
 <html>
 <head>
 <title><?php echo $pageTitle; ?></title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="content-type" content="text/html; charset=utf8" />
 <link href="/admin/include/admin.css" rel="stylesheet" type="text/css">
 <script language="JavaScript" type="text/javascript" src="/admin/library/common.js"></script>
 <script language="JavaScript" type="text/javascript" src="/admin/library/category.js"></script>
